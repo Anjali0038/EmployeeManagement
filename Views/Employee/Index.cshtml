@@ -1,0 +1,109 @@
+﻿@model EmployeeManagement.Models.EmployeeViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>All Employees</h1>
+<button class="btn btn-primary" id="btnAdd"> Add</button>
+<div id="EmployeeList">    </div>
+<div class="row col-sm-6">
+    <div class="col-sm-6 form-group">
+        <input id="txtVal" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+    </div>
+    <div class="col-sm-6 form-group">
+        <button class="btn btn-primary" id="btnSearch"> Search</button>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">S.N</th>
+            <th scope="col">Id</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Dob</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{int i = 1;}
+        @foreach (var employee in Model.EmployeeList)
+        {
+            <tr scope="row">
+                <td>@(i++)</td>
+                <td id="Id">@employee.Id</td>
+                <td id="FullName">@employee.FullName</td>
+                <td id="Address">@employee.Address</td>
+                <td id="Gender">@employee.Gender</td>
+                <td id="Dob">@employee.Dob.ToShortDateString()</td>
+                <td>
+                    <button class="btn btn-warning btnUpdate" id=@employee.Id>Update</button>
+                    <button class="btn btn-danger btnDelete" id=@employee.Id>Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+<script src ="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btnAdd").click(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/Employee/Create",
+                    success: function (response) {
+                        $('#EmployeeList').empty();
+                        $('#EmployeeList').html(response);
+                        console.log(response);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            });
+            $(".btnUpdate").click(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/Employee/Update",
+                    data: { id: this.id },
+                    success: function (response) {
+                        $('#EmployeeList').empty();
+                        $('#EmployeeList').html(response);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            });
+            $(".btnDelete").click(function () {
+                var r = confirm("Are you sure you want to delete!");
+                if (r == true) {
+                    $.ajax({
+                        type: "GET",
+                        url: "/Employee/Delete",
+                        data: { id: this.id },
+                        success: function (response) {
+                            window.location.reload(true)
+                        }
+                    });
+                } else {
+                    console.log("cancel")
+                }
+            });
+    </script>

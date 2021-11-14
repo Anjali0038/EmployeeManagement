@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+/* overall website color define  */
+:root {
+  --bg-color: #103f6a;
+  --border-color: #d3d3d3;
+}
+/* css for mobile device */
+/* login page start here */
+.main-conatiner {
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--bg-color);
+}
+.login-container-wrapper {
+  height: inherit;
+  width: inherit;
+  display: grid;
+  place-items: center;
+}
+.login-container-section {
+  min-height: 275px;
+  max-width: 250px;
+  background-color: white;
+  border-radius: 7px;
+  padding: 0.8em;
+}
+.login-container-logo {
+  display: grid;
+  place-items: center;
+  margin-bottom: 1.5em;
+}
+.login-container-logo img {
+  width: 50px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.login-container-form-section input {
+  width: 100%;
+  height: 2.5em;
+  padding: 0.2em;
+  border-radius: 7px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 1em;
+  padding: 1em;
+}
+input[type="submit"] {
+  width: 105px;
+  height: 2em;
+  display: block;
+  margin: 0 auto;
+  color: var(--bg-color);
+  font-weight: bold;
+  font-size: 1em;
+  background-color: unset;
+  padding: unset;
+  cursor: pointer;
+}
+
+input.empty {
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: 700;
+}
+::placeholder {
+  color: var(--border-color);
+}
+
+@media screen and (min-width: 360px) {
+  .login-container-section {
+    min-height: 320px;
+    max-width: 295px;
+    background-color: white;
+    border-radius: 7px;
+    padding: 0.8em;
+  }
+}
+@media screen and (min-width: 768px) {
+  .login-container-section {
+    min-height: 440px;
+    max-width: 400px;
+    background-color: white;
+    border-radius: 7px;
+    padding: 1em 1.5em;
+  }
+  .login-container-logo {
+    display: grid;
+    place-items: center;
+    margin-bottom: 2em;
+  }
+  .login-container-logo img {
+    width: 83px;
+    height: 92px;
+    object-fit: contain;
+  }
+  .login-container-form-section input {
+    width: 100%;
+    height: 2.5em;
+    padding: 0.2em;
+    border-radius: 7px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 1em;
+    padding: 1em;
+  }
+  input[type="submit"] {
+    width: 155px;
+    height: 45px;
+    display: block;
+    margin: 0 auto;
+    color: var(--bg-color);
+    font-weight: bold;
+    font-size: 1.5em;
+    background-color: unset;
+    padding: unset;
+  }
+  input.empty {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+  }
+  ::placeholder {
+    color: var(--border-color);
+  }
+}
+/* login page end here */

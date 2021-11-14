@@ -1,0 +1,15 @@
+﻿@model EmployeeViewModel;
+@{
+    Layout = null;
+}
+<h2>Are you sure to delete the following?</h2>
+<ul class="list-group">
+    <li class="list-group-item">Full Name: @Model.FullName</li>
+    <li class="list-group-item">Address: @Model.Address</li>
+    <li class="list-group-item">Gender: @Model.Gender</li>
+    <li class="list-group-item">Date of birth: @Model.Dob</li>
+</ul>
+<form asp-controller="Employee" asp-action="DeleteEmployee" method="POST">
+    <input type="hidden" asp-for="Id">
+    <button type="submit" class="btn btn-danger">Delete </button>
+</form>

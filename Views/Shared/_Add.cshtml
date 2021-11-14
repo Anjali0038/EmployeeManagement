@@ -1,0 +1,55 @@
+﻿@model EmployeeManagement.Models.EmployeeViewModel
+@{
+    ViewData["Title"] = "Create";
+    Layout = null;
+}
+
+<h1>Add Employees</h1>
+<form asp-controller="Employee" asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="FullName">Enter FullName</label>
+                <input type="text" asp-for="FullName" class="form-control" placeholder="FullName Here"><br />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="Address">Address</label>
+                <input type="text" asp-for="Address" class="form-control" placeholder="Address Here"><br />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label asp-for="Dob"> Enter Date of birth</label>
+                <input type="text" asp-for="Dob" asp-format="{0:dd/MM/yyyy}" placeholder="Enter Date of birth here:" id="datepicker" class="form-control" /><br />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="Gender"> Enter Gender</label>
+                <select class="form-control" asp-for="Gender" asp-items="ViewBag.Gender"></select><br />
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Save Employee</button>
+
+</form>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
+    <script>
+        $(function () {
+            debugger
+            $('#datepicker').datetimepicker({
+                format:'LL'
+            });
+        });
+    </script>
+
+

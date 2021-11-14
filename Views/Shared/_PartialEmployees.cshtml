@@ -1,0 +1,14 @@
+﻿@model EmployeeManagement.Models.EmployeeViewModel;
+@{
+    Layout = null;
+}
+@foreach (var item in Model.EmployeeList)
+{
+    <tr>
+        <td>@item.Id</td>
+        <td>@item.FullName</td>
+        <td>@item.Address</td>
+        <td>@item.Gender</td>
+        <td>@item.Dob</td>
+    </tr>
+}
