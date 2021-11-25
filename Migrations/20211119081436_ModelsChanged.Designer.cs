@@ -4,14 +4,16 @@ using EmployeeManagement.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EmployeeManagement.Migrations
 {
     [DbContext(typeof(EmployeeManagementDbContext))]
-    partial class EmployeeManagementDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211119081436_ModelsChanged")]
+    partial class ModelsChanged
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,9 +33,6 @@ namespace EmployeeManagement.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Designation")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -44,23 +43,11 @@ namespace EmployeeManagement.Migrations
                     b.Property<int?>("Employee_Id")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Employee_Id1")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("MiddleName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
@@ -90,8 +77,6 @@ namespace EmployeeManagement.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Employee_Id1");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -155,9 +140,6 @@ namespace EmployeeManagement.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int?>("Attendance_Id")
                         .HasColumnType("int");
 
@@ -186,6 +168,10 @@ namespace EmployeeManagement.Migrations
                     b.Property<int?>("Gender_Id")
                         .HasColumnType("int");
 
+                    b.Property<string>("Gender_Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(1)");
+
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
@@ -205,8 +191,6 @@ namespace EmployeeManagement.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Employee_Id");
-
-                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("Attendance_Id");
 
@@ -368,15 +352,6 @@ namespace EmployeeManagement.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("EmployeeManagement.Areas.Identity.Data.ApplicationUser", b =>
-                {
-                    b.HasOne("EmployeeManagement.Models.Employee", "employee")
-                        .WithMany()
-                        .HasForeignKey("Employee_Id1");
-
-                    b.Navigation("employee");
-                });
-
             modelBuilder.Entity("EmployeeManagement.Models.Attendance", b =>
                 {
                     b.HasOne("EmployeeManagement.Models.Employee", "Employee")
@@ -388,10 +363,6 @@ namespace EmployeeManagement.Migrations
 
             modelBuilder.Entity("EmployeeManagement.Models.Employee", b =>
                 {
-                    b.HasOne("EmployeeManagement.Areas.Identity.Data.ApplicationUser", null)
-                        .WithMany("EmployeeList")
-                        .HasForeignKey("ApplicationUserId");
-
                     b.HasOne("EmployeeManagement.Models.Attendance", "Attendance")
                         .WithMany()
                         .HasForeignKey("Attendance_Id");
@@ -460,11 +431,6 @@ namespace EmployeeManagement.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("EmployeeManagement.Areas.Identity.Data.ApplicationUser", b =>
-                {
-                    b.Navigation("EmployeeList");
                 });
 #pragma warning restore 612, 618
         }

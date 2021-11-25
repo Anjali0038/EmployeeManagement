@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using EmployeeManagement.Data;
 using EmployeeManagement.Models;
 using EmployeeManagement.Repository;
 using System;
@@ -23,10 +24,13 @@ namespace EmployeeManagement.Service
     {
         private readonly IEmployeeRepository _iEmployeeRepository;
         private readonly IMapper _mapper;
-        public EmployeeProvider(IEmployeeRepository iEmployeeRepository, IMapper mapper)
+        private readonly EmployeeManagementDbContext _context;
+
+        public EmployeeProvider(IEmployeeRepository iEmployeeRepository, IMapper mapper, EmployeeManagementDbContext context)
         {
             _iEmployeeRepository = iEmployeeRepository;
             _mapper = mapper;
+            _context = context;
 
         }
         public int SaveEmployee(EmployeeViewModel model)
@@ -37,7 +41,7 @@ namespace EmployeeManagement.Service
             //employee.Address = model.Address;
             //employee.Gender = model.Gender;
             //employee.Dob = model.Dob;
-            if (employee.Id > 0)
+            if (employee.Employee_Id > 0)
             {
                 _iEmployeeRepository.Update(employee);
                 return 200;
@@ -51,7 +55,7 @@ namespace EmployeeManagement.Service
         }
         public void DeleteEmployee(int id)
         {
-            var item = _iEmployeeRepository.GetSingle(x => x.Id == id);
+            var item = _iEmployeeRepository.GetSingle(x => x.Employee_Id == id);
             _iEmployeeRepository.Delete(item);
         }
         /*
@@ -71,7 +75,7 @@ namespace EmployeeManagement.Service
         */
         public EmployeeViewModel GetById(int id)
         {
-            var item = _iEmployeeRepository.GetSingle(x => x.Id == id);
+            var item = _iEmployeeRepository.GetSingle(x => x.Employee_Id == id);
             EmployeeViewModel data = _mapper.Map<EmployeeViewModel>(item);
             return data;
         }
@@ -80,6 +84,10 @@ namespace EmployeeManagement.Service
             EmployeeViewModel model = new EmployeeViewModel();
             var list = new List<EmployeeViewModel>();
             List<Employee> data = _iEmployeeRepository.GetAll().ToList();
+            //foreach (var item in data)
+            //{
+            //    item.Gender_Name = _context.Genders.Find(x => x.Gender_Id == item.Gender_Id).Gender_Name;
+            //}
             //foreach (var item in data)
             //{
             //    EmployeeViewModel objModel = new EmployeeViewModel();

@@ -1,0 +1,244 @@
+@model EmployeeManagement.Areas.Identity.Data.ApplicationUserViewModel
+@{
+    ViewData["Title"] = "Index";
+    var data1 = ViewBag.Gender;
+    var data2 = ViewBag.Emp;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css link -->
+    <!-- <link rel="stylesheet" href="./user.css"> -->
+    <link rel="stylesheet" href="./css/site.css">
+    <!-- font-awesome link -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" rel="stylesheet" />
+    <title>userlist</title>
+</head>
+
+<body>
+    <!-- userlist-wrapper start -->
+    <div class="userlist-wrapper" id="UsersList">
+        <!-- userlist-sidebar start here -->
+        <div class="userlist-sidebar ">
+            <!-- userlist-sidebar-company-logo-section start here -->
+            <div class="userlist-sidebar-company-logo-section">
+                <img src="./images/logo.png" alt="company logo">
+                <button class="userlist-sidebar-close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <!-- userlist-sidebar-company-logo-section end here -->
+            <!-- sidebar menu list start here -->
+            <ul>
+                <li class="userlistsidebarbtn actives">
+                    <a asp-controller="ApplicationUser" asp-action="Index">
+                        <i class="fas fa-users"></i>
+                        <span>Userlist</span>
+                    </a>
+                </li>
+                <li class="userlistsidebarbtn">
+                    <a asp-controller="Employee" asp-action="Index">
+                        <i class="fas fa-users"></i>
+                        <span>Employeelist</span>
+                    </a>
+                </li>
+            </ul>
+            <!-- sidebar menu list end here -->
+        </div>
+        <!-- userlist-sidebar end here -->
+        <!-- userlist-main-container start here  -->
+        <div class="userlist-main-container ">
+            <!-- userlist-header-section start here -->
+            <div class="userlist-header-section">
+                <!-- userlist-sidebar-section start here -->
+                <div class="userlist-sidebar-section">
+                    <button class="userlist-sidebar-btn"><i class="fas fa-bars"></i></button>
+                </div>
+                <!-- userlist-sidebar-section end here -->
+                <!-- userlist-image-section start here -->
+                <div class="userlist-image-section">
+                    <h1>Mananjay Shrestha</h1>
+                    <img src="./images/profile.jpg" alt="userimage">
+                </div>
+                <!-- userlist-image-section end here -->
+            </div>
+            <!-- userlist-header-section end here -->
+            <!-- logout section start -->
+            <div class="userlist-logout-section">
+                <!-- userlist-user-profile-img start here -->
+                <div class="userlist-user-profile-img">
+                    <img src="./images/profile.jpg" alt="userimage">
+                    <button class="userlist-logout-section-close-btn"><i class="fas fa-times"></i></button>
+                </div>
+                <!-- userlist-user-profile-img start here -->
+                <h3>Mananjay Shrestha</h3>
+                <h3 class="userlist-user-email">Mananjaysth111@gmail.com</h3>
+                <button class="userlist-logout-btn" onclick="newDoc()">Sign Out</button>
+                <!-- userlist-logout-footer-section start here -->
+                <div class="userlist-logout-footer-section">
+                    <h3>Privacy Policy</h3>
+                </div>
+                <!-- userlist-logout-footer-section end here -->
+            </div>
+            <!-- logout section end -->
+            <!-- userlist-title-section start here -->
+            <div class="userlist-title-section">
+                <h1>User List</h1>
+            </div>
+            <!-- userlist-title-section end here -->
+            <div class="userlist-search-create-section">
+                <!-- userlist-create-section start here -->
+                <div class="userlist-create-section">
+                    <button class="userlist-create-section-btn" id="btnAdd">+ Create User</button>
+                </div>
+                <!-- userlist-create-section end here -->
+                <!-- userlist-search-section start here -->
+                <div class="userlist-search-section">
+                    <form action="" class="userlist-search-section-form">
+                        <input type="text" placeholder="Username" class="userlist-search-box">
+                        <button type="submit" class="userlist-search-btn"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+                <!-- userlist-search-section end here -->
+            </div>
+            <!-- userlist-list-section start here -->
+            <div class="userlist-list-section">
+                <!-- userlist-list-header-section start here -->
+                <div class="userlist-list-header-section">
+                    <div class="name">Name</div>
+                    <div class="userlist-username">Username</div>
+                    <div class="userlist-email">Email</div>
+                    <div class="userlist-designation">Designation</div>
+                    <div class="userlist-edit-delete">Edit/Delete</div>
+                </div>
+                <!-- userlist-list-header-section end here -->
+                <!-- userlist-firstrowlist-section start here -->
+                @foreach (var user in Model.UsersList)
+                {
+                    <div class="userlist-firstrowlist-section">
+                        <div class="userlist-name-value">@user.FirstName @user.MiddleName @user.LastName</div>
+                        <div class="userlist-username-value">@user.UserName</div>
+                        <div class="userlist-email-value">@user.Email</div>
+                        <div class="userlist-designation-value">@user.Designation</div>
+                        <div class="userlist-edit-delete-value" style="padding: 0 0;">
+                            <button class="edit-btn btnUpdate"><i class="far fa-edit"></i></button>
+                            <button class="delete-btn btnDelete"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                }
+            </div>
+            <!-- userlist-list-section start here -->
+            <!-- userlist-page-change-section start here -->
+            <div class="userlist-page-change-section">
+                <!-- userlist-previous-page-section start here -->
+                <div class="userlist-previous-page-section">
+                    <button class="userlist-previous-btn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <p>Previous Page</p>
+                </div>
+                <!-- userlist-previous-page-section end here -->
+                <!-- userlist-current-page-section start here -->
+                <div class="userlist-current-page-section">
+                    1
+                </div>
+                <!-- userlist-current-page-section end here -->
+                <!-- userlist-next-page-section start here -->
+                <div class="userlist-next-page-section">
+                    <p>Next Page</p>
+                    <button class="userlist-next-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <!-- userlist-next-page-section end here -->
+            </div>
+            <!-- userlist-page-change-section end here -->
+        </div>
+        <!-- userlist-main-container end here  -->
+
+    </div>
+    <!-- userlist-wrapper start -->
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- adduser section start here -->
+        <div class="userlist-adduser-form-section">
+            <div class="userlist-adduser-header">
+                <img src="./images/logo.png" alt="company logo">
+                <button class="userlist-adduser-close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <form asp-controller="ApplicationUser" method="post" asp-action="CreateOrEdit" onsubmit="toast()" class="userlist-from-section">
+                <input type="hidden" asp-for="Id" />
+                <h1>Create User</h1>
+                <div class="userlist-firstrow-section">
+                    <div class="userlist-froms">
+                        <label for="">Employee List</label>
+                        <select asp-items="ViewBag.Emp" name="languages" id="lang" class="userlist-text-from"></select>
+                    </div>
+                </div>
+                <div class="userlist-secondrow-section">
+                    <div class="userlist-froms">
+                        <label for="UserName">Username</label>
+                        <input asp-for="UserName" type="text" class="userlist-text-from">
+                    </div>
+                </div>
+                <div class="userlist-thirdrow-section">
+                    <div class="userlist-froms">
+                        <label for="PasswordHash">Password</label>
+                        <input asp-for="PasswordHash" type="password" class="userlist-text-from">
+                    </div>
+                </div>
+                <div class="userlist-fourthrow-section">
+                    <div class="userlist-froms  email">
+                        <label for="PasswordHash">Confirm Password</label>
+                        <input asp-for="PasswordHash" type="password" class="userlist-text-from">
+                    </div>
+                </div>
+                <input type="submit" class="userlist-adduser-submit-section userlist-form-submit-section"
+                       @*onclick="toast(event)"*@>
+            </form>
+        </div>
+        <!-- add-user section end here -->
+    </div>
+
+    <!-- userlist-toast -->
+    <div class="userlist-toast">
+        <div class="userlist-conform-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="toast-success-mssg">
+            <p>User</p>
+            <p>Create Successfully</p>
+        </div>
+        <button class="toast-close-btn ">
+            &times;
+        </button>
+    </div>
+    <!-- userlist-toast -->
+</body>
+<!-- javascript link -->
+
+</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+<script src="~/js/employee.js"></script>
+<script src="~/js/user.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(".btndelete").click(function () {
+            var r = confirm("are you sure you want to delete!");
+            if (r == true) {
+                $.ajax({
+                    type: "get",
+                    url: "/ApplicationUser/delete",
+                    data: { id: this.id },
+                    success: function (response) {
+                        window.location.reload(true)
+                    }
+                });
+            } else {
+                console.log("cancel")
+            }
+        });
+    });
+</script>

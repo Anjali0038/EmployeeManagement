@@ -1,16 +1,17 @@
 ﻿@model EmployeeManagement.Models.EmployeeViewModel
 @{
-    ViewData["Title"] = @Model.FullName;
+    ViewData["Title"] = @Model.FirstName + @Model.MiddleName + Model.LastName;
     Layout = null;
 }
 <h2>Are you sure to delete the following?</h2>
 <ul class="list-group">
-    <li class="list-group-item">Full Name: @Model.FullName</li>
+    <li class="list-group-item">Full Name: @Model.FirstName</li>
+    <li class="list-group-item">Full Name: @Model.MiddleName</li>
+    <li class="list-group-item">Full Name: @Model.LastName</li>
     <li class="list-group-item">Address: @Model.Address</li>
-    <li class="list-group-item">Gender: @Model.Gender</li>
     <li class="list-group-item">Date of birth: @Model.Dob</li>
 </ul>
 <form asp-controller="Employee" asp-action="Delete" method="POST">
-    <input type="hidden" asp-for="Id">
+    <input type="hidden" asp-for="Employee_Id">
     <button type="submit" class="btn btn-danger">Delete </button>
 </form>

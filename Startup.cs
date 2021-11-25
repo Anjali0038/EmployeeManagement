@@ -30,7 +30,7 @@ namespace EmployeeManagement
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAutoMapper(typeof(EmployeeProfile));
+            services.AddAutoMapper(typeof(MapProfile));
             services.AddSingleton(_config);
             services.AddControllersWithViews();
             services.AddRazorPages();
@@ -38,7 +38,11 @@ namespace EmployeeManagement
             //services.AddScoped(typeof(IEmployeeRepository), typeof(EmployeeRepository));
            // services.AddScoped(typeof(IEmployeeProvider), typeof(EmployeeProvider));
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
+
             services.AddScoped<IEmployeeProvider, EmployeeProvider>();
+            services.AddScoped<IApplicationUserProvider, ApplicationUserProvider>();
+
             // services.RegisterServiceDependencies();
 
         }

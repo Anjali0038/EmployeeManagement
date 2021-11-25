@@ -1,109 +1,310 @@
 ﻿@model EmployeeManagement.Models.EmployeeViewModel
 @{
     ViewData["Title"] = "Index";
+    var data = ViewBag.Gender;
+
 }
-<h1>All Employees</h1>
-<button class="btn btn-primary" id="btnAdd"> Add</button>
-<div id="EmployeeList">    </div>
-<div class="row col-sm-6">
-    <div class="col-sm-6 form-group">
-        <input id="txtVal" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-    </div>
-    <div class="col-sm-6 form-group">
-        <button class="btn btn-primary" id="btnSearch"> Search</button>
-    </div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css link -->
+    <!-- <link rel="stylesheet" href="./employee.css"> -->
+    <link rel="stylesheet" href="./css/site.css">
+    <!-- font-awesome link -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" rel="stylesheet" />
+    <title>userlist</title>
+</head>
+<body>
+    <!-- employeelist-wrapper -->
+    <div class="employeelist-wrapper" id="EmployeeList">
+        <!-- employeelist-slidebar -->
+        <div class="employeelist-sidebar">
+            <!-- employeelist-sidebar-company-logo-section -->
+            <div class="employeelist-sidebar-company-logo-section">
+                <img src="./images/logo.png" alt="company logo">
+                <button class="employeelist-sidebar-close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <!-- employeelist-sidebar-company-logo-section -->
+            <ul>
+                <li class="employeelistsidebarbtn">
+                    <a asp-controller="ApplicationUser" asp-action="Index">
+                        <i class="fas fa-users"></i>
+                        <span>Userlist</span>
+                    </a>
+                </li>
+                <li class="employeelistsidebarbtn active">
+                    <a asp-controller="Employee" asp-action="Index">
+                        <i class="fas fa-users"></i>
+                        <span>Employeelist</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- employeelist-wrapper end here -->
+        <!-- employeelist-main-container -->
+        <div class="employeelist-main-container ">
+            <div class="employeelist-header-section">
+                <div class="employeelist-sidebar-section">
+                    <button class="employeelist-sidebar-btn"><i class="fas fa-bars"></i></button>
+                </div>
+                <div class="employeelist-image-section">
+                    <h1>Mananjay Shrestha</h1>
+                    <img src="./images/profile.jpg" alt="userimage">
+                </div>
+            </div>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">S.N</th>
-            <th scope="col">Id</th>
-            <th scope="col">Full Name</th>
-            <th scope="col">Address</th>
-            <th scope="col">Gender</th>
-            <th scope="col">Dob</th>
-            <th scope="col">Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @{int i = 1;}
-        @foreach (var employee in Model.EmployeeList)
-        {
-            <tr scope="row">
-                <td>@(i++)</td>
-                <td id="Id">@employee.Id</td>
-                <td id="FullName">@employee.FullName</td>
-                <td id="Address">@employee.Address</td>
-                <td id="Gender">@employee.Gender</td>
-                <td id="Dob">@employee.Dob.ToShortDateString()</td>
-                <td>
-                    <button class="btn btn-warning btnUpdate" id=@employee.Id>Update</button>
-                    <button class="btn btn-danger btnDelete" id=@employee.Id>Delete</button>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+            <!-- logout section start -->
+            <div class="employeelist-logout-section">
+                <!-- employeelist-user-profile-img -->
+                <div class="employeelist-user-profile-img">
+                    <img src="./images/profile.jpg" alt="userimage">
+                    <button class="employeelist-logout-section-close-btn"><i class="fas fa-times"></i></button>
+                </div>
+                <!-- employeelist-user-profile-img -->
 
+                <h3>Mananjay Shrestha</h3>
+                <h3 class="employeelist-user-email">Mananjaysth111@gmail.com</h3>
+                <button class="employeelist-logout-btn" onclick="newDoc()">Sign Out</button>
+                <!-- employeelist-logout-footer-section -->
+                <div class="employeelist-logout-footer-section">
+                    <h3>Privacy Policy</h3>
+                </div>
+                <!-- employeelist-logout-footer-section -->
+            </div>
+            <!-- logout section end -->
+            <!-- employeelist-title-section -->
+            <div class="employeelist-title-section">
+                <h1>Employee List</h1>
+            </div>
+            <!-- employeelist-title-section -->
+            <div class="employeelist-search-create-section">
+                <!-- employeelist-create-section -->
+                <div class="employeelist-create-section">
+                    <button class="employeelist-create-section-btn" id="btnAdd">+ Create User</button>
+                </div>
+                <!-- employeelist-create-section -->
+                <!-- employeelist-search-section -->
+                <div class="employeelist-search-section">
+                    <form action="" class="employeelist-search-section-form" method="post">
+                        <input id="txtVal" type="text" placeholder="Username" class="employeelist-search-box">
+                        <button type="submit" class="employeelist-search-btn"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+                <!-- employeelist-search-section -->
+            </div>
+            <!-- employeelist-list-section -->
+            <div class="employeelist-list-section">
+                <!-- employeelist-list-header-section -->
+                <div class="employeelist-list-header-section">
+                    <div class="employeelist-name">Name</div>
+                    <div class="employeelist-username">Username</div>
+                    <div class="employeelist-email">Email</div>
+                    <div class="employeelist-designation">Designation</div>
+                    <div class="employeelist-edit-delete">Edit/Delete</div>
+                </div>
+                <!-- employeelist-list-header-section -->
+                <!-- employeelist-firstrowlist-section -->
+                @foreach (var employee in Model.EmployeeList)
+                {
+                    <div class="employeelist-firstrowlist-section">
+                        <div class="employeelist-name-value">@employee.FirstName  @employee.MiddleName  @employee.LastName</div>
+                        <div class="employeelist-username-value">@employee.UserName</div>
+                        <div class="employeelist-email-value">@employee.Email</div>
+                        <div class="employeelist-designation-value">@employee.Designation_Name</div>
+                        <div class="employeelist-edit-delete-value" style="padding: 0 0;">
+                            <button class="edit-btn btnUpdate " id=@employee.Employee_Id><i class="far fa-edit"></i> </button>
+                            <button class="delete-btn btnDelete" id=@employee.Employee_Id><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                }
+
+                <!-- employeelist-firstrowlist-section -->
+                <!-- employeelist-secondrowlist-section -->
+            </div>
+            <!-- employeelist-list-section -->
+            <!-- employeelist-page-change-section -->
+            <div class="employeelist-page-change-section">
+                <!-- employeelist-previous-page-section -->
+                <div class="employeelist-previous-page-section">
+                    <button class="employeelist-previous-btn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <p>Previous Page</p>
+                </div>
+                <!-- employeelist-previous-page-section -->
+                <!-- employeelist-current-page-section -->
+                <div class="employeelist-current-page-section">
+                    1
+                </div>
+                <!-- employeelist-current-page-section -->
+                <!-- employeelist-next-page-section -->
+                <div class="employeelist-next-page-section">
+                    <p>Next Page</p>
+                    <button class="employeelist-next-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <!-- employeelist-next-page-section -->
+            </div>
+            <!-- employeelist-page-change-section -->
+        </div>
+        <!-- employeelist-main-container -->
+    </div>
+    <!-- employeelist-wrapper -->
+    <!-- The Modal -->
+    <!-- The Modal -->
+    <div id="myModal" class="employeelist-modal">
+        <!-- adduser section start here -->
+       @* <partial name="CreateOrEdit.cshtml" />*@  
+        <div class="employeelist-adduser-form-section">
+            <div class="employeelist-adduser-header">
+                <img src="./images/logo.png" alt="company logo">
+                <button class="employeelist-adduser-close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <form asp-controller="Employee" asp-action="CreateOrEdit" method="post" onsubmit="toast()" class="employeelist-from-section">
+                <input type="hidden" asp-for="Employee_Id" />
+                <div class="employeelist-firstrow-section">
+                    <div class="employeelist-froms">
+                        <label for="FirstName">First Name</label>
+                        <input asp-for="FirstName" type="text" class="employeelist-text-from">
+                    </div>
+                    <div class="employeelist-froms">
+                        <label for="MiddleName">Middle Name</label>
+                        <input asp-for="MiddleName" type="text" class="employeelist-text-from">
+
+                    </div>
+                    <div class="employeelist-froms">
+                        <label for="LastName">Last Name</label>
+                        <input asp-for=" LastName" type="text" class="employeelist-text-from">
+                    </div>
+                </div>
+                <div class="employeelist-secondrow-section">
+                    <div class="employeelist-froms">
+                        <label for="UserName">Username</label>
+                        <input asp-for="UserName" type="text" class="employeelist-text-from">
+                    </div>
+
+                    <div class="employeelist-froms">
+                        <label for="Designation_Name">Designation</label>
+                        <input asp-for="Designation_Name" type="text" class="employeelist-text-from">
+
+                    </div>
+                    <div class="employeelist-froms">
+                        <label for="Contact_No">Phone Number</label>
+                        <input asp-for="Contact_No" type="text" class="employeelist-text-from">
+                    </div>
+                </div>
+                <div class="employeelist-thirdrow-section">
+                    <div class="employeelist-froms">
+                        <label for="Address">Address</label>
+                        <input asp-for="Address" type="text" class="employeelist-text-from">
+                    </div>
+                    <div class="employeelist-froms">
+                        <label for="Salary">Salary</label>
+                        <input asp-for="Salary" type="tel" class="employeelist-text-from">
+                    </div>
+                    <div class="employeelist-froms birthday">
+                        <label for="Dob">DOB</label>
+                        <input asp-for="Dob" type="date" class="employeelist-text-from">
+                    </div>
+                </div>
+                <div class="employeelist-fourthrow-section">
+                    <div class="employeelist-froms  email">
+                        <label for="Email">Email</label>
+                        <input asp-for=" Email" type="email" class="employeelist-text-from">
+                    </div>
+                    <div class="employeelist-froms  gender">
+                        <label asp-for="Gender_Id" for="">Gender</label> 
+
+                        <div class="gender-section ">
+                            @foreach (var item in ViewBag.Gender)
+                            {
+                                <input type="radio" name="Gender_Id" value="@item.Gender_Id" class="inputtyperadio">
+                                if (item.Gender_Name == 'M')
+                                {
+                                    <span>Male</span>
+                                }
+                                else if (item.Gender_Name == 'F')
+                                {
+                                    <span>Female</span>
+
+                                }
+                                else
+                                {
+                                    <span>Others</span>
+
+                                }
+                                <span>&nbsp &nbsp</span>;
+     }
+
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" class="employeelist-adduser-submit-section employeelist-form-submit-section"
+                       @*onclick="toast(event)"*@>
+            </form>
+
+        </div>
+
+        <!-- add-user section end here -->
+    </div>
+
+    <!-- userlist-toast -->
+    <div class="employeelist-toast">
+        <div class="employeelist-conform-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="employeelist-toast-success-mssg">
+            <p>Employee</p>
+            <p>Create Successfully</p>
+        </div>
+        <button class="employeelist-toast-close-btn ">
+            &times;
+        </button>
+    </div>
+    <!-- userlist-toast -->
+</body>
+</html>
+<!-- javascript link -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
-<script src ="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
-    </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            $("#btnAdd").click(function () {
+<script src="~/js/employee.js"></script>
+<script src="~/js/user.js"></script>
+<script type="text/javascript">
+    $(function () {      
+        $(".btndelete").click(function () {
+            var r = confirm("are you sure you want to delete!");
+            if (r == true) {
                 $.ajax({
-                    type: "GET",
-                    url: "/Employee/Create",
-                    success: function (response) {
-                        $('#EmployeeList').empty();
-                        $('#EmployeeList').html(response);
-                        console.log(response);
-                    },
-                    failure: function (response) {
-                        alert(response.responseText);
-                    },
-                    error: function (response) {
-                        alert(response.responseText);
-                    }
-                });
-            });
-            $(".btnUpdate").click(function () {
-                $.ajax({
-                    type: "GET",
-                    url: "/Employee/Update",
+                    type: "get",
+                    url: "/employee/delete",
                     data: { id: this.id },
                     success: function (response) {
-                        $('#EmployeeList').empty();
-                        $('#EmployeeList').html(response);
-                    },
-                    failure: function (response) {
-                        alert(response.responseText);
-                    },
-                    error: function (response) {
-                        alert(response.responseText);
+                        window.location.reload(true)
                     }
                 });
-            });
-            $(".btnDelete").click(function () {
-                var r = confirm("Are you sure you want to delete!");
-                if (r == true) {
-                    $.ajax({
-                        type: "GET",
-                        url: "/Employee/Delete",
-                        data: { id: this.id },
-                        success: function (response) {
-                            window.location.reload(true)
-                        }
-                    });
-                } else {
-                    console.log("cancel")
+            } else {
+                console.log("cancel")
+            }
+        });
+
+        $(".btnUpdate").click(function () {
+            $.ajax({
+                debugger
+                type : "GET",
+                url : "/Employee/Update",
+                data: { id: this.id },
+                success: function (data) {
+                    data = JSON.parse(data.d);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
                 }
             });
-    </script>
+        });
+    });
+</script>

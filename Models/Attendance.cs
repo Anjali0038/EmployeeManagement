@@ -10,13 +10,16 @@ namespace EmployeeManagement.Models
     public class Attendance
     {
         [Key]
-        public int Report_Id { get; set; }
+        public int Attendance_Id { get; set; }
+        public DateTime Turn_in { get; set; }
+        public DateTime Turn_out { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime Date { get; set; }
-        public long Salary { get; set; }
+        public int? Employee_Id { get; set; }
 
-        [ForeignKey("Employee")]
-        public Employee employee { get; set; }
+        [ForeignKey(nameof(Employee_Id))]
+        public virtual Employee Employee { get; set; }
+
     }
 }

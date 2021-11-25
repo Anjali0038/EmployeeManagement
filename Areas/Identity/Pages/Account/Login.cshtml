@@ -71,7 +71,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee Mangement system</title>
     <!-- css link -->
-    <link rel="stylesheet" href="~/css/login.css">
+    <link rel="stylesheet" href="~/css/site.css">
     <!-- font-awesome link -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 </head>
@@ -88,8 +88,9 @@
                     <img src="~/images/logo.png" alt="companylogo">
                 </div>
                 <div class="login-container-form-section">
-                    <form id="account" method="post" action="/user.html">
-                        <input asp-for="Input.Email" type="email" class="form-control empty" id="iconified" placeholder="&#xf007; Email" />
+                    <form id="account" method="post">
+                        <input asp-for="Input.Email"  type="text" class="form-control empty" id="iconified" placeholder="&#xf007; Email" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
                         <input asp-for="Input.Password" type="password" class="form-control empty" id="iconified"
                                placeholder="&#xf023; Password" />
                         <input type="submit" value="Log In" class="loginbtn">
@@ -103,9 +104,10 @@
     </div>
 </body>
 <!-- javascript link -->
+</html>
+
 <script src="./employeemgmt/index.js"></script>
 
-</html>
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }

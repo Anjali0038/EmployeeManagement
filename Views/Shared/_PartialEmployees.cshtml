@@ -2,13 +2,30 @@
 @{
     Layout = null;
 }
-@foreach (var item in Model.EmployeeList)
-{
-    <tr>
-        <td>@item.Id</td>
-        <td>@item.FullName</td>
-        <td>@item.Address</td>
-        <td>@item.Gender</td>
-        <td>@item.Dob</td>
-    </tr>
-}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col"> FirstName</th>
+            <th scope="col"> MiddleName</th>
+            <th scope="col"> LastName</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Designation</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.EmployeeList)
+        {
+        <tr>
+            <td>@item.Employee_Id</td>
+            <td>@item.FirstName</td>
+            <td>@item.MiddleName</td>
+            <td>@item.LastName</td>
+            <td>@item.UserName</td>
+            <td>@item.Email</td>
+            <td>@item.Designation_Name</td>
+        </tr>
+        }
+    </tbody>
+</table>
