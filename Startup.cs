@@ -38,7 +38,7 @@ namespace EmployeeManagement
             //services.AddScoped(typeof(IEmployeeRepository), typeof(EmployeeRepository));
            // services.AddScoped(typeof(IEmployeeProvider), typeof(EmployeeProvider));
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-            services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
+           // services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
 
             services.AddScoped<IEmployeeProvider, EmployeeProvider>();
             services.AddScoped<IApplicationUserProvider, ApplicationUserProvider>();
@@ -72,7 +72,7 @@ namespace EmployeeManagement
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Employee}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

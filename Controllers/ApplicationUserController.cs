@@ -1,7 +1,8 @@
 ﻿using EmployeeManagement.Areas.Identity.Data;
 using EmployeeManagement.Data;
-using EmployeeManagement.Models;
 using EmployeeManagement.Service;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -11,58 +12,72 @@ using System.Threading.Tasks;
 
 namespace EmployeeManagement.Controllers
 {
+    [AllowAnonymous]
     public class ApplicationUserController : Controller
     {
         private readonly IApplicationUserProvider _iApplicationUserProvider;
         private EmployeeManagementDbContext _context;
-
-        public ApplicationUserController(IApplicationUserProvider iApplicationUserProvider, EmployeeManagementDbContext context)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public ApplicationUserController(
+            IApplicationUserProvider iApplicationUserProvider,
+            EmployeeManagementDbContext context, UserManager<ApplicationUser> userManager)
         {
             _iApplicationUserProvider = iApplicationUserProvider;
             _context = context;
+            _userManager = userManager;
+
         }
         public IActionResult Index()
         {
-            var data = _iApplicationUserProvider.GetList();
-            var Emp = _context.Employees.ToList();
+            ApplicationUserViewModel user = new ApplicationUserViewModel();
+            //ApplicationUser user = new ApplicationUser();
+            user.UsersList = _iApplicationUserProvider.GetList();
+            return View(user);
+        }
+        [HttpGet]
+        public async Task<IActionResult> CreateOrEdit(string id)
+        {
+            var EmpList = _iApplicationUserProvider.GetEmployeesWithNoUsers();           
+
             List<SelectListItem> emp = new List<SelectListItem>();
-            foreach(var item in Emp)
+            foreach (var item in EmpList)
             {
-                string data1 = item.FirstName + item.MiddleName + item.LastName;
-                SelectListItem items = new SelectListItem { Value = data1, Text = data1 };
+                //if (item.appli)
+                string data1 = item.FirstName +" "+ item.MiddleName +" "+ item.LastName;
+                int id1 = item.Employee_Id;
+                SelectListItem items = new SelectListItem { Value = id1.ToString(), Text = data1 };
                 emp.Add(items);
             }
             ViewBag.Emp = emp;
-            return View(data);
-        }
-        [HttpGet]
-        public IActionResult CreateOrEdit(string id)
-        {
-            ApplicationUserViewModel usr = _iApplicationUserProvider.GetById(id);
-            return View(usr);
 
+            ApplicationUserViewModel user = new ApplicationUserViewModel();
+
+            if (id != null)
+            {
+                user = await  _iApplicationUserProvider.GetById(id);
+            }
+            return PartialView(user);
         }
         [HttpPost]
-        public IActionResult CreateOrEdit(ApplicationUserViewModel model)
-        {
+        public async  Task<IActionResult> CreateOrEdit(ApplicationUserViewModel model)
+        {   
             try
             {
-                _iApplicationUserProvider.SaveUser(model);
+                var user = _context.Employees.Where(x => x.Employee_Id == Convert.ToInt32(model.Employee_Id)).FirstOrDefault();            
+                model.Email = user.Email;
+                model.Designation = user.Designation_Name;
+                model.FullName = user.FirstName;
+                var res = await _iApplicationUserProvider.SaveUser(model);
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-        }
-        public JsonResult Update(string id)
+        }       
+        public async Task<IActionResult> Delete(string id)
         {
-            ApplicationUserViewModel emp = _iApplicationUserProvider.GetById(id);
-            return Json(emp);
-        }
-        public IActionResult Delete(string id)
-        {
-            _iApplicationUserProvider.DeleteUser(id);
+            await _iApplicationUserProvider.DeleteUser(id);
             return RedirectToAction("Index");
         }
     }

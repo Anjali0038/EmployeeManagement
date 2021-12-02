@@ -1,9 +1,9 @@
 const employeesidebarbtn = document.querySelector(".employeelist-sidebar-btn");
 const employeelist = document.querySelector(".employeelist-main-container");
 const employeesidebarsection = document.querySelector(".employeelist-sidebar");
-const employeesidebarclosebtn = document.querySelector(
-  ".employeelist-sidebar-close-btn"
-);
+//const employeesidebarclosebtn = document.querySelector(
+//  ".employeelist-sidebar-close-btn"
+//);
 // click event in hamburger menu in employeelist
 employeesidebarbtn.addEventListener("click", () => {
   employeesidebarsection.classList.toggle("showsidebar");
@@ -14,11 +14,11 @@ employeesidebarbtn.addEventListener("click", () => {
   );
 });
 // click event in  cross icon inside sidebar menu
-employeesidebarclosebtn.addEventListener("click", () => {
-  employeesidebarsection.classList.remove("showsidebar");
-  employeesidebarsection.classList.remove("hide");
-  employeelist.classList.remove("active");
-});
+//employeesidebarclosebtn.addEventListener("click", () => {
+//  employeesidebarsection.classList.remove("showsidebar");
+//  employeesidebarsection.classList.remove("hide");
+//  employeelist.classList.remove("active");
+//});
 // user profile and sigout popup section
 const employeelistprofile = document.querySelector(
   ".employeelist-image-section img"
@@ -77,32 +77,32 @@ window.addEventListener("click", (e) => {
 });
 
 // createuserpopupsection
-const employeelistcreateuserbtn = document.querySelector(
-  ".employeelist-create-section-btn"
-);
-const employeelistcreateuserclosebtn = document.querySelector(
-  ".employeelist-adduser-close-btn"
-);
+//const employeelistcreateuserbtn = document.querySelector(
+//  ".employeelist-create-section-btn"
+//);
+//const employeelistcreateuserclosebtn = document.querySelector(
+//  ".employeelist-adduser-close-btn"
+//);
 const employeelistcreateuserpopupsection = document.querySelector(
   ".employeelist-adduser-form-section"
 );
 
-// employeelistcreateuserbtn.addEventListener("click", () => {
-//   employeelistcreateuserpopupsection.classList.toggle("showadduser");
+// employeelistcreateuserbtn.addeventlistener("click", () => {
+//   employeelistcreateuserpopupsection.classlist.toggle("showadduser");
 // });
 // employeelistcreateuserclosebtn.addEventListener("click", () => {
 //   employeelistcreateuserpopupsection.classList.remove("showadduser");
 // });
 
-employeelistcreateuserclosebtn.addEventListener("click", () => {
-  modal.style.display = "none";
-});
+//employeelistcreateuserclosebtn.addEventListener("click", () => {
+//  modal.style.display = "none";
+//});
 
 const modal = document.getElementById("myModal");
 
-employeelistcreateuserbtn.addEventListener("click", () => {
-  modal.style.display = "block";
-});
+//employeelistcreateuserbtn.addEventListener("click", () => {
+//  modal.style.display = "block";
+//});
 window.onclick = function (event) {
   if (event.target == modal) {
     modal.style.display = "none";
@@ -120,7 +120,7 @@ employeelisttoastclose.addEventListener("click", () => {
   employeelisttoast.classList.remove("showtoast");
 });
 let toast = (e) => {
-    e.preventDefault();
+    //e.preventDefault();
   modal.style.display = "none";
 
   function fun() {

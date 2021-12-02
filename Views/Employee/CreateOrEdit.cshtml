@@ -1,182 +1,106 @@
-﻿@*@model EmployeeManagement.Models.EmployeeViewModel
-    @{
-        ViewData["Title"] = "Create";
-    }
-    <form asp-controller="Employee" asp-action="Create" method="post" enctype="multipart/form-data">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <label for="FirstName">Enter FirstName</label>
-                    <input type="text" asp-for="FirstName" class="form-control" placeholder="FirstName Here"><br />
-                </div>
+﻿@model EmployeeManagement.Models.EmployeeViewModel
+@{
+    ViewData["Title"] = "Index";
+    var data = ViewBag.Gender;
+
+}
+<div class="employeelist-adduser-form-section">
+    <div class="employeelist-adduser-header">
+        <img src="./images/logo.png" alt="company logo">
+        <button class="employeelist-adduser-close-btn"><i class="fas fa-times"></i></button>
+    </div>
+    <form asp-controller="Employee" asp-action="CreateOrEdit" method="post" onsubmit="toast()" class="employeelist-from-section">
+        <input type="hidden" asp-for="Employee_Id" />
+        <div class="employeelist-firstrow-section">
+            <div class="employeelist-froms">
+                <label for="FirstName">First Name</label>
+                <input asp-for="FirstName" type="text" class="employeelist-text-from">
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <label for="MiddleName">Enter MiddleName</label>
-                    <input type="text" asp-for="MiddleName" class="form-control" placeholder="MiddleName Here"><br />
-                </div>
+            <div class="employeelist-froms">
+                <label for="MiddleName">Middle Name</label>
+                <input asp-for="MiddleName" type="text" class="employeelist-text-from">
+
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <label for="LastName">Enter LastName</label>
-                    <input type="text" asp-for="LastName" class="form-control" placeholder="LastName Here"><br />
-                </div>
+            <div class="employeelist-froms">
+                <label for="LastName">Last Name</label>
+                <input asp-for=" LastName" type="text" class="employeelist-text-from">
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <label for="Address">Address</label>
-                    <input type="text" asp-for="Address" class="form-control" placeholder="Address Here"><br />
-                </div>
+        </div>
+        <div class="employeelist-secondrow-section">
+            <div class="employeelist-froms">
+                <label for="UserName">Username</label>
+                <input asp-for="UserName" type="text" class="employeelist-text-from">
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <label for="UserName">UserName</label>
-                    <input type="text" asp-for="UserName" class="form-control" placeholder="User Name Here"><br />
-                </div>
+
+            <div class="employeelist-froms">
+                <label for="Designation_Name">Designation</label>
+                <input asp-for="Designation_Name" type="text" class="employeelist-text-from">
+
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <label for="Designation_Name">Designation</label>
-                    <input type="text" asp-for="Designation_Name" class="form-control" placeholder="Designation Here"><br />
-                </div>
+            <div class="employeelist-froms">
+                <label for="Contact_No">Phone Number</label>
+                <input asp-for="Contact_No" type="text" class="employeelist-text-from">
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <label for="Email">Email</label>
-                    <input type="text" asp-for="Email" class="form-control" placeholder="Email Here"><br />
-                </div>
+        </div>
+        <div class="employeelist-thirdrow-section">
+            <div class="employeelist-froms">
+                <label for="Address">Address</label>
+                <input asp-for="Address" type="text" class="employeelist-text-from">
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <label asp-for="Dob"> Enter Date of birth</label>
-                    <input type="text" asp-for="Dob" asp-format="{0:dd/MM/yyyy}" placeholder="Enter Date of birth here:" id="datepicker" class="form-control" /><br />
-                </div>
+            <div class="employeelist-froms">
+                <label for="Salary">Salary</label>
+                <input asp-for="Salary" type="tel" class="employeelist-text-from">
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <label for="Gender"> Enter Gender</label>
-                    <select class="form-control" asp-for="Gender_Id" asp-items="ViewBag.Gender"></select><br />
+            <div class="employeelist-froms birthday">
+                <label for="Dob">DOB</label>
+                <input asp-for="Dob" type="date" class="employeelist-text-from">
+            </div>
+        </div>
+        <div class="employeelist-fourthrow-section">
+            <div class="employeelist-froms  email">
+                <label for="Email">Email</label>
+                <input asp-for=" Email" type="email" class="employeelist-text-from">
+            </div>
+            <div class="employeelist-froms  gender">
+                <label asp-for="Gender_Id" for="">Gender</label>
+                <div class="gender-section ">
+
+                    @foreach (var item in ViewBag.Gender)
+                    {
+
+                        <input type="radio" asp-for="Gender_Id" value="@item.Gender_Id" class="inputtyperadio">
+
+                        if (item.Gender_Name == 'M')
+                        {
+                            <span>Male</span>
+                        }
+                        else if (item.Gender_Name == 'F')
+                        {
+                            <span>Female</span>
+
+                        }
+                        else
+                        {
+                            <span>Others</span>
+
+                        }
+                        <span>&nbsp &nbsp</span>;
+}
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Save Employee</button>
+        <input type="submit" class="employeelist-adduser-submit-section employeelist-form-submit-section"
+               @*onclick="toast(event)"*@>
     </form>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
-
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
-        <script>
-            $(function () {
-                debugger
-                $('#datepicker').datetimepicker({
-                    format:'LL'
-                });
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(document).ready(function () {
+            $(".employeelist-adduser-close-btn").click(function () {
+                $('#myModal').hide();
             });
-        </script>*@
-
-@*@model EmployeeManagement.Models.EmployeeViewModel
-@{
-    ViewData["Title"] = "Create";
-    var data = ViewBag.Gender;*@
-<!--}
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-    <!-- css link -->
-    <!-- <link rel="stylesheet" href="./employee.css"> -->
-    <!--<link rel="stylesheet" href="./css/site.css">-->
-    <!-- font-awesome link -->
-    <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" rel="stylesheet" />
-</head>
-<form asp-controller="Employee" asp-action="Create" method="post" class="employeelist-from-section">
-    <h1>Create Employee</h1>
-    <div class="employeelist-firstrow-section">
-        <div class="employeelist-froms">
-            <label for="FirstName">First Name</label>
-            <input asp-for="FirstName" type="text" class="employeelist-text-from">
-        </div>
-        <div class="employeelist-froms">
-            <label for="MiddleName">Middle Name</label>
-            <input asp-for="MiddleName" type="text" class="employeelist-text-from">
-
-        </div>
-        <div class="employeelist-froms">
-            <label for="LastName">Last Name</label>
-            <input asp-for=" LastName" type="text" class="employeelist-text-from">
-        </div>
-    </div>
-    <div class="employeelist-secondrow-section">
-        <div class="employeelist-froms">
-            <label for="UserName">Username</label>
-            <input asp-for="UserName" type="text" class="employeelist-text-from">
-        </div>
-
-        <div class="employeelist-froms">
-            <label for="Designation_Name">Designation</label>
-            <input asp-for="Designation_Name" type="text" class="employeelist-text-from">
-
-        </div>
-        <div class="employeelist-froms">
-            <label for="Contact_No">Phone Number</label>
-            <input asp-for="Contact_No" type="text" class="employeelist-text-from">
-        </div>
-    </div>
-    <div class="employeelist-thirdrow-section">
-        <div class="employeelist-froms">
-            <label for="Address">Address</label>
-            <input asp-for="Address" type="text" class="employeelist-text-from">
-        </div>
-        <div class="employeelist-froms">
-            <label for="Salary">Salary</label>
-            <input asp-for="Salary" type="tel" class="employeelist-text-from">
-        </div>
-        <div class="employeelist-froms birthday">
-            <label for="Dob">DOB</label>
-            <input asp-for="Dob" type="date" class="employeelist-text-from">
-        </div>
-    </div>
-    <div class="employeelist-fourthrow-section">
-        <div class="employeelist-froms  email">
-            <label for="Email">Email</label>
-            <input asp-for=" Email" type="email" class="employeelist-text-from">
-        </div>
-        <div class="employeelist-froms  gender">
-            <label asp-for="Gender_Id" for="">Gender</label>-->
-            <!-- <input type="email" class="employeelist-text-from"> -->
-
-            <!--<div class="gender-section ">
-                foreach (var item in ViewBag.Gender)
-                {
-                    <input type="radio" name="Gender_Id" value="item.Gender_Id" class="inputtyperadio">
-                    if (item.Gender_Name == 'M')
-                    {
-                        <span>Male</span>
-                    }
-                    else if (item.Gender_Name == 'F')
-                    {
-                        <span>Female</span>
-
-                    }
-                    else
-                    {
-                        <span>Others</span>
-
-                    }
-                    <span>&nbsp &nbsp</span>;
-                }
-
-            </div>
-        </div>
-    </div>
-    <input type="submit" class="employeelist-adduser-submit-section employeelist-form-submit-section"
-           onclick="toast(event)">
-</form>-->
-
-<!-- javascript link -->
-@*<script src="~/js/employee.js"></script>
-<script src="~/js/user.js"></script>*@
+        });
+    });
+</script>

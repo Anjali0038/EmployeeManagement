@@ -34,6 +34,9 @@ namespace EmployeeManagement.Migrations
                     b.Property<string>("Designation")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("EId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -44,13 +47,7 @@ namespace EmployeeManagement.Migrations
                     b.Property<int?>("Employee_Id")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Employee_Id1")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
+                    b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -58,9 +55,6 @@ namespace EmployeeManagement.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("MiddleName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
@@ -91,7 +85,7 @@ namespace EmployeeManagement.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Employee_Id1");
+                    b.HasIndex("Employee_Id");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -155,9 +149,6 @@ namespace EmployeeManagement.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int?>("Attendance_Id")
                         .HasColumnType("int");
 
@@ -186,6 +177,9 @@ namespace EmployeeManagement.Migrations
                     b.Property<int?>("Gender_Id")
                         .HasColumnType("int");
 
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
@@ -205,8 +199,6 @@ namespace EmployeeManagement.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Employee_Id");
-
-                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("Attendance_Id");
 
@@ -370,11 +362,11 @@ namespace EmployeeManagement.Migrations
 
             modelBuilder.Entity("EmployeeManagement.Areas.Identity.Data.ApplicationUser", b =>
                 {
-                    b.HasOne("EmployeeManagement.Models.Employee", "employee")
-                        .WithMany()
-                        .HasForeignKey("Employee_Id1");
+                    b.HasOne("EmployeeManagement.Models.Employee", "Employee")
+                        .WithMany("ApplicationUser")
+                        .HasForeignKey("Employee_Id");
 
-                    b.Navigation("employee");
+                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("EmployeeManagement.Models.Attendance", b =>
@@ -388,10 +380,6 @@ namespace EmployeeManagement.Migrations
 
             modelBuilder.Entity("EmployeeManagement.Models.Employee", b =>
                 {
-                    b.HasOne("EmployeeManagement.Areas.Identity.Data.ApplicationUser", null)
-                        .WithMany("EmployeeList")
-                        .HasForeignKey("ApplicationUserId");
-
                     b.HasOne("EmployeeManagement.Models.Attendance", "Attendance")
                         .WithMany()
                         .HasForeignKey("Attendance_Id");
@@ -462,9 +450,9 @@ namespace EmployeeManagement.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("EmployeeManagement.Areas.Identity.Data.ApplicationUser", b =>
+            modelBuilder.Entity("EmployeeManagement.Models.Employee", b =>
                 {
-                    b.Navigation("EmployeeList");
+                    b.Navigation("ApplicationUser");
                 });
 #pragma warning restore 612, 618
         }

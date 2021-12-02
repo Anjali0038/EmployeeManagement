@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EmployeeManagement.Areas.Identity.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -31,7 +32,6 @@ namespace EmployeeManagement.Models
         public virtual Attendance Attendance { get; set; }
         public DateTime Turn_in { get; set; }
         public DateTime Turn_out { get; set; }
-
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime Date { get; set; }
@@ -42,6 +42,9 @@ namespace EmployeeManagement.Models
         public string Designation_Name { get; set; }
         public double Salary { get; set; }
         public double Contact_No { get; set; }
+        [ForeignKey (nameof(Id))]
+        public string Id { get; set; }
+        public ICollection<ApplicationUser> ApplicationUser { get; set; }
 
     }
 }

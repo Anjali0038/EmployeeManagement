@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeManagement.Migrations
 {
     [DbContext(typeof(EmployeeManagementDbContext))]
-    [Migration("20211122071120_GenderNameREmoved")]
-    partial class GenderNameREmoved
+    [Migration("20211202090333_Add Database")]
+    partial class AddDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,6 +33,12 @@ namespace EmployeeManagement.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Designation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -42,6 +48,9 @@ namespace EmployeeManagement.Migrations
 
                     b.Property<int?>("Employee_Id")
                         .HasColumnType("int");
+
+                    b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -77,6 +86,8 @@ namespace EmployeeManagement.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Employee_Id");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -167,6 +178,9 @@ namespace EmployeeManagement.Migrations
 
                     b.Property<int?>("Gender_Id")
                         .HasColumnType("int");
+
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
@@ -348,6 +362,15 @@ namespace EmployeeManagement.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("EmployeeManagement.Areas.Identity.Data.ApplicationUser", b =>
+                {
+                    b.HasOne("EmployeeManagement.Models.Employee", "Employee")
+                        .WithMany("ApplicationUser")
+                        .HasForeignKey("Employee_Id");
+
+                    b.Navigation("Employee");
+                });
+
             modelBuilder.Entity("EmployeeManagement.Models.Attendance", b =>
                 {
                     b.HasOne("EmployeeManagement.Models.Employee", "Employee")
@@ -427,6 +450,11 @@ namespace EmployeeManagement.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("EmployeeManagement.Models.Employee", b =>
+                {
+                    b.Navigation("ApplicationUser");
                 });
 #pragma warning restore 612, 618
         }

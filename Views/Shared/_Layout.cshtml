@@ -1,59 +1,96 @@
-﻿   <!--<!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>@ViewData["Title"] - EmployeeManagement</title>
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-        @using Microsoft.AspNetCore.Identity
-        @using EmployeeManagement.Areas.Identity.Data
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css link -->
+    <!-- <link rel="stylesheet" href="./employee.css"> -->
+    <link rel="stylesheet" href="~/css/layout.css">
+    <!-- font-awesome link -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" rel="stylesheet" />
+    <title>@ViewData["Title"] - EmployeeManagement</title>
+    @using Microsoft.AspNetCore.Identity
+    @using EmployeeManagement.Areas.Identity.Data
+    @inject SignInManager<ApplicationUser> SignInManager
+    @inject UserManager<ApplicationUser> UserManager
+</head>
+<body>
+    <!-- employeelist-wrapper -->
+    <div class="wrapper">
 
-        @inject SignInManager<ApplicationUser> SignInManager
-        @inject UserManager<ApplicationUser> UserManager
-    </head>
-    <body>
-        <header>
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-                <div class="container">
-                    @if (SignInManager.IsSignedIn(User))
-                    {
-
-                        <a class="navbar-brand" asp-area="" asp-controller="Employee" asp-action="Index">EmployeeManagement</a>
-                    }
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                            </li>
-                            <li>
-                                <partial name="_LoginPartial.cshtml" />
-                            </li>
-                        </ul>
+        <!-- employeelist-slidebar -->
+        <div class="sidebar">
+            <!-- employeelist-sidebar-company-logo-section -->
+            <div class="sidebar-company-logo-section">
+                <img src="./images/logo.png" alt="company logo">
+                <button class="sidebar-close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <!-- employeelist-sidebar-company-logo-section -->
+            <ul>
+                <li class="sidebarbtn">
+                    <a asp-controller="ApplicationUser" asp-action="Index">
+                        <i class="fas fa-users"></i>
+                        <span>Userlist</span>
+                    </a>
+                </li>
+                <li class="sidebarbtn ">
+                    <a asp-controller="Employee" asp-action="Index">
+                        <i class="fas fa-users"></i>
+                        <span>Employeelist</span>
+                    </a>
+                </li>
+                <li class="sidebarbtn">
+                    <a>
+                        <i class="fas fa-users"></i>
+                        <span>Leave Request</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- employeelist-wrapper end here -->
+        <!-- employeelist-main-container -->
+        <div class="main-container ">
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <div class="main-container-header-section">
+                    <div class="main-container-sidebar-section">
+                        <button class="main-container-sidebar-btn"><i class="fas fa-bars"></i></button>
+                    </div>
+                    <div class="main-container-image-section" style="display: flex;">
+                        <h1>Mananjay Shrestha</h1>
+                        <img src="./images/profile.jpg" alt="userimage">
                     </div>
                 </div>
-            </nav>
-        </header>
-        <div class="container">
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
-        </div>-->
 
-        @*<footer class="border-top footer text-muted">
-                <div class="container">
-                    &copy; 2021 - EmployeeManagement - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                <!-- logout section start -->
+                <div class="main-container-logout-section">
+                    <!-- employeelist-user-profile-img -->
+                    <div class="main-container-user-profile-img">
+                        <img src="./images/profile.jpg" alt="userimage">
+                        <button class="main-container-logout-section-close-btn"><i class="fas fa-times"></i></button>
+                    </div>
+                    <!-- employeelist-user-profile-img -->
+                    <h3>@UserManager.GetUserAsync(User).Result.UserName </h3>
+                    <h3 class="main-container-user-email">@UserManager.GetUserAsync(User).Result.Email</h3>
+                    @*<button asp-area="Identity" asp-page="/Account/Manage/Index" id=" logout" class="employeelist-logout-btn">Sign Out</button>*@
+                    <button asp-area="Identity" asp-page="/Account/Manage/Index" id=" logout" class="main-container-logout-btn" onclick="newDoc()">Sign Out</button>
+                    <!-- employeelist-logout-footer-section -->
+                    <div class="main-container-logout-footer-section">
+                        <h3>Privacy Policy</h3>
+                    </div>
+                    <!-- employeelist-logout-footer-section -->
                 </div>
-            </footer>*@
+                <!-- logout section end -->
+            }
+            @RenderBody()
+        </div>
+    </div>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+<script src="~/js/employee.js"></script>
+<script src="~/js/user.js"></script>
+<script src="~/js/layout.js"></script>
 
-         @*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
-        @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
-        <script src="~/js/site.js" asp-append-version="true"></script>
-        @await RenderSectionAsync("Scripts", required: false)
-    @*</body>
-    </html*@
 

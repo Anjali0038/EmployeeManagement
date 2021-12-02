@@ -1,0 +1,61 @@
+﻿@model EmployeeManagement.Areas.Identity.Data.ApplicationUserViewModel
+@{
+    var data1 = ViewBag.Gender;
+    var data2 = ViewBag.Emp;
+}
+<!-- adduser section start here -->
+<div class="userlist-adduser-form-section">
+    <div class="userlist-adduser-header">
+        <img src="./images/logo.png" alt="company logo">
+        <button class="userlist-adduser-close-btn"><i class="fas fa-times"></i></button>
+    </div>
+    <form asp-controller="ApplicationUser" asp-action="CreateOrEdit" method="post" onsubmit="toast()" class="userlist-from-section">
+        <input type="hidden" asp-for="Id" />
+        <h1>Create User</h1>
+        <div class="userlist-firstrow-section">
+            <div class="userlist-froms">
+                <label for="">Employee List</label>
+                @*<select id="drpEmpList" class="form-control" asp-for="Employee_Id" asp-items="ViewBag.Emp">
+                        <option value="">--Select--</option>
+                    </select>*@
+            </div>
+            <select asp-items="ViewBag.Emp" asp-for="Employee_Id" class="userlist-text-from">
+                <option value="">--Select Employees--</option>
+            </select>
+            <input type="hidden" asp-for="Employee_Id" />
+        </div>
+
+        <div class="userlist-secondrow-section">
+            <div class="userlist-froms">
+                <label for="UserName">Username</label>
+                <input asp-for="UserName" name="UserName" type="text" class="userlist-text-from">
+                <input type="hidden" asp-for="Id" />
+            </div>
+        </div>
+        <div class="userlist-thirdrow-section">
+            <div class="userlist-froms">
+                <label for="PasswordHash">Password</label>
+                <input asp-for="PasswordHash" type="password" name="PasswordHash" class="userlist-text-from">
+            </div>
+        </div>
+        <div class="userlist-fourthrow-section">
+            <div class="userlist-froms  email">
+                <label for="ConfirmPassword">Confirm Password</label>
+                <input asp-for="ConfirmPassword" type="password" name="ConfirmPassword" class="userlist-text-from">
+            </div>
+        </div>
+        <input type="submit" class="userlist-adduser-submit-section userlist-form-submit-section"
+               @*onclick="toast(event)"*@>
+    </form>
+</div>
+<!-- add-user section end here -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(document).ready(function () {
+            $(".userlist-adduser-close-btn").click(function () {
+                $('#myModal').hide();
+            });
+        });
+    });
+</script>

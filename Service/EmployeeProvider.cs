@@ -24,28 +24,21 @@ namespace EmployeeManagement.Service
     {
         private readonly IEmployeeRepository _iEmployeeRepository;
         private readonly IMapper _mapper;
-        private readonly EmployeeManagementDbContext _context;
 
-        public EmployeeProvider(IEmployeeRepository iEmployeeRepository, IMapper mapper, EmployeeManagementDbContext context)
+        public EmployeeProvider(IEmployeeRepository iEmployeeRepository, IMapper mapper)
         {
             _iEmployeeRepository = iEmployeeRepository;
             _mapper = mapper;
-            _context = context;
 
         }
         public int SaveEmployee(EmployeeViewModel model)
         {
             Employee employee = new Employee();
             employee = _mapper.Map<Employee>(model);
-            //employee.FullName = model.FullName;
-            //employee.Address = model.Address;
-            //employee.Gender = model.Gender;
-            //employee.Dob = model.Dob;
             if (employee.Employee_Id > 0)
             {
                 _iEmployeeRepository.Update(employee);
                 return 200;
-
             }
             else
             {
@@ -58,21 +51,6 @@ namespace EmployeeManagement.Service
             var item = _iEmployeeRepository.GetSingle(x => x.Employee_Id == id);
             _iEmployeeRepository.Delete(item);
         }
-        /*
-        public EmployeeViewModel EditEmployee(EmployeeViewModel model)
-        {
-            Employee data = new Employee();
-            //data.Id = model.Id;
-            //data.FullName = model.FullName;
-            //data.Address = model.Address;
-            //data.Gender = model.Gender;
-            //data.Dob = model.Dob;
-            data = _mapper.Map<Employee>(model);
-            //Mapper.Map(Employee, EmployeeViewModel);
-            _iEmployeeRepository.Update(data);
-            return model;
-        }
-        */
         public EmployeeViewModel GetById(int id)
         {
             var item = _iEmployeeRepository.GetSingle(x => x.Employee_Id == id);
@@ -84,49 +62,10 @@ namespace EmployeeManagement.Service
             EmployeeViewModel model = new EmployeeViewModel();
             var list = new List<EmployeeViewModel>();
             List<Employee> data = _iEmployeeRepository.GetAll().ToList();
-            //foreach (var item in data)
-            //{
-            //    item.Gender_Name = _context.Genders.Find(x => x.Gender_Id == item.Gender_Id).Gender_Name;
-            //}
-            //foreach (var item in data)
-            //{
-            //    EmployeeViewModel objModel = new EmployeeViewModel();
-            //    //objModel.Id = item.Id;
-            //    //objModel.FullName = item.FullName;
-            //    //objModel.Address = item.Address;
-            //    //objModel.Gender = item.Gender;
-            //    //objModel.Dob = item.Dob;
-            //    _mapper.Map<Employee>(objModel);
-            //    //_mapper.Map< List < Employee >> (objModel);
-            //    list.Add(objModel);
-            //}
-            //model.EmployeeList = list;
-            //foreach (var item in data)
-            //{
-            //    _mapper.Map<EmployeeViewModel>(item);
-            //}
-
             list = _mapper.Map<List<Employee>, List<EmployeeViewModel>>(data);
-
             model.EmployeeList = list;
             return model;
         }
-        //EmployeeViewModel SearchValue(string value)
-        //{
-        //    EmployeeViewModel model = new EmployeeViewModel();
-        //    model.EmployeeList = (from s in _iEmployeeRepository.GetAll()
-        //                          where s.FullName.Contains(value) || s.Address.Contains(value)
-        //                          select new EmployeeViewModel
-        //                          {
-        //                              Id = s.Id,
-        //                              FullName = s.FullName,
-        //                              Address = s.Address,
-        //                              Gender = s.Gender,
-        //                              Dob = s.Dob
-
-        //                          }).ToList();
-        //    return (model);
-        //}
     }
 
 

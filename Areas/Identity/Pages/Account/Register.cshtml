@@ -1,42 +1,93 @@
 ﻿@page
-@model RegisterModel
-@{
-    ViewData["Title"] = "Register";
-}
-
-<h1>@ViewData["Title"]</h1>
-
-<div class="row">
-    <div class="col-md-4">
-        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h4>Create a new account.</h4>
-            <hr />
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Input.Email"></label>
-                <input asp-for="Input.Email" class="form-control" />
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.UserName"></label>
-                <input asp-for="Input.UserName" class="form-control" />
-                <span asp-validation-for="Input.UserName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.Password"></label>
-                <input asp-for="Input.Password" class="form-control" />
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Input.ConfirmPassword"></label>
-                <input asp-for="Input.ConfirmPassword" class="form-control" />
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <button type="submit" class="btn btn-primary">Register</button>
-        </form>
+    @model RegisterModel
+    @{
+        ViewData["Title"] = "Register";
+    }
+    <h1>@ViewData["Title"]</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <h4>Create a new account.</h4>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Input.Email"></label>
+                    <input asp-for="Input.Email" class="form-control" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.UserName"></label>
+                    <input asp-for="Input.UserName" class="form-control" />
+                    <span asp-validation-for="Input.UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Password"></label>
+                    <input asp-for="Input.Password" class="form-control" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.ConfirmPassword"></label>
+                    <input asp-for="Input.ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
     </div>
-</div>
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
+    
+@*@model EmployeeManagement.Areas.Identity.Data.ApplicationUserViewModel
+@{
+    var data1 = ViewBag.Gender;
+    var data2 = ViewBag.Emp;
+}*@
+<!-- adduser section start here -->
+<!--<div class="userlist-adduser-form-section">
+    <div class="userlist-adduser-header">
+        <img src="./images/logo.png" alt="company logo">
+        <button class="userlist-adduser-close-btn"><i class="fas fa-times"></i></button>
+    </div>
+    <form  asp-area="Identity" asp-page="/Account/Register" method="post" onsubmit="toast()" class="userlist-from-section">
+        <input type="hidden" asp-for="Id" />
+        <h1>Create User</h1>
+        <div class="userlist-firstrow-section">
+            <div class="userlist-froms">
+                <label for="">Employee List</label>
+                <select asp-items="ViewBag.Emp" name="languages" id="lang" class="userlist-text-from"></select>
+            </div>
+        </div>-->
+        <!--<div class="userlist-secondrow-section">
+            <div class="userlist-froms">
+                <label for="UserName">Username</label>
+                <input asp-for="UserName" type="text" class="userlist-text-from">
+            </div>
+        </div>
+        <div class="userlist-thirdrow-section">
+            <div class="userlist-froms">
+                <label for="PasswordHash">Password</label>
+                <input asp-for="PasswordHash" type="password" class="userlist-text-from">
+            </div>
+        </div>
+        <div class="userlist-fourthrow-section">
+            <div class="userlist-froms  email">
+                <label for="PasswordHash">Confirm Password</label>
+                <input asp-for="PasswordHash" type="password" class="userlist-text-from">
+            </div>
+        </div>
+        <input type="submit" class="userlist-adduser-submit-section userlist-form-submit-section"-->
+               @*onclick="toast(event)"*@<!-->
+</div>-->
+<!-- add-user section end here -->
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(document).ready(function () {
+            $(".userlist-adduser-close-btn").click(function () {
+                $('#myModal').hide();
+            });
+        });
+    });
+</script>*@
