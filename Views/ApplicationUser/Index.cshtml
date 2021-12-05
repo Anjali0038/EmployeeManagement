@@ -30,7 +30,7 @@
         <div class="userlist-username">Username</div>
         <div class="userlist-email">Email</div>
         <div class="userlist-designation">Designation</div>
-        <div class="userlist-edit-delete">Edit/Delete</div>
+        <div class="userlist-edit-delete">Delete</div>
     </div>
     <!-- userlist-list-header-section end here -->
     <!-- userlist-firstrowlist-section start here -->
@@ -44,7 +44,7 @@
                 <div class="userlist-email-value">@user.Email</div>
                 <div class="userlist-designation-value">@user.Designation</div>
                 <div class="userlist-edit-delete-value" style="padding: 0 0;">
-                    <button class="edit-btn btnUpdate" id="@user.Id"><i class="far fa-edit"></i></button>
+                    @*<button class="edit-btn btnUpdate" id="@user.Id"><i class="far fa-edit"></i></button>*@
                     <button class="delete-btn btnDelete" id="@user.Id"><i class="fas fa-trash"></i></button>
                 </div>
             </div>
@@ -100,7 +100,6 @@
 <!-- javascript link -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
-<script src="~/js/employee.js"></script>
 <script src="~/js/user.js"></script>
 <link rel="stylesheet" href="~/css/site.css">
 <script type="text/javascript">
@@ -114,16 +113,11 @@
                     debugger
                     $('#myModal').html(response);
                     $('#myModal').css({ display: "block" });
-                },
-                failure: function (response) {
-
-                    alert(response.responseText);
-                },
+                }
             });
         });
         $(".btnDelete").click(function () {
             var r = confirm("are you sure you want to delete!");
-            debugger
             if (r == true) {
                 $.ajax({
                     type: "get",
@@ -133,28 +127,10 @@
                         window.location.reload(true)
                     }
                 });
-            } else {
+            }
+            else {
                 console.log("cancel")
             }
-        });
-        $(".btnUpdate").click(function () {
-            debugger
-            $.ajax({
-                type: "GET",
-                url: "/ApplicationUser/CreateOrEdit",
-                data: { id: this.id },
-                success: function (response) {
-                    $('#myModal').html(response);
-                    $('#myModal').css({ display: "block" });
-                },
-                failure: function (response) {
-
-                    alert(response.responseText);
-                },
-                error: function (response) {
-                    alert(response.responseText);
-                }
-            });
         });
     });
 </script>

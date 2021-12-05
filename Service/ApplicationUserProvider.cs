@@ -41,32 +41,24 @@ namespace EmployeeManagement.Service
         {
             int empId = Convert.ToInt32(model.Employee_Id);
             ApplicationUser applicationuser = _mapper.Map<ApplicationUserViewModel, ApplicationUser>(model);
-            // var user = await _userManager.Users.Where(x => x.Employee_Id == empId).FirstOrDefaultAsync();
             var user = await _userManager.Users.Where(x => x.Employee.Employee_Id == empId).FirstOrDefaultAsync();
-
             IdentityResult result;
             if (user == null)
             {
                 var singleEmployee = _context.Employees.Where(x => x.Employee_Id == empId).First();
-
                 applicationuser.Id = Guid.NewGuid().ToString();
                 applicationuser.Employee = singleEmployee;
                 applicationuser.EId = singleEmployee.Employee_Id;
                 result = await _userManager.CreateAsync(applicationuser, model.PasswordHash);
-
                 var newUser = await _userManager.FindByIdAsync(applicationuser.Id);
-
                 singleEmployee.ApplicationUser.Add(newUser);
-                // singleEmployee.Id = applicationuser.Id;
                 _context.Employees.Attach(singleEmployee);
                 _context.SaveChanges();
             }
             else
             {
-                //user.PasswordHash = applicationuser.PasswordHash;
                 user.UserName = applicationuser.UserName;
                 user.Email = applicationuser.Email;
-                //user.ConfirmPassword = applicationuser.ConfirmPassword;
                 result = await _userManager.UpdateAsync(user);
             }
             if (result.Succeeded)

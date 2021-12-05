@@ -35,19 +35,23 @@
         <div class="userlist-thirdrow-section">
             <div class="userlist-froms">
                 <label for="PasswordHash">Password</label>
-                <input asp-for="PasswordHash" type="password" name="PasswordHash" class="userlist-text-from">
+                <input asp-for="PasswordHash" type="password" name="PasswordHash" class="userlist-text-from" required>
             </div>
         </div>
         <div class="userlist-fourthrow-section">
             <div class="userlist-froms  email">
                 <label for="ConfirmPassword">Confirm Password</label>
-                <input asp-for="ConfirmPassword" type="password" name="ConfirmPassword" class="userlist-text-from">
+                <input asp-for="ConfirmPassword" type="password" name="ConfirmPassword" class="userlist-text-from" required>
             </div>
         </div>
-        <input type="submit" class="userlist-adduser-submit-section userlist-form-submit-section"
+        <input type="submit" @*class="userlist-adduser-submit-section userlist-form-submit-section"*@ class="adduser-submit-section userlist-form-submit-section"
                @*onclick="toast(event)"*@>
     </form>
 </div>
+<link rel="stylesheet" href="~/css/site.css">
+@*<script src="~/js/toast.js"></script>*@
+<script src="~/js/site.js"></script>
+<script src="~/js/employee.js"></script>
 <!-- add-user section end here -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">

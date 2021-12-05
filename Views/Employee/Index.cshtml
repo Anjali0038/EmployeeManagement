@@ -38,16 +38,20 @@
     <!-- employeelist-firstrowlist-section -->
     @foreach (var employee in Model.EmployeeList)
     {
-        <div class="employeelist-firstrowlist-section">
-            <div class="employeelist-name-value">@employee.FirstName  @employee.MiddleName  @employee.LastName</div>
-            <div class="employeelist-username-value">@employee.UserName</div>
-            <div class="employeelist-email-value">@employee.Email</div>
-            <div class="employeelist-designation-value">@employee.Designation_Name</div>
-            <div class="employeelist-edit-delete-value" style="padding: 0 0;">
-                <button class="edit-btn btnUpdate " id=@employee.Employee_Id><i class="far fa-edit"></i> </button>
-                <button class="delete-btn btnDelete" id=@employee.Employee_Id><i class="fas fa-trash"></i></button>
+
+        if (employee.UserName != "admin")
+        {
+            <div class="employeelist-firstrowlist-section">
+                <div class="employeelist-name-value">@employee.FirstName  @employee.MiddleName  @employee.LastName</div>
+                <div class="employeelist-username-value">@employee.UserName</div>
+                <div class="employeelist-email-value">@employee.Email</div>
+                <div class="employeelist-designation-value">@employee.Designation_Name</div>
+                <div class="employeelist-edit-delete-value" style="padding: 0 0;">
+                    <button class="edit-btn btnUpdate " id=@employee.Employee_Id><i class="far fa-edit"></i> </button>
+                    <button class="delete-btn btnDelete" id=@employee.Employee_Id><i class="fas fa-trash"></i></button>
+                </div>
             </div>
-        </div>
+        }
     }
 
     <!-- employeelist-firstrowlist-section -->
@@ -106,10 +110,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="~/js/employee.js"></script>
 <link rel="stylesheet" href="~/css/site.css">
-@*<script src="~/js/user.js"></script>*@
 <script type="text/javascript">
     $(function () {
         $("#btnAdd").click(function () {
+            s
             $.ajax({
                 type: "get",
                 url: "/employee/CreateOrEdit",
@@ -136,7 +140,6 @@
         });
 
         $(".btnUpdate").click(function () {
-            debugger
             $.ajax({
                 type: "GET",
                 url: "/Employee/CreateOrEdit",

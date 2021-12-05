@@ -1,7 +1,7 @@
-const sidebarbtn = document.querySelector(".userlist-sidebar-btn");
-const sidebarsection = document.querySelector(".userlist-sidebar");
-const userlist = document.querySelector(".userlist-main-container");
-const sidebarclosebtn = document.querySelector(".userlist-sidebar-close-btn");
+const sidebarbtn = document.querySelector(".main-container-sidebar-btn");
+const sidebarsection = document.querySelector(".sidebar");
+const userlist = document.querySelector(".main-container");
+const sidebarclosebtn = document.querySelector(".sidebar-close-btn");
 const createuserpopupsection = document.querySelector(
   ".userlist-adduser-form-section"
 );
@@ -20,61 +20,10 @@ sidebarclosebtn.addEventListener("click", () => {
   userlist.classList.remove("active");
 });
 
-// user profile and sigout popup section
-const userlistprofile = document.querySelector(".userlist-image-section img");
-const userlistlogoutsection = document.querySelector(
-  ".userlist-logout-section"
-);
-const userlogoutsection = document.querySelector(
-  ".userlist-logout-section-close-btn"
-);
-
-window.addEventListener("click", (e) => {
-  const userlistprofileimgsection = document.querySelector(
-    ".userlist-user-profile-img "
-  );
-  const userlistprofileimg = document.querySelector(
-    ".userlist-user-profile-img img"
-  );
-  const userlistprofilename = document.querySelector(
-    ".userlist-logout-section h3"
-  );
-  const userlistuseremail = document.querySelector(".userlist-user-email");
-  const userlistprofilefooter = document.querySelector(
-    ".userlist-logout-footer-section"
-  );
-  const userlistprofilefooterh3 = document.querySelector(
-    ".userlist-logout-footer-section h3"
-  );
-  const userlistprofilelogoutbtn = document.querySelector(
-    ".userlist-logout-btn"
-  );
-
-  if (e.target == userlistprofile) {
-    userlistlogoutsection.classList.toggle("show");
-  } else if (e.target == userlistprofileimgsection) {
-    userlistlogoutsection.classList.add("show");
-  } else if (e.target == userlistprofileimg) {
-    userlistlogoutsection.classList.add("show");
-  } else if (e.target == userlistprofilename) {
-    userlistlogoutsection.classList.add("show");
-  } else if (e.target == userlistuseremail) {
-    userlistlogoutsection.classList.add("show");
-  } else if (e.target == userlistprofilefooter) {
-    userlistlogoutsection.classList.add("show");
-  } else if (e.target == userlistprofilefooterh3) {
-    userlistlogoutsection.classList.add("show");
-  } else if (e.target == userlistlogoutsection) {
-    userlistlogoutsection.classList.add("show");
-  } else if (e.target == userlistprofilelogoutbtn) {
-    userlistlogoutsection.classList.add("show");
-  } else {
-    userlistlogoutsection.classList.remove("show");
-  }
-});
-
 // createuserpopupsection
-const createuserbtn = document.querySelector(".userlist-create-section-btn");
+const createuserbtn = document.querySelector(
+  ".main-container-create-section-btn"
+);
 const createuserclosebtn = document.querySelector(
   ".userlist-adduser-close-btn"
 );
@@ -95,27 +44,22 @@ window.onclick = function (event) {
 };
 // userlist-toast-section
 
-const userlisttoast = document.querySelector(".userlist-toast");
-const userlisttoastclose = document.querySelector(".toast-close-btn");
+// const userlisttoast = document.querySelector(".userlist-toast");
+// const userlisttoastclose = document.querySelector(".toast-close-btn");
 
-userlisttoastclose.addEventListener("click", () => {
-  userlisttoast.classList.remove("showtoast");
-});
-let toast = (e) => {
-  e.preventDefault();
-  modal.style.display = "none";
+// userlisttoastclose.addEventListener("click", () => {
+//   userlisttoast.classList.remove("showtoast");
+// });
+// let toast = (e) => {
+//   e.preventDefault();
+//   modal.style.display = "none";
 
-  function fun() {
-    userlisttoast.classList.remove("showtoast");
-  }
-  userlisttoast.classList.add("showtoast");
-  setTimeout(fun, 3000);
-};
-
-// function for sigout
-function newDoc() {
-  window.location.assign("http://127.0.0.1:5500/login.html");
-}
+//   function fun() {
+//     userlisttoast.classList.remove("showtoast");
+//   }
+//   userlisttoast.classList.add("showtoast");
+//   setTimeout(fun, 3000);
+// };
 
 // edit-delete form
 

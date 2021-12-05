@@ -21,8 +21,9 @@ namespace EmployeeManagement.Areas.Identity.Data
         //public string PasswordHash { get; set; }
         [NotMapped]
         [DataType(DataType.Password)]
+        [Required(ErrorMessage = "Confirmation Password is required.")]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("PasswordHash", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
         public int EId { get; set; }
         public Employee Employee { get; set; }
