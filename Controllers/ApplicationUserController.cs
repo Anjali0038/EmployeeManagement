@@ -53,25 +53,56 @@ namespace EmployeeManagement.Controllers
         }
         [HttpPost]
         public async  Task<IActionResult> CreateOrEdit(ApplicationUserViewModel model)
-        {   
-            try
+        {
+            if (ModelState.IsValid)
             {
-                var user = _context.Employees.Where(x => x.Employee_Id == Convert.ToInt32(model.Employee_Id)).FirstOrDefault();            
-                model.Email = user.Email;
-                model.Designation = user.Designation_Name;
-                model.FullName = user.FirstName;
-                var res = await _iApplicationUserProvider.SaveUser(model);
-                return RedirectToAction("Index");
+                try
+                {
+                    var user = _context.Employees.Where(x => x.Employee_Id == Convert.ToInt32(model.Employee_Id)).FirstOrDefault();
+                    model.Email = user.Email;
+                    model.Designation = user.Designation_Name;
+                    model.FullName = user.FirstName;
+                    var res = await _iApplicationUserProvider.SaveUser(model);
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }       
+            //ModelState.AddModelError(nameof(model.ConfirmPassword), "Password doesn't matched");
+            return RedirectToAction("Index");
+        }
         public async Task<IActionResult> Delete(string id)
         {
             await _iApplicationUserProvider.DeleteUser(id);
             return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public JsonResult AutoComplete(string prefix)
+        {
+            var users = (from user in this._context.Users
+                             where user.FullName.StartsWith(prefix)
+                             select new
+                             {
+                                 label = user.FullName,
+                                 val = user.Id
+                             }).ToList();
+
+            return Json(users);
+        }
+        public ActionResult UserSearch(string val)
+        {
+            ApplicationUserViewModel model = new ApplicationUserViewModel();
+            model.UsersList = (from s in _context.Users
+                               where s.FullName.Contains(val) || s.UserName.Contains(val)
+                               select new ApplicationUserViewModel
+                               {
+                                   Id = s.Id,
+                                   FullName = s.FullName,
+                                   UserName = s.UserName
+                               }).ToList();
+            return View(model);
         }
     }
 }

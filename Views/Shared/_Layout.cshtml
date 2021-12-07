@@ -19,8 +19,9 @@
 <body>
     <!-- employeelist-wrapper -->
     <div class="wrapper">
+
         <!-- employeelist-slidebar -->
-        <div class="sidebar">
+        <div id="sbar" class="sidebar">
             <!-- employeelist-sidebar-company-logo-section -->
             <div class="sidebar-company-logo-section">
                 <img src="./images/logo.png" alt="company logo">
@@ -55,9 +56,9 @@
             {
                 <div class="main-container-header-section">
                     <div class="main-container-sidebar-section">
-                        <button class="main-container-sidebar-btn"><i class="fas fa-bars"></i></button>
+                        <button class="main-container-sidebar-btn sidebarOpen"><i class="fas fa-bars"></i></button>
                     </div>
-                    <div class="main-container-image-section" style="display: flex;">
+                    <div class="main-container-image-section" @*style="display: flex;"*@>
                         <h1>@UserManager.GetUserAsync(User).Result.UserName </h1>
                         <img src="./images/profile.jpg" alt="userimage">
                     </div>
@@ -73,9 +74,8 @@
                     <!-- employeelist-user-profile-img -->
                     <h3>@UserManager.GetUserAsync(User).Result.UserName </h3>
                     <h3 class="main-container-user-email">@UserManager.GetUserAsync(User).Result.Email</h3>
-                    @*<button asp-area="Identity" asp-page="/Account/Manage/Index" id=" logout" class="employeelist-logout-btn">Sign Out</button>*@
                     <a asp-area="Identity" asp-page="/Account/Login">
-                        <button class="main-container-logout-btn"> @*onclick="newDoc()"*@ Sign Out</button>
+                        <button class="main-container-logout-btn"> Sign Out</button>
                     </a>
                     <!-- employeelist-logout-footer-section -->
                     <div class="main-container-logout-footer-section">

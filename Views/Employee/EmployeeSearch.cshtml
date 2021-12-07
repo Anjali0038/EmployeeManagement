@@ -1,0 +1,65 @@
+﻿@model EmployeeManagement.Models.EmployeeViewModel
+@{
+    Layout = null;
+}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css link -->
+    <!-- <link rel="stylesheet" href="./employee.css"> -->
+    <link rel="stylesheet" href="./css/site.css">
+    <link rel="stylesheet" href="./css/layout.css">
+    <!-- font-awesome link -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" rel="stylesheet" />
+    <title>employeelist</title>
+</head>
+<!-- employeelist-title-section -->
+<div class="main-container-title-section">
+    <h1>Employee List</h1>
+</div>
+<!-- employeelist-title-section -->
+<div class="main-container-search-create-section">
+    <!-- employeelist-create-section -->
+    <div class="main-container-create-section">
+        <button class="main-container-create-section-btn" id="btnAdd">+ Create Employee</button>
+    </div>
+    <!-- employeelist-create-section -->
+    <!-- employeelist-search-section -->
+    <div class="main-container-search-section">
+        <form action="" class="main-container-search-section-form" method="post">
+            <input id="txtVal" type="text" placeholder="Username" class="main-container-search-box">
+            <button type="submit" class="main-container-search-btn"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+    <!-- employeelist-search-section -->
+</div>
+<!-- employeelist-list-section -->
+<div class="employeelist-list-section">
+    <!-- employeelist-list-header-section -->
+    <div class="employeelist-list-header-section">
+        <div class="employeelist-name">Name</div>
+        <div class="employeelist-username">Username</div>
+        <div class="employeelist-email">Email</div>
+        <div class="employeelist-designation">Designation</div>
+        <div class="employeelist-edit-delete">Edit/Delete</div>
+    </div>
+    <!-- employeelist-list-header-section -->
+    <!-- employeelist-firstrowlist-section -->
+    @foreach (var employee in Model.EmployeeList)
+    {
+        if (employee.UserName != "admin")
+        {
+            <div class="employeelist-firstrowlist-section">
+                <div class="employeelist-name-value">@employee.FirstName  @employee.MiddleName  @employee.LastName</div>
+                <div class="employeelist-username-value">@employee.UserName</div>
+                <div class="employeelist-email-value">@employee.Email</div>
+                <div class="employeelist-designation-value">@employee.Designation_Name</div>
+                <div class="employeelist-edit-delete-value" style="padding: 0 0;">
+                    <button class="edit-btn btnUpdate " id=@employee.Employee_Id><i class="far fa-edit"></i> </button>
+                    <button class="delete-btn btnDelete" id=@employee.Employee_Id><i class="fas fa-trash"></i></button>
+                </div>
+            </div>
+        }
+    }
+</div>

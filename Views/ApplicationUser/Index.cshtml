@@ -3,21 +3,22 @@
     var data1 = ViewBag.Gender;
 }
 <!-- userlist-title-section start here -->
-<div class="userlist-title-section">
+<div class="main-container-title-section">
     <h1>User List</h1>
 </div>
 <!-- userlist-title-section end here -->
-<div class="userlist-search-create-section">
+<div class="main-container-search-create-section">
     <!-- userlist-create-section start here -->
-    <div class="userlist-create-section">
-        <button class="userlist-create-section-btn" id="btnAdd">+ Create User</button>
+    <div class="main-container-create-section">
+        <button class="main-container-create-section-btn" id="btnAdd">+ Create User</button>
     </div>
     <!-- userlist-create-section end here -->
     <!-- userlist-search-section start here -->
-    <div class="userlist-search-section">
-        <form action="" class="userlist-search-section-form">
-            <input type="text" placeholder="Username" class="userlist-search-box">
-            <button type="submit" class="userlist-search-btn"><i class="fa fa-search"></i></button>
+    <div class="main-container-search-section">
+        <form action="" class="main-container-search-section-form">
+            <input id="txtVal" type="text" placeholder="Username" class="main-container-search-box">
+            <input id="txt" type="hidden" asp-for="Id" />
+            <button id="btnSearch" type="submit" class="main-container-search-btn"><i class="fa fa-search"></i></button>
         </form>
     </div>
     <!-- userlist-search-section end here -->
@@ -44,7 +45,6 @@
                 <div class="userlist-email-value">@user.Email</div>
                 <div class="userlist-designation-value">@user.Designation</div>
                 <div class="userlist-edit-delete-value" style="padding: 0 0;">
-                    @*<button class="edit-btn btnUpdate" id="@user.Id"><i class="far fa-edit"></i></button>*@
                     <button class="delete-btn btnDelete" id="@user.Id"><i class="fas fa-trash"></i></button>
                 </div>
             </div>
@@ -101,21 +101,26 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
 <script src="~/js/user.js"></script>
+<script src="~/js/toast.js"></script>
 <link rel="stylesheet" href="~/css/site.css">
+<!--link for autocomplete-->
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.min.js" type="text/javascript"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
+<link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css"
+      rel="Stylesheet" type="text/css" />
 <script type="text/javascript">
     $(function () {
         $("#btnAdd").click(function () {
-            debugger
             $.ajax({
                 type: "get",
                 url: "/ApplicationUser/CreateOrEdit",
                 success: function (response) {
-                    debugger
                     $('#myModal').html(response);
                     $('#myModal').css({ display: "block" });
                 }
             });
         });
+
         $(".btnDelete").click(function () {
             var r = confirm("are you sure you want to delete!");
             if (r == true) {
@@ -131,6 +136,50 @@
             else {
                 console.log("cancel")
             }
+        });
+        $("#btnSearch").click(function () {
+            $.ajax({
+                type: "GET",
+                url: "/ApplicationUser/UserSearch",
+                type: 'GET',
+                data: {
+                    val: $('#txtVal').val(),
+                },
+                success: function (response) {
+                    $('#UsersList').empty();
+                    $('#UsersList').html(response);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        });
+        $("#txtVal").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '/ApplicationUser/AutoComplete/',
+                    data: { "prefix": request.term },
+                    type: "POST",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return item;
+                        }))
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            select: function (e, i) {
+                $("#txt").val(i.item.val);
+            },
+            minLength: 1
         });
     });
 </script>

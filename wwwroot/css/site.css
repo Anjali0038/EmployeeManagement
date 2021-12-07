@@ -74,10 +74,6 @@ input.empty {
 /* ---------------------------------login page end here-------------------------- */
 
 /*--------------------------------- user page start here --------------------------*/
-.userlist-wrapper {
-  height: 100vh;
-  width: 100vw;
-}
 
 /* userlist add-user section start here */
 
@@ -95,11 +91,11 @@ input.empty {
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
-.userlist-adduser-form-section h1 {
+.adduser-form-section h1 {
   margin-bottom: 0.5em;
   font-size: 1.6em;
 }
-.userlist-adduser-form-section {
+.adduser-form-section {
   position: relative;
   height: auto;
   width: calc(100% - 10%);
@@ -172,14 +168,14 @@ input.empty {
   margin: 0 0.5em;
   width: 100%;
 }
-.userlist-adduser-form-section label {
+.adduser-form-section label {
   font-size: 0.9em;
 }
 .userlist-froms {
   display: flex;
   flex-direction: column;
 }
-.userlist-text-from {
+.text-from {
   width: 100%;
   font-size: 1em;
   padding: 0.5em;
@@ -187,7 +183,7 @@ input.empty {
   border-radius: 7px;
   border-color: var(--border-color);
 }
-.userlist-adduser-submit-section {
+.adduser-submit-section {
   height: 40px;
   background-color: var(--bg-color) !important;
   color: white !important ;
@@ -218,12 +214,27 @@ input.empty {
   visibility: visible;
   transform: translatex(0%);
 }
+.userlist-toast.showsuccess {
+  visibility: visible;
+  transform: translatex(0%);
+}
+.userlist-toast.showdanger {
+  visibility: visible;
+  transform: translatex(0%);
+}
 .userlist-conform-icon .toast-success-mssg {
   align-self: center;
 }
-.userlist-conform-icon {
+.userlist-conform-icon.showsuccess {
+  margin-top: 0.1em;
+
   font-size: 27px;
   color: #47d764;
+}
+.userlist-conform-icon.showdanger {
+  margin-top: 0.1em;
+  font-size: 27px;
+  color: red;
 }
 
 .toast-success-mssg p:first-child {
@@ -248,228 +259,6 @@ input.empty {
 }
 
 /* userlist-toast-section end*/
-
-/* userlist sidebar start */
-
-.userlist-sidebar {
-  position: fixed;
-  top: 0%;
-  left: 0%;
-  background-color: var(--bg-color);
-  height: 100vh;
-  width: 205px;
-  transition: all 0.5s ease;
-  color: white;
-  transform: translateX(-100%);
-}
-.userlist-sidebar.showsidebar {
-  transform: translateX(0%);
-}
-.userlist-sidebar-company-logo-section {
-  display: grid;
-  place-items: center;
-  padding: 1em;
-  margin-bottom: 3em;
-  position: relative;
-}
-.userlist-sidebar-company-logo-section img {
-  width: 50px;
-  height: 60px;
-  object-fit: contain;
-}
-.userlist-sidebar ul li {
-  height: 50px;
-  padding: 0.7em 0.5em;
-  margin-bottom: 0.1em;
-}
-.userlist-sidebar ul li a {
-  color: white;
-  text-decoration: none;
-  font-size: 1.5em;
-  font-weight: bold;
-}
-/* .userlist-sidebar ul li:hover {
-  background-color: #467cad;
-} */
-.actives,
-.userlistsidebarbtn:hover {
-  background-color: #467cad;
-}
-
-.userlist-sidebar-close-btn {
-  position: absolute;
-  top: 20%;
-  right: 5%;
-  background: unset;
-  border: unset;
-  font-weight: bold;
-  font-size: 1.3em;
-  cursor: pointer;
-}
-/* userlist sidebar end */
-
-/* userlist main container start here */
-.userlist-main-container {
-  height: 100vh;
-  width: 100%;
-  background-color: var(--border-color);
-}
-/* userlist header-section start here */
-.userlist-header-section {
-  width: 100%;
-  height: 80px;
-  background-color: var(--bg-color);
-  display: flex;
-  justify-content: space-between;
-  padding: 1em;
-  place-items: center;
-}
-.userlist-sidebar-btn {
-  height: 30px;
-  width: 30px;
-  background-color: unset;
-  color: white;
-  border: unset;
-  cursor: pointer;
-  font-size: 2em;
-}
-.userlist-image-section h1 {
-  display: none;
-}
-.userlist-image-section img {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  object-fit: contain;
-  cursor: pointer;
-}
-/* userlist header-section end here */
-
-/* userlist-logout-section-start */
-.userlist-logout-section {
-  position: absolute;
-  top: 10%;
-  right: 4%;
-  height: 312px;
-  width: 260px;
-  background-color: white;
-  border-radius: 3%;
-  text-align: center;
-  display: none;
-}
-.userlist-logout-section.show {
-  display: block;
-}
-.userlist-user-profile-img {
-  display: grid;
-  place-items: center;
-  margin: 2em 0 1.2em 0;
-}
-.userlist-logout-section-close-btn {
-  position: absolute;
-  top: 10%;
-  left: 7%;
-  background: unset;
-  border: unset;
-  font-weight: bold;
-  font-size: 1.3em;
-  cursor: pointer;
-}
-.userlist-user-profile-img img {
-  width: 85px;
-  height: 85px;
-  border-radius: 50%;
-  object-fit: contain;
-}
-.userlist-logout-section h3 {
-  font-size: 1em;
-  margin-bottom: 0.5em;
-  font-weight: bold;
-}
-.userlist-user-email {
-  color: #949393;
-}
-.userlist-logout-btn {
-  width: 105px;
-  height: 2em;
-  display: block;
-  margin: 0 auto;
-  font-weight: bold;
-  font-size: 1em;
-  background-color: unset;
-  padding: unset;
-  cursor: pointer;
-  border-radius: 11px;
-  border: 1px solid var(--border-color);
-  margin: 1.5em auto;
-}
-.userlist-logout-footer-section {
-  border-top: 1px solid var(--border-color);
-  height: 46px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.userlist-logout-footer-section h3 {
-  margin: 0 0 0 0;
-  color: #949393;
-  font-weight: bold;
-  font-size: 1em;
-}
-/* userlist-logout-section-end */
-
-/* userlist title section start here */
-
-.userlist-title-section {
-  width: 100vw;
-  height: 60px;
-  background-color: white;
-  padding: 1em;
-  font-size: 0.8em;
-  margin-bottom: 1em;
-}
-
-/* userlist title section end here */
-
-/* userlist-search-create-section start here */
-.userlist-create-section {
-  padding: 0 1em;
-  border-radius: 7px;
-}
-.userlist-create-section-btn {
-  background-color: var(--bg-color);
-  color: white;
-  cursor: pointer;
-  font-size: 1em;
-  padding: 0.5em;
-  border: unset;
-  margin-bottom: 1em;
-}
-/* userlist-search-create-section end here  */
-
-/* userlist-search-section start here */
-.userlist-search-section {
-  padding: 0 1em;
-}
-.userlist-search-section-form {
-  display: grid;
-  grid-template-columns: 85% 15%;
-}
-.userlist-search-box {
-  font-size: 1em;
-  padding: 0.5em;
-  border: unset;
-  margin-right: 0.5em;
-}
-.userlist-search-btn {
-  font-size: 1em;
-  border: unset;
-  cursor: pointer;
-  background-color: var(--bg-color);
-  color: white;
-}
-/* userlist-search-section end here */
 
 /* userlist-list-section start here */
 .userlist-username,
@@ -832,215 +621,19 @@ input.empty {
 
 /* employeelist-toast-section end*/
 
-/* employeelist  sidebar start */
-.employeelist-sidebar {
-  position: fixed;
-  top: 0%;
-  left: 0%;
-  background-color: var(--bg-color);
-  height: 100vh;
-  width: 225px;
-  transition: all 0.5s ease;
-  color: white;
-  transform: translateX(-100%);
-}
-.employeelist-sidebar.showsidebar {
-  transform: translateX(0%);
-}
-.employeelist-sidebar-company-logo-section {
-  display: grid;
-  place-items: center;
-  padding: 1em;
-  margin-bottom: 3em;
-  position: relative;
-}
-.employeelist-sidebar-company-logo-section img {
-  width: 50px;
-  height: 60px;
-  object-fit: contain;
-}
-.employeelist-sidebar ul li {
-  height: 50px;
-  padding: 0.7em 0.5em;
-  margin-bottom: 0.1em;
-}
-.employeelist-sidebar ul li a {
-  color: white;
-  text-decoration: none;
-  font-size: 1.5em;
-  font-weight: bold;
-}
-
-.employeelistsidebarbtn.active {
-  background-color: #467cad;
-}
-.employeelistsidebarbtn:hover {
-  background-color: #467cad;
-}
-.employeelist-sidebar-close-btn {
-  position: absolute;
-  top: 20%;
-  right: 5%;
-  background: unset;
-  border: unset;
-  font-weight: bold;
-  font-size: 1.3em;
-  cursor: pointer;
-}
-/* employeelist sidebar end */
-/* employee head start here */
-.employeelist-wrapper {
-  height: 100vh;
-  width: 100vw;
-}
-.employeelist-main-container {
-  height: 100vh;
-  width: 100%;
-  background-color: var(--border-color);
-}
-/* employeelist-logout-section-start */
-.employeelist-logout-section {
-  position: absolute;
-  top: 10%;
-  right: 4%;
-  height: 312px;
-  width: 260px;
-  background-color: white;
-  border-radius: 3%;
-  text-align: center;
-  display: none;
-}
-.employeelist-logout-section.show {
-  display: block;
-}
 .employeelist-user-profile-img {
   display: grid;
   place-items: center;
   margin: 2em 0 1.2em 0;
 }
-.employeelist-logout-section-close-btn {
-  position: absolute;
-  top: 10%;
-  left: 7%;
-  background: unset;
-  border: unset;
-  font-weight: bold;
-  font-size: 1.3em;
-  cursor: pointer;
-}
+
 .employeelist-user-profile-img img {
   width: 85px;
   height: 85px;
   border-radius: 50%;
   object-fit: contain;
 }
-.employeelist-logout-section h3 {
-  font-size: 1em;
-  margin-bottom: 0.5em;
-  font-weight: bold;
-}
-.employeelist-user-email {
-  color: #949393;
-}
-.employeelist-logout-btn {
-  width: 105px;
-  height: 2em;
-  display: block;
-  margin: 0 auto;
-  font-weight: bold;
-  font-size: 1em;
-  background-color: unset;
-  padding: unset;
-  cursor: pointer;
-  border-radius: 11px;
-  border: 1px solid var(--border-color);
-  margin: 1.5em auto;
-}
-.employeelist-logout-footer-section {
-  border-top: 1px solid var(--border-color);
-  height: 46px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.employeelist-logout-footer-section h3 {
-  margin: 0 0 0 0;
-  color: #949393;
-  font-weight: bold;
-  font-size: 1em;
-}
-/* userlist-logout-section-end */
-.employeelist-header-section {
-  width: 100%;
-  height: 80px;
-  background-color: var(--bg-color);
-  display: flex;
-  justify-content: space-between;
-  padding: 1em;
-  place-items: center;
-}
-.employeelist-sidebar-btn {
-  height: 30px;
-  width: 30px;
-  background-color: unset;
-  color: white;
-  border: unset;
-  cursor: pointer;
-  font-size: 2em;
-}
-.employeelist-image-section h1 {
-  display: none;
-}
-.employeelist-image-section img {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  object-fit: contain;
-}
-.employeelist-title-section {
-  width: 100vw;
-  height: 60px;
-  background-color: white;
-  padding: 1em;
-  font-size: 0.8em;
-  margin-bottom: 1em;
-}
-.employeelist-create-section {
-  padding: 0 1em;
-}
-.employeelist-create-section-btn {
-  background-color: var(--bg-color);
-  color: white;
-  cursor: pointer;
-  font-size: 1em;
-  padding: 0.5em;
-  border: unset;
-  margin-bottom: 1em;
-  border-radius: 7px;
-}
-.employeelist-search-section {
-  padding: 0 1em;
-}
-.employeelist-search-section-form {
-  display: grid;
-  grid-template-columns: 85% 15%;
-}
-.employeelist-search-box {
-  font-size: 1em;
-  padding: 0.5em;
-  border: unset;
-  margin-right: 0.5em;
-  border-radius: 7px;
-}
-.employeelist-search-btn {
-  font-size: 1em;
-  border: unset;
-  cursor: pointer;
-  background-color: var(--bg-color);
-  color: white;
-  border-radius: 7px;
-}
+
 .employeelist-username,
 .employeelist-email,
 .employeelist-designation {
@@ -1270,11 +863,11 @@ input.empty {
   /* add-user section start here */
   /* new from */
 
-  .userlist-adduser-form-section h1 {
+  .adduser-form-section h1 {
     margin-bottom: 0.5em;
     font-size: 1.6em;
   }
-  .userlist-adduser-form-section {
+  .adduser-form-section {
     position: relative;
     height: 470px;
     width: calc(100% - 50%);
@@ -1347,14 +940,14 @@ input.empty {
     margin: 0 0.5em;
     width: 100%;
   }
-  .userlist-adduser-form-section label {
+  .adduser-form-section label {
     font-size: 0.9em;
   }
   .userlist-froms {
     display: flex;
     flex-direction: column;
   }
-  .userlist-text-from {
+  .text-from {
     width: 100%;
     font-size: 1em;
     padding: 0.5em;
@@ -1362,7 +955,7 @@ input.empty {
     border-radius: 7px;
     border-color: var(--border-color);
   }
-  .userlist-adduser-submit-section {
+  .adduser-submit-section {
     height: 40px !important;
     display: block !important;
     background-color: var(--bg-color) !important;
@@ -1373,7 +966,7 @@ input.empty {
     font-size: 1em !important;
   }
 
-  .userlist-adduser-form-section.showfullwidthfromsection {
+  .adduser-form-section.showfullwidthfromsection {
     width: calc(100% - 75%);
     margin: 0 37.5%;
   }
@@ -1432,27 +1025,6 @@ input.empty {
   }
 
   /* userlist-toast-section end*/
-
-  .userlist-image-section {
-    display: flex;
-    height: auto;
-  }
-  .userlist-image-section h1 {
-    display: inline-block;
-    color: white;
-    font-size: 0.8em;
-    margin: auto 1em auto auto;
-  }
-  .userlist-image-section img {
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    object-fit: contain;
-  }
-  .userlist-search-create-section {
-    display: flex;
-    justify-content: space-between;
-  }
 
   .userlist-designation {
     display: none;
@@ -1577,66 +1149,6 @@ input.empty {
     cursor: pointer;
     margin-right: 1em;
   }
-
-  /* userlist-logout-section-start */
-  .userlist-logout-section {
-    position: absolute;
-    top: 10.5%;
-    right: 2%;
-    height: 260px;
-    width: 270px;
-    background-color: white;
-    border-radius: 3%;
-    text-align: center;
-    display: none;
-  }
-  .userlist-user-profile-img {
-    display: grid;
-    place-items: center;
-    margin: 1em 0 0.6em 0;
-  }
-  .userlist-user-profile-img img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: contain;
-  }
-  .userlist-logout-section h3 {
-    font-size: 1em;
-    margin-bottom: 0.5em;
-    font-weight: bold;
-  }
-  .userlist-user-email {
-    color: #949393;
-  }
-  .userlist-logout-btn {
-    width: 105px;
-    height: 2em;
-    display: block;
-    font-weight: bold;
-    font-size: 1em;
-    background-color: unset;
-    padding: unset;
-    cursor: pointer;
-    border-radius: 11px;
-    border: 1px solid var(--border-color);
-    margin: 1.2em auto;
-  }
-  .userlist-logout-footer-section {
-    border-top: 1px solid var(--border-color);
-    height: 40px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .userlist-logout-footer-section h3 {
-    margin: 0 0 0 0;
-    color: #949393;
-    font-weight: bold;
-    font-size: 1em;
-  }
-  /* userlist-logout-section-end */
 
   /* userlist page change section start */
 
@@ -1833,26 +1345,6 @@ input.empty {
   }
 
   /* userlist-toast-section end*/
-  .employeelist-image-section {
-    display: flex;
-    height: auto;
-  }
-  .employeelist-image-section h1 {
-    display: inline-block;
-    color: white;
-    font-size: 0.8em;
-    margin: auto 1em auto auto;
-  }
-  .employeelist-image-section img {
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    object-fit: contain;
-  }
-  .employeelist-search-create-section {
-    display: flex;
-    justify-content: space-between;
-  }
 
   /* employee list start here */
   .employeelist-designation {
@@ -1976,18 +1468,6 @@ input.empty {
   }
   /* employee list end here */
 
-  /* employeelist-logout-section-start */
-  .employeelist-logout-section {
-    position: absolute;
-    top: 10.5%;
-    right: 2%;
-    height: 260px;
-    width: 270px;
-    background-color: white;
-    border-radius: 3%;
-    text-align: center;
-    display: none;
-  }
   .employeelist-user-profile-img {
     display: grid;
     place-items: center;
@@ -1999,44 +1479,6 @@ input.empty {
     border-radius: 50%;
     object-fit: contain;
   }
-  .employeelist-logout-section h3 {
-    font-size: 1em;
-    margin-bottom: 0.5em;
-    font-weight: bold;
-  }
-  .employeelist-user-email {
-    color: #949393;
-  }
-  .employeelist-logout-btn {
-    width: 105px;
-    height: 2em;
-    display: block;
-    font-weight: bold;
-    font-size: 1em;
-    background-color: unset;
-    padding: unset;
-    cursor: pointer;
-    border-radius: 11px;
-    border: 1px solid var(--border-color);
-    margin: 1.2em auto;
-  }
-  .employeelist-logout-footer-section {
-    border-top: 1px solid var(--border-color);
-    height: 40px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .employeelist-logout-footer-section h3 {
-    margin: 0 0 0 0;
-    color: #949393;
-    font-weight: bold;
-    font-size: 1em;
-  }
-  /* employeelist-logout-section-end */
-
-  /* employeelist page change section start */
 
   .employeelist-page-change-section {
     width: 40%;
@@ -2048,10 +1490,6 @@ input.empty {
 
 @media screen and (min-width: 992px) {
   /*------------------------------------------------ userlist 992px css start here --------------------------*/
-  .userlist-wrapper {
-    height: 100vh;
-    width: 100vw;
-  }
 
   /* userlist toast */
   .userlist-toast {
@@ -2071,7 +1509,7 @@ input.empty {
     transition: all 0.5s ease;
   }
 
-  .userlist-adduser-form-section {
+  .adduser-form-section {
     position: relative;
     height: 470px;
     width: calc(100% - 60%);
@@ -2087,58 +1525,11 @@ input.empty {
     animation-name: animatetop;
     animation-duration: 0.4s;
   }
-  .userlist-adduser-form-section.showfullwidthfromsection {
+  .adduser-form-section.showfullwidthfromsection {
     width: calc(100% - 60%);
     margin: 0 30%;
   }
   /* add-user section end here  */
-  .userlist-sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 225px;
-    background: var(--bg-color);
-    transform: translateX(0%);
-    transition: unset;
-    z-index: 1;
-    transition: all 0.5s ease;
-  }
-  .userlist-title-section {
-    width: 100%;
-  }
-  .userlist-sidebar-close-btn {
-    display: none;
-  }
-  .userlist-main-container {
-    width: calc(100% - 225px);
-
-    margin-left: 225px;
-
-    transition: all 0.5s ease;
-  }
-  .userlist-main-container.active {
-    margin-left: 0;
-    width: 100%;
-  }
-
-  .userlist-sidebar.hide {
-    transform: translateX(-100%);
-  }
-
-  /* userlist-logout-section-start */
-  .userlist-logout-section {
-    position: absolute;
-    top: 10.5%;
-    right: 1%;
-    height: 260px;
-    width: 270px;
-    background-color: white;
-    border-radius: 3%;
-    text-align: center;
-    display: none;
-  }
-  /* userlist logout section end */
 
   .userlist-username,
   .userlist-email,
@@ -2300,60 +1691,11 @@ input.empty {
     transform: translatex(200%);
     transition: all 0.5s ease;
   }
-  .employeelist-adduser-form-section.showfullwidthfromsection {
+  .employeelist-adduser-form-section.showfullwidth {
     width: calc(100% - 35%);
     margin: 0 17.5%;
   }
   /* add-user section end here  */
-  .employeelist-wrapper {
-    height: 100vh;
-    width: 100vw;
-  }
-  .employeelist-sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 225px;
-    background: var(--bg-color);
-    transform: translateX(0%);
-    transition: unset;
-    z-index: 1;
-    transition: all 0.5s ease;
-  }
-  .employeelist-title-section {
-    width: 100%;
-  }
-  .employeelist-sidebar-close-btn {
-    display: none;
-  }
-  .employeelist-main-container {
-    width: calc(100% - 225px);
-    margin-left: 225px;
-    transition: all 0.5s ease;
-  }
-  .employeelist-main-container.active {
-    margin-left: 0;
-    width: 100%;
-  }
-
-  .employeelist-sidebar.hide {
-    transform: translateX(-100%);
-  }
-
-  /* userlist-logout-section-start */
-  .employeelist-logout-section {
-    position: absolute;
-    top: 10.5%;
-    right: 1%;
-    height: 260px;
-    width: 270px;
-    background-color: white;
-    border-radius: 3%;
-    text-align: center;
-    display: none;
-  }
-  /* userlist logout section end */
 
   .employeelist-username,
   .employeelist-email,
@@ -2483,7 +1825,7 @@ input.empty {
   /*------------------------------------------ userlist 1200px css start here -----------------------------------------*/
 
   /* add-user section start here */
-  .userlist-adduser-form-section {
+  .adduser-form-section {
     position: relative;
     height: 470px;
     width: calc(100% - 65%);
@@ -2500,7 +1842,7 @@ input.empty {
     animation-duration: 0.4s;
   }
 
-  .userlist-adduser-form-section.showfullwidthfromsection {
+  .adduser-form-section.showfullwidthfromsection {
     width: calc(100% - 65%);
     margin: 0 32.5%;
   }
@@ -2536,7 +1878,7 @@ input.empty {
   .birthday {
     width: 31%;
   }
-  .employeelist-adduser-form-section.showfullwidthfromsection {
+  .employeelist-adduser-form-section.showfullwidth {
     width: calc(100% - 45%);
     margin: 0 22.5%;
   }
@@ -2581,11 +1923,11 @@ input.empty {
   /* add-user section start here */
   /* new from */
 
-  .userlist-adduser-form-section h1 {
+  .adduser-form-section h1 {
     margin-bottom: 0.5em;
     font-size: 1.6em;
   }
-  .userlist-adduser-form-section {
+  .adduser-form-section {
     position: relative;
     height: 470px;
     width: calc(100% - 75%);
@@ -2658,14 +2000,14 @@ input.empty {
     margin: 0 0.5em;
     width: 100%;
   }
-  .userlist-adduser-form-section label {
+  .adduser-form-section label {
     font-size: 0.9em;
   }
   .userlist-froms {
     display: flex;
     flex-direction: column;
   }
-  .userlist-text-from {
+  .text-from {
     width: 100%;
     font-size: 1em;
     padding: 0.5em;
@@ -2674,53 +2016,12 @@ input.empty {
     border-color: var(--border-color);
   }
 
-  .userlist-adduser-form-section.showfullwidthfromsection {
+  .adduser-form-section.showfullwidthfromsection {
     width: calc(100% - 75%);
     margin: 0 37.5%;
   }
 
   /* add-user section end here  */
-
-  .userlist-sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    /* width: 225px; */
-    width: 250px;
-    background: var(--bg-color);
-    transform: translateX(0%);
-    transition: unset;
-    z-index: 1;
-    transition: all 0.5s ease;
-  }
-  .userlist-title-section {
-    width: 100%;
-  }
-  .userlist-sidebar-close-btn {
-    display: none;
-  }
-  .userlist-main-container {
-    /* width: calc(100% - 225px); */
-    width: calc(100% - 250px);
-
-    /* margin-left: 225px; */
-    margin-left: 250px;
-
-    transition: all 0.5s ease;
-  }
-  /* userlist-logout-section-start */
-  .userlist-logout-section {
-    position: absolute;
-    top: 9%;
-    right: 1%;
-    height: 260px;
-    width: 270px;
-    background-color: white;
-    border-radius: 3%;
-    text-align: center;
-    display: none;
-  }
   .userlist-edit-delete-value {
     color: white;
     width: 60% !important;
@@ -2865,48 +2166,11 @@ input.empty {
     margin-right: 0.5em;
   }
 
-  .employeelist-adduser-form-section.showfullwidthfromsection {
+  .employeelist-adduser-form-section.showfullwidth {
     width: calc(100% - 55%);
     margin: 0 27.6%;
   }
 
-  .employeelist-sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    /* width: 225px; */
-    width: 250px;
-    background: var(--bg-color);
-    transform: translateX(0%);
-    transition: unset;
-    z-index: 1;
-    transition: all 0.5s ease;
-  }
-  .employeelist-title-section {
-    width: 100%;
-  }
-  .employeelist-sidebar-close-btn {
-    display: none;
-  }
-  .employeelist-main-container {
-    width: calc(100% - 250px);
-    margin-left: 250px;
-    transition: all 0.5s ease;
-  }
-  /* add-user section end here  */
-  /* employeelist-logout-section-start */
-  .employeelist-logout-section {
-    position: absolute;
-    top: 9%;
-    right: 1%;
-    height: 260px;
-    width: 270px;
-    background-color: white;
-    border-radius: 3%;
-    text-align: center;
-    display: none;
-  }
   .employeelist-edit-delete-value {
     color: white;
     width: 60% !important;

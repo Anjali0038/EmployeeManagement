@@ -1,65 +1,62 @@
 ﻿@model EmployeeManagement.Models.EmployeeViewModel
 @{
-    ViewData["Title"] = "Index";
     var data = ViewBag.Gender;
-
 }
 <div class="employeelist-adduser-form-section">
     <div class="employeelist-adduser-header">
         <img src="./images/logo.png" alt="company logo">
         <button class="employeelist-adduser-close-btn"><i class="fas fa-times"></i></button>
     </div>
-    <form asp-controller="Employee" asp-action="CreateOrEdit" method="post" onsubmit="toast()" class="employeelist-from-section">
+    <form asp-controller="Employee" asp-action="CreateOrEdit" method="post"  class="employeelist-from-section">
         <input type="hidden" asp-for="Employee_Id" />
         <div class="employeelist-firstrow-section">
             <div class="employeelist-froms">
                 <label for="FirstName">First Name</label>
-                <input asp-for="FirstName" type="text" class="employeelist-text-from">
+                <input asp-for="FirstName" type="text" class="text-from">
+                <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
             <div class="employeelist-froms">
                 <label for="MiddleName">Middle Name</label>
-                <input asp-for="MiddleName" type="text" class="employeelist-text-from">
-
+                <input name="middleName" asp-for="MiddleName" type="text" class="text-from">
             </div>
             <div class="employeelist-froms">
                 <label for="LastName">Last Name</label>
-                <input asp-for=" LastName" type="text" class="employeelist-text-from">
+                <input asp-for=" LastName" type="text" class="text-from">
             </div>
         </div>
         <div class="employeelist-secondrow-section">
             <div class="employeelist-froms">
                 <label for="UserName">Username</label>
-                <input asp-for="UserName" type="text" class="employeelist-text-from">
+                <input asp-for="UserName" type="text" class="text-from">
             </div>
-
             <div class="employeelist-froms">
                 <label for="Designation_Name">Designation</label>
-                <input asp-for="Designation_Name" type="text" class="employeelist-text-from">
-
+                <input asp-for="Designation_Name" type="text" class="text-from">
             </div>
             <div class="employeelist-froms">
                 <label for="Contact_No">Phone Number</label>
-                <input asp-for="Contact_No" type="text" class="employeelist-text-from">
+                <input asp-for="Contact_No" type="text" class="text-from" >
             </div>
         </div>
         <div class="employeelist-thirdrow-section">
             <div class="employeelist-froms">
                 <label for="Address">Address</label>
-                <input asp-for="Address" type="text" class="employeelist-text-from">
+                <input asp-for="Address" type="text" class="text-from">
             </div>
             <div class="employeelist-froms">
                 <label for="Salary">Salary</label>
-                <input asp-for="Salary" type="tel" class="employeelist-text-from">
+                <input asp-for="Salary" type="tel" class="text-from">
             </div>
             <div class="employeelist-froms birthday">
                 <label for="Dob">DOB</label>
-                <input asp-for="Dob" type="date" class="employeelist-text-from">
+                <input asp-for="Dob" type="date" class="text-from">
             </div>
         </div>
         <div class="employeelist-fourthrow-section">
             <div class="employeelist-froms  email">
                 <label for="Email">Email</label>
-                <input asp-for=" Email" type="email" class="employeelist-text-from">
+                <input asp-for=" Email" type="email" class="employeelist-text-from" >
+                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="employeelist-froms  gender">
                 <label asp-for="Gender_Id" for="">Gender</label>
@@ -92,18 +89,26 @@
         <input type="submit" class="adduser-submit-section employeelist-form-submit-section"
                @*onclick="toast(event)"*@>
     </form>
-
 </div>
 <link rel="stylesheet" href="~/css/site.css">
-<script src="~/js/employee.js"></script>
+@*<script src="~/js/employee.js"></script>*@
+<script src="~/js/layout.js"></script>
 <script src="~/js/toast.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>*@
 <script type="text/javascript">
     $(function () {
         $(document).ready(function () {
             $(".employeelist-adduser-close-btn").click(function () {
-                $('#myModal').hide();
+            //    $('#myModal').hide();
+                $('#myModal').css({ display: "none" });
             });
+            $(window).click(function (event) {
+                const modal = document.getElementById("myModal");
+                if (event.target == modal) {
+                    $('#myModal').css({ display: "none" });
+                //    modal.style.display = none;
+                }
+                });
         });
     });
 </script>

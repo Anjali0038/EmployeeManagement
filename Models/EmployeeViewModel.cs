@@ -10,6 +10,7 @@ namespace EmployeeManagement.Models
     public class EmployeeViewModel
     {
         public int Employee_Id { get; set; }
+        [Required]
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
@@ -23,11 +24,15 @@ namespace EmployeeManagement.Models
         {
             EmployeeList = new List<EmployeeViewModel>();
         }
+        [Required]
         public String UserName { get; set; }
         public string Designation_Name { get; set; }
+        [EmailAddress]
+        [Required]
         public string Email { get; set; }
-        public double Salary { get; set; }
-        public double Contact_No { get; set; }
+        public double? Salary { get; set; }
+        [Phone]
+        public double? Contact_No { get; set; }
         public int Gender_Id { get; set; }
 
 
