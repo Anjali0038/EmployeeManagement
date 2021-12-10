@@ -1,0 +1,110 @@
+@model EmployeeManagement.Areas.Identity.Data.ApplicationUserViewModel
+@{
+}
+<!-- leaverequest-section -->
+<div class="leaverequest-section">
+    <div class="leaverequest-title-section">
+        <p>Please fill in the from with all the information</p>
+        <div class="leaverequest-underline-section"></div>
+    </div>
+    <!-- leaverequest-main-conatiner -->
+    <div class="leaverequest-main-conatiner">
+        <!-- leaverequest-form-section -->
+        <div class="leaverequest-form-section">
+            <form action="">
+                <div class="employee-name">
+                    <label for="">Employee Name:</label>
+                    <input type="text">
+                </div>
+                <div class="employee-designation">
+                    <label for="">Designation:</label>
+                    <input type="text">
+                </div>
+                <div class="leave-number">
+                    <label for="">Total Number of days requested:</label>
+                    <input type="number" class="leaveday">
+                </div>
+                <h3 class="message">Opps!! &#128517; Number of Days cannot be negative(-)</h3>
+
+                <div class="one-day-section">
+                    <div class="one-day-leave-section ">
+                        <div class="leave-weekday-section">
+                            <label for="">Day:</label>
+                            <input type="date" class="onedayleave">
+
+                        </div>
+                        <div class="half-day-leave-section ">
+                            <input type="checkbox">
+                            <label for="">Half Day Leave</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="multiple-day-section">
+                    <div class="multiple-day-leave-section">
+                        <div class="leave-start-date">
+                            <label for="">Leave Star Date:</label>
+                            <input type="date" class="leavestartdatefrom">
+                        </div>
+                        <!-- <div class="leave-end-date">
+                            <label for="">To:</label>
+                            <input type="date" class="leaveenddatefrom">
+                        </div> -->
+
+                    </div>
+                </div>
+                <input type="submit" class="leaverequestsubmitbtn">
+            </form>
+        </div>
+        <!-- leaverequest-form-section end -->
+        <!-- leaverequest-calendar-section start-->
+        <div class="leaverequest-calendar-section">
+
+            <div class="calendar-head-section">
+                <button class="btn prebtn">
+                    <i class="fas fa-angle-left"></i>
+                </button>
+                <h3></h3>
+                <button class="btn nextbtn">
+                    <i class="fas fa-angle-right"></i>
+                </button>
+            </div>
+
+            <div class="calendar-section">
+
+                <!-- calendar_month_section start  -->
+                <div class="calendar_month_section">
+                    <!-- current_weekend_day start -->
+                    <div class="current_weekend_day">
+                        <div class="weekdays">
+                        </div>
+                        <div class="days"></div>
+                    </div>
+                    <!-- current_weekend_day end -->
+                </div>
+                <!-- calendar_month_section end  -->
+            </div>
+        </div>
+        <!-- leaverequest-calendar-section end-->
+    </div>
+    <!-- leaverequest-main-conatiner -->
+</div>
+<!-- leaverequest-section -->
+<!-- userlist-toast -->
+<div class="employeelist-toast">
+    <div class="employeelist-conform-icon">
+        <i class="fas fa-check-circle"></i>
+    </div>
+    <div class="employeelist-toast-success-mssg">
+        <p>Employee</p>
+        <p>Create Successfully</p>
+    </div>
+    <button class="employeelist-toast-close-btn ">
+        &times;
+    </button>
+</div>
+<!-- userlist-toast -->
+<!-- javascript link -->
+<link rel="stylesheet" href="~/css/site.css">
+<link rel="stylesheet" href="~/css/leaverequest.css">
+<script src="~/wwwroot/js/toast.js"></script>
+<script src="~/js/leaverequest.js"></script>

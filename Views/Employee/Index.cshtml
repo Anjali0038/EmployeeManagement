@@ -27,18 +27,21 @@
     <!-- employeelist-create-section -->
     <!-- employeelist-search-section -->
     <div class="main-container-search-section">
-        <form action="" class="main-container-search-section-form" method="post">
-            <input id="txtVal" type="text" placeholder="Username" class="main-container-search-box">
+        <form method="get" asp-controller="Employee" asp-action="Index" class="main-container-search-section-form" method="post">
+            <input id="txtVal" type="text" placeholder="Username" name="searchText" class="main-container-search-box">
             <input id="txt" type="hidden" asp-for="Employee_Id" />
-            <button type="submit" class="main-container-search-btn"><i class="fa fa-search"></i></button>
+            <button id="btnSearch" type="submit" class="main-container-search-btn"><i class="fa fa-search"></i></button>
         </form>
     </div>
     <!-- employeelist-search-section -->
 </div>
+<div id="EmployeeList"></div>
+
 <!-- employeelist-list-section -->
 <div class="employeelist-list-section">
     <!-- employeelist-list-header-section -->
     <div class="employeelist-list-header-section">
+        <div class="sn">S.N.</div>
         <div class="employeelist-name">Name</div>
         <div class="employeelist-username">Username</div>
         <div class="employeelist-email">Email</div>
@@ -47,20 +50,22 @@
     </div>
     <!-- employeelist-list-header-section -->
     <!-- employeelist-firstrowlist-section -->
+    @{int i = 1; }
     @foreach (var employee in Model.EmployeeList)
     {
-        if (employee.UserName != "admin")
+        if (employee.Employee_Id != 1)
         {
-            <div class="employeelist-firstrowlist-section">
-                <div class="employeelist-name-value">@employee.FirstName  @employee.MiddleName  @employee.LastName</div>
-                <div class="employeelist-username-value">@employee.UserName</div>
-                <div class="employeelist-email-value">@employee.Email</div>
-                <div class="employeelist-designation-value">@employee.Designation_Name</div>
-                <div class="employeelist-edit-delete-value" style="padding: 0 0;">
-                    <button class="edit-btn btnUpdate " id=@employee.Employee_Id><i class="far fa-edit"></i> </button>
-                    <button class="delete-btn btnDelete" id=@employee.Employee_Id><i class="fas fa-trash"></i></button>
-                </div>
+        <div class="employeelist-rowlist-section">
+            <div class="employeelist-sn-value">@(i++)</div>
+            <div class="employeelist-name-value">@employee.FirstName  @employee.MiddleName  @employee.LastName</div>
+            <div class="employeelist-username-value">@employee.UserName</div>
+            <div class="employeelist-email-value">@employee.Email</div>
+            <div class="employeelist-designation-value">@employee.Designation_Name</div>
+            <div class="employeelist-edit-delete-value" style="padding: 0 0;">
+                <button class="edit-btn btnUpdate " id=@employee.Employee_Id><i class="far fa-edit"></i> </button>
+                <button class="delete-btn btnDelete" id=@employee.Employee_Id><i class="fas fa-trash"></i></button>
             </div>
+        </div>
         }
     }
 
@@ -72,10 +77,9 @@
 <div class="employeelist-page-change-section">
     <!-- employeelist-previous-page-section -->
     <div class="employeelist-previous-page-section">
-        @*<button class="employeelist-previous-btn">
+        <button class="employeelist-previous-btn">
                 <i class="fas fa-chevron-left"></i>
             </button>
-            <p>Previous Page</p>*@
     </div>
     <!-- employeelist-previous-page-section -->
     <!-- employeelist-current-page-section -->
@@ -85,7 +89,6 @@
     <!-- employeelist-current-page-section -->
     <!-- employeelist-next-page-section -->
     <div class="employeelist-next-page-section">
-        <p>Next Page</p>
         <button class="employeelist-next-btn"><i class="fas fa-chevron-right"></i></button>
     </div>
     <!-- employeelist-next-page-section -->
@@ -96,8 +99,7 @@
 <!-- The Modal -->
 <!-- The Modal -->
 <div id="myModal" class="employeelist-modal">
-    <!-- adduser section start here -->
-    <!-- add-user section end here -->
+
 </div>
 
 <!-- userlist-toast -->
@@ -115,11 +117,6 @@
 </div>
 <!-- userlist-toast -->
 <!-- javascript link -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="~/js/employee.js"></script>
-<script src="~/js/toast.js"></script>
 <link rel="stylesheet" href="~/css/site.css">
 <!--link for autocomplete-->
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.min.js" type="text/javascript"></script>
@@ -133,12 +130,19 @@
                 type: "get",
                 url: "/employee/CreateOrEdit",
                 success: function (response) {
-                    $('#myModal').html(response);
-                    $('#myModal').css({ display: "block" });
+                    if ($('#myModal').children.length) {
+                        $('#myModal').empty();
+                        $('#myModal').html(response);
+                        $('#myModal').css({ display: "block" });
+                    } else {
+                        //$('#myModal').empty();
+                        $('#myModal').html(response);
+                        $('#myModal').css({ display: "block" });
+                    }
                 }
             });
         });
-        
+
         $(".btnDelete").click(function () {
             var r = confirm("Are you sure you want to delete!");
             if (r == true) {
@@ -172,14 +176,7 @@
                 }
             });
         });
-        $(document).ready(function () {
-            $("#txtVal").on("keyup", function () {
-                var value = $(this).val().toLowerCase();
-                $("#myModal tr").filter(function () {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
-            });
-        });
+
         $("#txtVal").autocomplete({
             source: function (request, response) {
                 $.ajax({
@@ -204,5 +201,6 @@
             },
             minLength: 1
         });
+
     });
 </script>

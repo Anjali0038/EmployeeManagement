@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,9 +26,23 @@ namespace EmployeeManagement.Controllers
             _context = context;
             _userManager = userManager;
         }
-        public IActionResult Index()
+        public IActionResult Index(string searchText="")
         {
             ApplicationUserViewModel user = new ApplicationUserViewModel();
+            if (searchText!= ""&& searchText!=null)
+            {
+                user.UsersList = (from s in _context.Users
+                                   where s.UserName.Contains(searchText)
+                                   select new ApplicationUserViewModel
+                                   {
+                                       Id = s.Id,
+                                       FullName = s.FullName,
+                                       UserName = s.UserName,
+                                       Email = s.Email,
+                                       Designation = s.Designation,
+                                   }).ToList();
+            }
+            else
             user.UsersList = _iApplicationUserProvider.GetList();
             return View(user);
         }
@@ -54,8 +69,8 @@ namespace EmployeeManagement.Controllers
         [HttpPost]
         public async  Task<IActionResult> CreateOrEdit(ApplicationUserViewModel model)
         {
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 try
                 {
                     var user = _context.Employees.Where(x => x.Employee_Id == Convert.ToInt32(model.Employee_Id)).FirstOrDefault();
@@ -63,15 +78,16 @@ namespace EmployeeManagement.Controllers
                     model.Designation = user.Designation_Name;
                     model.FullName = user.FirstName;
                     var res = await _iApplicationUserProvider.SaveUser(model);
+                    TempData["Success"] = "Success";
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
                 {
                     throw ex;
                 }
-            }
-            //ModelState.AddModelError(nameof(model.ConfirmPassword), "Password doesn't matched");
-            return RedirectToAction("Index");
+            //}
+            ////ModelState.AddModelError(nameof(model.ConfirmPassword), "Password doesn't matched");
+            //return RedirectToAction("Index");
         }
         public async Task<IActionResult> Delete(string id)
         {
@@ -82,27 +98,23 @@ namespace EmployeeManagement.Controllers
         public JsonResult AutoComplete(string prefix)
         {
             var users = (from user in this._context.Users
-                             where user.FullName.StartsWith(prefix)
+                             where user.UserName.StartsWith(prefix)
                              select new
                              {
-                                 label = user.FullName,
-                                 val = user.Id
+                                 label = user.UserName,
+                                 val = user.EId
                              }).ToList();
 
             return Json(users);
         }
-        public ActionResult UserSearch(string val)
+
+        public IActionResult LeaveRequest()
         {
-            ApplicationUserViewModel model = new ApplicationUserViewModel();
-            model.UsersList = (from s in _context.Users
-                               where s.FullName.Contains(val) || s.UserName.Contains(val)
-                               select new ApplicationUserViewModel
-                               {
-                                   Id = s.Id,
-                                   FullName = s.FullName,
-                                   UserName = s.UserName
-                               }).ToList();
-            return View(model);
+            return View();
+        }
+        public IActionResult Holiday()
+        {
+            return View();
         }
     }
 }

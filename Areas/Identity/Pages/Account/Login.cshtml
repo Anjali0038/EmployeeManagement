@@ -64,7 +64,12 @@
 }
 <!DOCTYPE html>
 <html lang="en">
-
+<style>
+    .text-danger {
+        color: red;
+        font-size: 15px;
+    }
+</style>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -89,10 +94,11 @@
                 </div>
                 <div class="login-container-form-section">
                     <form id="account" method="post">
-                        <input asp-for="Input.Email"  type="text" class="form-control empty" id="iconified" placeholder="&#xf007; Email" />
+                        <input asp-for="Input.Email" type="text" class="form-control empty" id="iconified" placeholder="&#xf007; Email" />
                         <span asp-validation-for="Input.Email" class="text-danger"></span>
                         <input asp-for="Input.Password" type="password" class="form-control empty" id="iconified"
                                placeholder="&#xf023; Password" />
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
                         <input type="submit" value="Log In" class="loginbtn">
                     </form>
                 </div>

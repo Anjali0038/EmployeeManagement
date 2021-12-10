@@ -1,4 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css link -->
+    <!-- <link rel="stylesheet" href="./employee.css"> -->
+    <link rel="stylesheet" href="~/css/site.css">
+    <link rel="stylesheet" href="~/css/leaverequest.css">
+    <link rel="stylesheet" href="~/css/layout.css">
+    <!-- font-awesome link -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" rel="stylesheet" />
+
+    <title>userlist</title>
+</head>
+
+<body>
+    <!-- employeelist-wrapper -->
+    <div class="wrapper">
+
+        <!-- employeelist-slidebar -->
+        <div class="sidebar">
+            <!-- employeelist-sidebar-company-logo-section -->
+            <div class="sidebar-company-logo-section">
+                <img src="./images/logo.png" alt="company logo">
+                <button class="sidebar-close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <!-- employeelist-sidebar-company-logo-section -->
+            <ul>
+                <li class="sidebarbtn">
+                    <a href="user.html">
+                        <i class="fas fa-users"></i>
+                        <span>Userlist</span>
+                    </a>
+                </li>
+                <li class="sidebarbtn">
+                    <a href="employee.html">
+                        <i class="fas fa-users"></i>
+                        <span>Employeelist</span>
+                    </a>
+                </li>
+                <li class="sidebarbtn ">
+                    <a href="leaverequest.html">
+                        <i class="fas fa-users"></i>
+                        <span>Leave Request</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
         <!-- employeelist-wrapper end here -->
         <!-- employeelist-main-container -->
         <div class="main-container">
@@ -31,7 +81,6 @@
                 <!-- employeelist-logout-footer-section -->
             </div>
             <!-- logout section end -->
-
             <!-- employeelist-title-section -->
             <div class="main-container-title-section">
                 <h1>Leave Request</h1>
@@ -92,7 +141,6 @@
                         </form>
                     </div>
                     <!-- leaverequest-form-section end -->
-
                     <!-- leaverequest-calendar-section start-->
                     <div class="leaverequest-calendar-section">
 
@@ -131,10 +179,6 @@
         <!-- employeelist-main-container -->
     </div>
     <!-- employeelist-wrapper -->
-
-
-
-
     <!-- userlist-toast -->
     <div class="employeelist-toast">
         <div class="employeelist-conform-icon">
@@ -151,9 +195,15 @@
     <!-- userlist-toast -->
 
 
+
+
+</body>
 <!-- javascript link -->
 <script src="./employeemgmt/toast.js"></script>
 <script src="./employeemgmt/leaverequest.js"></script>
 <script src="./employeemgmt/employee.js"></script>
 <script src="./employeemgmt/layout.js"></script>
 
+
+
+</html>

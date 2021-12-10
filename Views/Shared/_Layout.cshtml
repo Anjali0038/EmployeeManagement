@@ -24,30 +24,49 @@
         <div id="sbar" class="sidebar">
             <!-- employeelist-sidebar-company-logo-section -->
             <div class="sidebar-company-logo-section">
-                <img src="./images/logo.png" alt="company logo">
+                <img src="~/images/logo.png" alt="company logo">
                 <button class="sidebar-close-btn"><i class="fas fa-times"></i></button>
             </div>
             <!-- employeelist-sidebar-company-logo-section -->
-            <ul>
-                <li class="sidebarbtn">
-                    <a asp-controller="ApplicationUser" asp-action="Index">
-                        <i class="fas fa-users"></i>
-                        <span>Userlist</span>
-                    </a>
-                </li>
-                <li class="sidebarbtn ">
-                    <a asp-controller="Employee" asp-action="Index">
-                        <i class="fas fa-users"></i>
-                        <span>Employeelist</span>
-                    </a>
-                </li>
-                <li class="sidebarbtn">
-                    <a>
-                        <i class="fas fa-users"></i>
-                        <span>Leave Request</span>
-                    </a>
-                </li>
-            </ul>
+            <div class="sidenav-container">
+                <div class="sidenav-header">
+                    <i class="fas fa-users"></i>
+                    User
+                    <i class="fa fa-caret-down"></i>
+                </div>
+                <div class="sidenav-subheader">
+                    <a asp-controller="ApplicationUser" asp-action="Index" >UserList</a>
+                    <!-- <a href="#">User Profile</a>
+            <a href="#">User Account</a>
+            <a href="#">User Status</a>
+            <a href="#">User Request</a>
+            <a href="#">User Detail</a> -->
+                </div>
+                <div class="sidenav-header">
+                    <i class="fas fa-users"></i>
+                    Employee
+                    <i class="fa fa-caret-down"></i>
+                </div>
+                <div class="sidenav-subheader">
+                    <a asp-controller="Employee" asp-action="Index" >Employeelist</a>
+                    <!-- <a href="#">Employee Profile</a>
+            <a href="#">Employee Account</a>
+            <a href="#">Employee Status</a>
+            <a href="#">Employee Request</a>
+            <a href="#">Employee Detail</a>
+            <a href="#">Employee Statement</a> -->
+
+                </div>
+                <div class="sidenav-header-tag">
+                    <a asp-controller="ApplicationUser" asp-action="LeaveRequest"> Leave Request</a>
+
+                </div>
+                <div class="sidenav-header-tag">
+                    <a asp-controller="ApplicationUser" asp-action="Holiday">Holiday</a>
+
+                </div>
+            </div>
+
         </div>
         <!-- employeelist-wrapper end here -->
         <!-- employeelist-main-container -->
@@ -60,7 +79,7 @@
                     </div>
                     <div class="main-container-image-section" @*style="display: flex;"*@>
                         <h1>@UserManager.GetUserAsync(User).Result.UserName </h1>
-                        <img src="./images/profile.jpg" alt="userimage">
+                        <img src="~/images/profile.jpg" alt="userimage">
                     </div>
                 </div>
 
@@ -68,7 +87,7 @@
                 <div class="main-container-logout-section">
                     <!-- employeelist-user-profile-img -->
                     <div class="main-container-user-profile-img">
-                        <img src="./images/profile.jpg" alt="userimage">
+                        <img src="~/images/profile.jpg" alt="userimage">
                         <button class="main-container-logout-section-close-btn"><i class="fas fa-times"></i></button>
                     </div>
                     <!-- employeelist-user-profile-img -->
@@ -92,3 +111,15 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+@*<script type="text/javascript">
+    $(function () {
+        $(document).ready(function () {
+            $(".sidebar-close-btn").click(function () {
+                /*$('#sbar').hide();*/
+            //        $('#sbar').css({ display: "none" });
+                $('#sbar').classlist.toggle(".hide");
+                $('#sbar').classlist.toggle(".showsidebar");
+            });
+        });
+    });
+</script>*@

@@ -10,7 +10,8 @@ namespace EmployeeManagement.Models
         {
             CreateMap<Employee, EmployeeViewModel>();
             CreateMap<EmployeeViewModel, Employee>();
-            CreateMap<ApplicationUser, ApplicationUserViewModel>();
+            CreateMap<ApplicationUser, ApplicationUserViewModel>()
+             .ForMember(dest => dest.Employee_Id, opt => opt.MapFrom(source => source.EId));
             CreateMap<ApplicationUserViewModel, ApplicationUser>();
 
             

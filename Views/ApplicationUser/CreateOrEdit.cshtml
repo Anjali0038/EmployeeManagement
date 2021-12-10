@@ -3,20 +3,28 @@
     var data1 = ViewBag.Gender;
     var data2 = ViewBag.Emp;
 }
+<style>
+    .text-danger {
+        color: red;
+        font-size: 10px;
+    }
+</style>
+<head>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+</head>
 <!-- adduser section start here -->
 <div class="adduser-form-section">
     <div class="userlist-adduser-header">
         <img src="./images/logo.png" alt="company logo">
         <button class="userlist-adduser-close-btn"><i class="fas fa-times"></i></button>
     </div>
-    <form id="createUserform" asp-controller="ApplicationUser" asp-action="CreateOrEdit" method="post"  class="userlist-from-section">
+    <form id="createUserform" asp-controller="ApplicationUser" asp-action="CreateOrEdit" method="post" class="userlist-from-section">
         <h1>Create User</h1>
         <div class="userlist-firstrow-section">
             <div class="userlist-froms">
                 <label for="">Employee List</label>
-                @*<select id="drpEmpList" class="form-control" asp-for="Employee_Id" asp-items="ViewBag.Emp">
-                        <option value="">--Select--</option>
-                    </select>*@
             </div>
             <select asp-items="ViewBag.Emp" asp-for="Employee_Id" class="text-from">
                 <option value="">--Select Employees--</option>
@@ -35,24 +43,24 @@
         <div class="userlist-thirdrow-section">
             <div class="userlist-froms">
                 <label for="PasswordHash">Password</label>
-                <input asp-for="PasswordHash" type="password" name="PasswordHash" class="text-from" >
+                <input asp-for="PasswordHash" type="password" name="PasswordHash" class="text-from">
                 <span asp-validation-for="PasswordHash" class="text-danger"></span>
             </div>
         </div>
         <div class="userlist-fourthrow-section">
             <div class="userlist-froms email">
                 <label for="ConfirmPassword">Confirm Password</label>
-                <input asp-for="ConfirmPassword" type="password" name="ConfirmPassword" class="text-from" >
+                <input asp-for="ConfirmPassword" type="password" name="ConfirmPassword" class="text-from">
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
         </div>
-        <input type="submit" @*class="userlist-adduser-submit-section userlist-form-submit-section"*@ class="adduser-submit-section userlist-form-submit-section"
-               @*onclick="toast(event)"*@>
+        <input type="submit" class="adduser-submit-section userlist-form-submit-section">
     </form>
 </div>
 <link rel="stylesheet" href="~/css/site.css">
 <script src="~/js/layout.js"></script>
 <script src="~/js/toast.js"></script>
+<script src="~/js/user.js"></script>
 <!-- add-user section end here -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -66,7 +74,7 @@
                 const modal = document.getElementById("myModal");
                 if (event.target == modal) {
                     $('#myModal').css({ display: "none" });
-                //    modal.style.display = none;
+                    //    modal.style.display = none;
                 }
             });
         });

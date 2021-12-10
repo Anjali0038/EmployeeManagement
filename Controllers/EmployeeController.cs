@@ -1,19 +1,10 @@
-﻿using EmployeeManagement.Controllers;
-using EmployeeManagement.Data;
+﻿using EmployeeManagement.Data;
 using EmployeeManagement.Models;
-using EmployeeManagement.Repository;
 using EmployeeManagement.Service;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-
 namespace EmployeeManagemnt.Controllers
 {
     public class EmployeeController : Controller
@@ -28,11 +19,27 @@ namespace EmployeeManagemnt.Controllers
 
         }
         [Authorize]
-        public IActionResult Index()
+        public IActionResult Index(string searchText = "")
         {
-            var data = _iEmployeeProvider.GetList();
+            EmployeeViewModel employee = new EmployeeViewModel();
+            if (searchText != "" && searchText != null)
+            {
+                employee.EmployeeList = (from s in _context.Employees
+                                  where s.UserName.Contains(searchText)
+                                  select new EmployeeViewModel
+                                  {
+                                      Employee_Id = s.Employee_Id,
+                                      Designation_Name =s.Designation_Name,
+                                      FirstName = s.FirstName,
+                                      UserName = s.UserName,
+                                      Email = s.Email,
+                                      Address = s.Address,
+                                  }).ToList();
+            }
+            else
+            employee = _iEmployeeProvider.GetList();
             ViewBag.Gender = _context.Genders.ToList();
-            return View(data);
+            return View(employee);
         }
         [HttpGet]
         public IActionResult CreateOrEdit(int? id)
@@ -49,19 +56,20 @@ namespace EmployeeManagemnt.Controllers
         [HttpPost]
         public IActionResult CreateOrEdit(EmployeeViewModel model)
         {
-            if (ModelState.IsValid)
-            {
+        //    if (ModelState.IsValid)
+        //    {
                 try
                 {
                     _iEmployeeProvider.SaveEmployee(model);
+                    TempData["Success"] = "Success";
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
                 {
                     throw ex;
                 }
-            }
-            return RedirectToAction("Index");
+            //}
+            //return RedirectToAction("Index");
         }
         public IActionResult Delete(int id)
         {
@@ -73,24 +81,24 @@ namespace EmployeeManagemnt.Controllers
             EmployeeViewModel model = new EmployeeViewModel();
 
             model.EmployeeList = (from s in _context.Employees
-                                  where s.FirstName.Contains(val) || s.Address.Contains(val)
+                                  where s.UserName.Contains(val)
                                   select new EmployeeViewModel
                                   {
                                       Employee_Id = s.Employee_Id,
                                       FirstName = s.FirstName,
-                                      Address = s.Address,
-                                      Dob = s.Dob
+                                      Email = s.Email,
+                                      Designation_Name = s.Designation_Name
                                   }).ToList();
-            return View(model);
+            return PartialView(model);
         }
         [HttpPost]
         public JsonResult AutoComplete(string prefix)
         {
             var users = (from user in this._context.Employees
-                         where user.FirstName.StartsWith(prefix)||user.MiddleName.StartsWith(prefix)|| user.LastName.StartsWith(prefix) || user.UserName.StartsWith(prefix)
+                         where user.UserName.StartsWith(prefix)
                          select new
                          {
-                             label = user.FirstName,
+                             label = user.UserName,
                              val = user.Employee_Id
                          }).ToList();
 

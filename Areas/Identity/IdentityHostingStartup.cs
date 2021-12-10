@@ -1,6 +1,7 @@
 ﻿using System;
 using EmployeeManagement.Areas.Identity.Data;
 using EmployeeManagement.Data;
+using EmployeeManagement.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -33,8 +34,7 @@ namespace EmployeeManagement.Areas.Identity
                     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+ ";
                     options.User.RequireUniqueEmail = true;
 
-                })
-                 .AddEntityFrameworkStores<EmployeeManagementDbContext>();
+                });
             });
         }
     }

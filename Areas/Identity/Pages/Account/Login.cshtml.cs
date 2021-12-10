@@ -45,10 +45,14 @@ namespace EmployeeManagement.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            [StringLength(50, ErrorMessage = "Enter valid UserName/Email", MinimumLength = 5)]
             public string Email { get; set; }
 
             [Required]
             [DataType(DataType.Password)]
+            [StringLength(100, ErrorMessage = "Password \"{0}\" must have {2} character", MinimumLength = 8)]
+            [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{6,}$",
+            ErrorMessage = "Password must contain: Minimum 8 characters atleast 1 UpperCase Alphabet, 1 LowerCase Alphabet, 1 Number and 1 Special Character")]
             public string Password { get; set; }
 
             [Display(Name = "Remember me?")]
@@ -107,7 +111,7 @@ namespace EmployeeManagement.Areas.Identity.Pages.Account
                     return Page();
                 }
             }
-
+            //ModelState.AddModelError(string.Empty, "Invalid login attempt.");
             // If we got this far, something failed, redisplay form
             return Page();
         }
