@@ -9,7 +9,6 @@ namespace EmployeeManagement.Areas.Identity.Data
 {
     public class ApplicationUserViewModel
     {
-
         public string Id { get; set; }
         public string FullName { get; set; }
         [Required]

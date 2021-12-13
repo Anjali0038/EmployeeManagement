@@ -1,0 +1,41 @@
+﻿@model EmployeeManagement.Models.HolidayViewModel
+@{
+
+}
+<style>
+    .text-danger {
+        color: red;
+        font-size: 10px;
+    }
+</style>
+<head>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <link rel="stylesheet" href="~/css/site.css">
+</head>
+<div class="main-container-title-section">
+    <h1>Holiday</h1>
+</div>
+<div class="main-container-holiday-section">
+    <div class="holiday-section-wrapper">
+        <div class="holiday-form-section">
+            <div class="holiday-form-section-logo">
+                <img src="~/images/logo.png" alt="company logo">
+            </div>
+            <form asp-controller="Holiday" asp-action="Index" method="post">
+                <div class="holiday-name">
+                    <Label>Holiday Name:</Label>
+                    <input asp-for="HolidayName" type="text">
+                    <span asp-validation-for="HolidayName" class="text-danger"></span>
+                </div>
+                <div class="holiday-date">
+                    <label for="">Date:</label>
+                    <input asp-for="HolidayDate" type="date">
+                    <span asp-validation-for="HolidayDate" class="text-danger"></span>
+                </div>
+                <input type="submit" class="holidaysubmitbtn">
+            </form>
+        </div>
+    </div>
+</div>

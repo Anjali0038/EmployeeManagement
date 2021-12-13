@@ -57,7 +57,7 @@ namespace EmployeeManagement.Service
             }
             else
             {
-                user.UserName = applicationuser.UserName;
+                user.UserName = applicationuser.UserName.ToLower();
                 user.Email = applicationuser.Email;
                 result = await _userManager.UpdateAsync(user);
             }

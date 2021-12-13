@@ -13,8 +13,10 @@ namespace EmployeeManagement.Models
             CreateMap<ApplicationUser, ApplicationUserViewModel>()
              .ForMember(dest => dest.Employee_Id, opt => opt.MapFrom(source => source.EId));
             CreateMap<ApplicationUserViewModel, ApplicationUser>();
+            CreateMap<Holiday, HolidayViewModel>();
+            CreateMap<HolidayViewModel, Holiday>();
 
-            
+
             //.ForMember(dest => dest.FirstName, o => o.MapFrom(src => src.FirstName))
             //.ForMember(dest => dest.MiddleName, o => o.MapFrom(src => src.MiddleName))
             //.ForMember(dest => dest.LastName, o => o.MapFrom(src => src.LastName))

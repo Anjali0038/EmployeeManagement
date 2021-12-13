@@ -30,7 +30,8 @@ namespace EmployeeManagement.Data
         public DbSet<Attendance> Attendances { get; set; }
         public DbSet<Designation> Designations { get; set; }
         public DbSet<Gender> Genders { get; set; }
-
+        public DbSet<Holiday> Holidays { get; set; }
+        public DbSet<Leave> Leave { get; set; }
 
     }
 }

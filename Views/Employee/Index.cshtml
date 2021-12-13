@@ -27,7 +27,7 @@
     <!-- employeelist-create-section -->
     <!-- employeelist-search-section -->
     <div class="main-container-search-section">
-        <form method="get" asp-controller="Employee" asp-action="Index" class="main-container-search-section-form" method="post">
+        <form method="get" asp-controller="Employee" asp-action="Index" class="main-container-search-section-form">
             <input id="txtVal" type="text" placeholder="Username" name="searchText" class="main-container-search-box">
             <input id="txt" type="hidden" asp-for="Employee_Id" />
             <button id="btnSearch" type="submit" class="main-container-search-btn"><i class="fa fa-search"></i></button>

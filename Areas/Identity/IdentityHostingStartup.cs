@@ -21,20 +21,20 @@ namespace EmployeeManagement.Areas.Identity
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("EmployeeManagementDbContextConnection")));
 
-                //services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedEmail = false)
-                //    .AddEntityFrameworkStores<EmployeeManagementDbContext>();
-                services.AddDefaultIdentity<ApplicationUser>(options =>
-                {
-                    options.SignIn.RequireConfirmedAccount = false;
-                    options.Password.RequireLowercase = false;
-                    options.Password.RequireUppercase = false;
-                    options.Password.RequiredUniqueChars = 0;
-                    options.Password.RequireNonAlphanumeric = false;
-                    options.User.AllowedUserNameCharacters =
-                    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+ ";
-                    options.User.RequireUniqueEmail = true;
+                services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedEmail = false)
+                    .AddEntityFrameworkStores<EmployeeManagementDbContext>();
+                //services.AddDefaultIdentity<ApplicationUser>(options =>
+                //{
+                //    options.SignIn.RequireConfirmedAccount = false;
+                //    options.Password.RequireLowercase = false;
+                //    options.Password.RequireUppercase = false;
+                //    options.Password.RequiredUniqueChars = 0;
+                //    options.Password.RequireNonAlphanumeric = false;
+                //    options.User.AllowedUserNameCharacters =
+                //    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+ ";
+                //    options.User.RequireUniqueEmail = true;
 
-                });
+                //});
             });
         }
     }

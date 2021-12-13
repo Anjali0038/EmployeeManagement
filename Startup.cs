@@ -38,12 +38,14 @@ namespace EmployeeManagement
             //services.AddScoped(typeof(IEmployeeRepository), typeof(EmployeeRepository));
            // services.AddScoped(typeof(IEmployeeProvider), typeof(EmployeeProvider));
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-           // services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
+            services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
+            services.AddScoped<IHolidayRepository, HolidayRepository>();
 
             services.AddScoped<IEmployeeProvider, EmployeeProvider>();
             services.AddScoped<IApplicationUserProvider, ApplicationUserProvider>();
+            services.AddScoped<IHolidayProvider, HolidayProvider>();
 
-            // services.RegisterServiceDependencies();
+            //services.RegisterServiceDependencies();
 
         }
 
