@@ -104,5 +104,25 @@ namespace EmployeeManagemnt.Controllers
 
             return Json(users);
         }
+
+        //private EmployeeViewModel GetEmployees(int currentPage)
+        //{
+        //    int maxRows = 10;
+        //    EmployeeViewModel model = new EmployeeViewModel();
+
+        //    model.EmployeeList = (from employee in this._context.Employees
+        //                          select employee)
+        //                .OrderBy(employee => employee.Employee_Id)
+        //                .Skip((currentPage - 1) * maxRows)
+        //                .Take(maxRows).ToList();
+
+        //    double pageCount = (double)((decimal)this._context.Employees.Count() / Convert.ToDecimal(maxRows));
+        //    employeeModel.PageCount = (int)Math.Ceiling(pageCount);
+
+        //    employeeModel.CurrentPageIndex = currentPage;
+
+        //    return employeeModel;
+        //}
+        
     }
 }
