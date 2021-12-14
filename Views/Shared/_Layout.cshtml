@@ -19,7 +19,6 @@
 <body>
     <!-- employeelist-wrapper -->
     <div class="wrapper">
-
         <!-- employeelist-slidebar -->
         <div id="sbar" class="sidebar">
             <!-- employeelist-sidebar-company-logo-section -->
@@ -58,7 +57,7 @@
 
                 </div>
                 <div class="sidenav-header-tag">
-                    <a asp-controller="ApplicationUser" asp-action="LeaveRequest"> Leave Request</a>
+                    <a asp-controller="Leave" asp-action="Index"> Leave Request</a>
 
                 </div>
                 <div class="sidenav-header-tag">
@@ -92,7 +91,7 @@
                     <!-- employeelist-user-profile-img -->
                     <h3>@UserManager.GetUserAsync(User).Result.UserName </h3>
                     <h3 class="main-container-user-email">@UserManager.GetUserAsync(User).Result.Email</h3>
-                    <a asp-area="Identity" asp-page="/Account/Login">
+                    <a style="text-decoration: none;" asp-area="Identity" asp-page="/Account/Login">
                         <button class="main-container-logout-btn"> Sign Out</button>
                     </a>
                     <!-- employeelist-logout-footer-section -->

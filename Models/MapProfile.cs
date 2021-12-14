@@ -15,6 +15,8 @@ namespace EmployeeManagement.Models
             CreateMap<ApplicationUserViewModel, ApplicationUser>();
             CreateMap<Holiday, HolidayViewModel>();
             CreateMap<HolidayViewModel, Holiday>();
+            CreateMap<Leave, LeaveViewModel>();
+            CreateMap<LeaveViewModel, Leave>();
 
 
             //.ForMember(dest => dest.FirstName, o => o.MapFrom(src => src.FirstName))

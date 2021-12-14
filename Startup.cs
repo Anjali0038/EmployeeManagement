@@ -1,4 +1,5 @@
 using AutoMapper;
+using EmployeeManagement.Areas.Identity.Data;
 using EmployeeManagement.Data;
 using EmployeeManagement.Models;
 using EmployeeManagement.Repository;
@@ -6,6 +7,7 @@ using EmployeeManagement.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,6 +28,24 @@ namespace EmployeeManagement
             _config = ConfigBuilder.Build();
         }
         public IConfiguration Configuration { get; }
+        private async Task CreateUserRoles(IServiceProvider serviceProvider)
+        {
+            var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+            IdentityResult roleResult;
+            //Adding Addmin Role  
+            var roleCheck = await RoleManager.RoleExistsAsync("Admin");
+            if (!roleCheck)
+            {
+                //create the roles and seed them to the database  
+                roleResult = await RoleManager.CreateAsync(new IdentityRole("Admin"));
+            }
+            //Assign Admin role to the main User here we have given our newly loregistered login id for Admin management  
+            ApplicationUser user = await UserManager.FindByEmailAsync("admin@gmail.com");
+            var User = new ApplicationUser();
+            await UserManager.AddToRoleAsync(user, "Admin");
+
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -40,17 +60,19 @@ namespace EmployeeManagement
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
             services.AddScoped<IHolidayRepository, HolidayRepository>();
+            services.AddScoped<ILeaveRepository, LeaveRepository>();
 
             services.AddScoped<IEmployeeProvider, EmployeeProvider>();
             services.AddScoped<IApplicationUserProvider, ApplicationUserProvider>();
             services.AddScoped<IHolidayProvider, HolidayProvider>();
+            services.AddScoped<ILeaveProvider, LeaveProvider>();
 
             //services.RegisterServiceDependencies();
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,IServiceProvider services)
         {
             if (env.IsDevelopment())
             {
@@ -69,7 +91,6 @@ namespace EmployeeManagement
             app.UseAuthentication();
             app.UseAuthorization();
 
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -77,6 +98,8 @@ namespace EmployeeManagement
                     pattern: "{controller=Employee}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+            CreateUserRoles(services).Wait();
+
         }
     }
 }

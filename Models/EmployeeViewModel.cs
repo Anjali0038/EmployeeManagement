@@ -35,6 +35,9 @@ namespace EmployeeManagement.Models
         [Phone]
         public double? Contact_No { get; set; }
         public int Gender_Id { get; set; }
+        /// for pagination
+        public int CurrentPageIndex { get; set; }
+        public int PageCount { get; set; }
 
 
     }

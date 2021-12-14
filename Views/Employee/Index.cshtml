@@ -55,17 +55,17 @@
     {
         if (employee.Employee_Id != 1)
         {
-        <div class="employeelist-rowlist-section">
-            <div class="employeelist-sn-value">@(i++)</div>
-            <div class="employeelist-name-value">@employee.FirstName  @employee.MiddleName  @employee.LastName</div>
-            <div class="employeelist-username-value">@employee.UserName</div>
-            <div class="employeelist-email-value">@employee.Email</div>
-            <div class="employeelist-designation-value">@employee.Designation_Name</div>
-            <div class="employeelist-edit-delete-value" style="padding: 0 0;">
-                <button class="edit-btn btnUpdate " id=@employee.Employee_Id><i class="far fa-edit"></i> </button>
-                <button class="delete-btn btnDelete" id=@employee.Employee_Id><i class="fas fa-trash"></i></button>
+            <div class="employeelist-rowlist-section">
+                <div class="employeelist-sn-value">@(i++)</div>
+                <div class="employeelist-name-value">@employee.FirstName  @employee.MiddleName  @employee.LastName</div>
+                <div class="employeelist-username-value">@employee.UserName</div>
+                <div class="employeelist-email-value">@employee.Email</div>
+                <div class="employeelist-designation-value">@employee.Designation_Name</div>
+                <div class="employeelist-edit-delete-value" style="padding: 0 0;">
+                    <button class="edit-btn btnUpdate" id=@employee.Employee_Id><i class="far fa-edit"></i> </button>
+                    <button class="delete-btn btnDelete" id=@employee.Employee_Id><i class="fas fa-trash"></i></button>
+                </div>
             </div>
-        </div>
         }
     }
 
@@ -78,8 +78,8 @@
     <!-- employeelist-previous-page-section -->
     <div class="employeelist-previous-page-section">
         <button class="employeelist-previous-btn">
-                <i class="fas fa-chevron-left"></i>
-            </button>
+            <i class="fas fa-chevron-left"></i>
+        </button>
     </div>
     <!-- employeelist-previous-page-section -->
     <!-- employeelist-current-page-section -->

@@ -1,7 +1,6 @@
 ﻿using EmployeeManagement.Data;
 using EmployeeManagement.Models;
 using EmployeeManagement.Service;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,14 +9,15 @@ using System.Threading.Tasks;
 
 namespace EmployeeManagement.Controllers
 {
-    [Authorize(Roles = "Admin")]
-    public class HolidayController : Controller
+    public class LeaveController : Controller
     {
-        private readonly IHolidayProvider _iHolidayProvider;
+        private readonly ILeaveProvider _iLeaveProvider;
+        private EmployeeManagementDbContext _context;
 
-        public HolidayController(IHolidayProvider iHolidayProvider)
+        public LeaveController(ILeaveProvider iLeaveProvider, EmployeeManagementDbContext context)
         {
-            _iHolidayProvider = iHolidayProvider;
+            _iLeaveProvider = iLeaveProvider;
+            _context = context;
         }
         [HttpGet]
         public IActionResult Index()
@@ -25,11 +25,11 @@ namespace EmployeeManagement.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Index(HolidayViewModel model)
+        public IActionResult Index(LeaveViewModel model)
         {
             try
             {
-                _iHolidayProvider.SaveHoliday(model);
+                _iLeaveProvider.SaveLeave(model);
                 return RedirectToAction("Index");
             }
             catch (Exception ex)

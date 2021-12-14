@@ -27,7 +27,7 @@
 
   <ItemGroup>
     <None Include="Views\ApplicationUser\Index.cshtml" />
-    <None Include="Views\ApplicationUser\LeaveRequest.cshtml" />
+    <None Include="Views\Leave\Index.cshtml" />
     <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
     <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
     <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.js" />

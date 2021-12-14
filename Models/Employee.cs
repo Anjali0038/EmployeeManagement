@@ -42,9 +42,11 @@ namespace EmployeeManagement.Models
         public string Designation_Name { get; set; }
         public double Salary { get; set; }
         public double Contact_No { get; set; }
-        [ForeignKey (nameof(Id))]
+        [ForeignKey(nameof(Id))]
         public string Id { get; set; }
         public ICollection<ApplicationUser> ApplicationUser { get; set; }
+        //public ApplicationUser ApplicationUsers { get; set; }
+
 
     }
 }

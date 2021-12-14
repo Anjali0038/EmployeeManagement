@@ -1,4 +1,4 @@
-@model EmployeeManagement.Areas.Identity.Data.ApplicationUserViewModel
+@model EmployeeManagement.Models.Leave
 @{
 }
 <!-- leaverequest-section -->
@@ -11,18 +11,18 @@
     <div class="leaverequest-main-conatiner">
         <!-- leaverequest-form-section -->
         <div class="leaverequest-form-section">
-            <form action="">
+            <form asp-controller="Leave" asp-action="Index"  method="post">
                 <div class="employee-name">
-                    <label for="">Employee Name:</label>
-                    <input type="text">
+                    <label >Employee Name:</label>
+                    <input asp-for="EmployeeName" type="text">
                 </div>
                 <div class="employee-designation">
                     <label for="">Designation:</label>
-                    <input type="text">
+                    <input asp-for="Designation_Name" type="text">
                 </div>
                 <div class="leave-number">
                     <label for="">Total Number of days requested:</label>
-                    <input type="number" class="leaveday">
+                    <input asp-for="LeaveDays" type="number" class="leaveday">
                 </div>
                 <h3 class="message">Opps!! &#128517; Number of Days cannot be negative(-)</h3>
 
@@ -30,8 +30,7 @@
                     <div class="one-day-leave-section ">
                         <div class="leave-weekday-section">
                             <label for="">Day:</label>
-                            <input type="date" class="onedayleave">
-
+                            <input asp-for="LeaveDays" type="date" class="onedayleave">
                         </div>
                         <div class="half-day-leave-section ">
                             <input type="checkbox">
@@ -42,8 +41,8 @@
                 <div class="multiple-day-section">
                     <div class="multiple-day-leave-section">
                         <div class="leave-start-date">
-                            <label for="">Leave Star Date:</label>
-                            <input type="date" class="leavestartdatefrom">
+                            <label for="">Leave Start Date:</label>
+                            <input asp-for="LeaveDate" type="date" class="leavestartdatefrom">
                         </div>
                         <!-- <div class="leave-end-date">
                             <label for="">To:</label>

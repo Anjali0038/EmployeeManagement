@@ -11,7 +11,10 @@ namespace EmployeeManagement.Models
         [Key]
         public int Leave_Id { get; set; }
         public int LeaveDays { get; set; }
-        public string FirstName { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+        public DateTime LeaveDate { get; set; }
+        public string EmployeeName { get; set; }
         public string Designation_Name { get; set; }
         public Employee Employee { get; set; }
     }

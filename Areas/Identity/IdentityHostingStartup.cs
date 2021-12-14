@@ -21,7 +21,7 @@ namespace EmployeeManagement.Areas.Identity
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("EmployeeManagementDbContextConnection")));
 
-                services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedEmail = false)
+                services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedEmail = false).AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<EmployeeManagementDbContext>();
                 //services.AddDefaultIdentity<ApplicationUser>(options =>
                 //{
