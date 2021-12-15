@@ -126,6 +126,10 @@ namespace EmployeeManagemnt.Controllers
 
         //    return employeeModel;
         //}
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 3b307d4f29bb6e36f70b5f409779c3b28c243fbf
     }
 }
