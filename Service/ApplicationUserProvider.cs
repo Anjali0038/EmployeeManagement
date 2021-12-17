@@ -52,6 +52,11 @@ namespace EmployeeManagement.Service
                 result = await _userManager.CreateAsync(applicationuser, model.PasswordHash);
                 var newUser = await _userManager.FindByIdAsync(applicationuser.Id);
                 singleEmployee.ApplicationUser.Add(newUser);
+                await _userManager.AddToRoleAsync(newUser, "Employee");
+
+                //var role = await _userManager.GetRolesAsync(newUser);
+                //string role0 = role[0];
+
                 _context.Employees.Attach(singleEmployee);
                 _context.SaveChanges();
             }
@@ -108,7 +113,7 @@ namespace EmployeeManagement.Service
 
             foreach (var item in Emp)
             {
-                bool isExist = false;                
+                bool isExist = false;
 
                 foreach (var user in usersList)
                 {
@@ -121,7 +126,7 @@ namespace EmployeeManagement.Service
 
                 if (!isExist)
                 {
-                    EmpList.Add(item);                    
+                    EmpList.Add(item);
                 }
             }
             return EmpList;

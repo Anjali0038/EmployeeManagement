@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using EmployeeManagement.Areas.Identity.Data;
 using EmployeeManagement.Data;
+using Microsoft.AspNetCore.Http;
+using System.Text;
 
 namespace EmployeeManagement.Areas.Identity.Pages.Account
 {
@@ -90,9 +92,22 @@ namespace EmployeeManagement.Areas.Identity.Pages.Account
                 {
                     Input.Email = user.UserName;
                 }
+                else
+                {
+                    user = await _userManager.FindByNameAsync(Input.Email);
+                }
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
+                    var role = await _userManager.GetRolesAsync(user);
+                    string userRole = role.FirstOrDefault();
+                    bool isAdmin = false;
+                    if (userRole == "Admin")
+                    {
+                        isAdmin = true;
+                    }
+                    HttpContext.Session.Set("Role", Encoding.ASCII.GetBytes(userRole));
+                    //HttpContext.Session.Set("Role", Encoding.ASCII.GetBytes(role.FirstOrDefault()));
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
                 }

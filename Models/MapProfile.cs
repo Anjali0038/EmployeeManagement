@@ -8,7 +8,8 @@ namespace EmployeeManagement.Models
     {
         public MapProfile()
         {
-            CreateMap<Employee, EmployeeViewModel>();
+            CreateMap<Employee, EmployeeViewModel>()
+             .ForMember(dest => dest.Id, opt => opt.MapFrom(source => source.UserId));
             CreateMap<EmployeeViewModel, Employee>();
             CreateMap<ApplicationUser, ApplicationUserViewModel>()
              .ForMember(dest => dest.Employee_Id, opt => opt.MapFrom(source => source.EId));

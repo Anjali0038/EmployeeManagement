@@ -2,12 +2,13 @@
 using EmployeeManagement.Models;
 using EmployeeManagement.Service;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
 namespace EmployeeManagemnt.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class EmployeeController : Controller
     {
         private readonly IEmployeeProvider _iEmployeeProvider;
@@ -41,7 +42,6 @@ namespace EmployeeManagemnt.Controllers
             ViewBag.Gender = _context.Genders.ToList();
             return View(employee);
         }
-        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult CreateOrEdit(int? id)
         {
@@ -51,10 +51,8 @@ namespace EmployeeManagemnt.Controllers
             {
                 emp = _iEmployeeProvider.GetById(id.Value);
             }
-
             return PartialView(emp);
         }
-        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult CreateOrEdit(EmployeeViewModel model)
         {
@@ -73,7 +71,6 @@ namespace EmployeeManagemnt.Controllers
             //}
             //return RedirectToAction("Index");
         }
-        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
             _iEmployeeProvider.DeleteEmployee(id);
@@ -107,29 +104,5 @@ namespace EmployeeManagemnt.Controllers
 
             return Json(users);
         }
-
-        //private EmployeeViewModel GetEmployees(int currentPage)
-        //{
-        //    int maxRows = 10;
-        //    EmployeeViewModel model = new EmployeeViewModel();
-
-        //    model.EmployeeList = (from employee in this._context.Employees
-        //                          select employee)
-        //                .OrderBy(employee => employee.Employee_Id)
-        //                .Skip((currentPage - 1) * maxRows)
-        //                .Take(maxRows).ToList();
-
-        //    double pageCount = (double)((decimal)this._context.Employees.Count() / Convert.ToDecimal(maxRows));
-        //    employeeModel.PageCount = (int)Math.Ceiling(pageCount);
-
-        //    employeeModel.CurrentPageIndex = currentPage;
-
-        //    return employeeModel;
-        //}
-<<<<<<< HEAD
-
-=======
-        
->>>>>>> 3b307d4f29bb6e36f70b5f409779c3b28c243fbf
     }
 }

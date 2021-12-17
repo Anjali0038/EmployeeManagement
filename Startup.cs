@@ -32,7 +32,7 @@ namespace EmployeeManagement
         {
             var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-            IdentityResult roleResult;
+            IdentityResult roleResult, roleResult1;
             //Adding Addmin Role  
             var roleCheck = await RoleManager.RoleExistsAsync("Admin");
             if (!roleCheck)
@@ -45,12 +45,27 @@ namespace EmployeeManagement
             var User = new ApplicationUser();
             await UserManager.AddToRoleAsync(user, "Admin");
 
+            var roleCheckEmp = await RoleManager.RoleExistsAsync("Employee");
+            if (!roleCheckEmp)
+            {
+                //create the roles and seed them to the database  
+                roleResult1 = await RoleManager.CreateAsync(new IdentityRole("Employee"));
+            }
+
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(MapProfile));
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
             services.AddSingleton(_config);
             services.AddControllersWithViews();
             services.AddRazorPages();
@@ -90,16 +105,16 @@ namespace EmployeeManagement
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Employee}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
             CreateUserRoles(services).Wait();
-
         }
     }
 }

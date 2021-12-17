@@ -38,6 +38,7 @@ namespace EmployeeManagement.Models
         /// for pagination
         public int CurrentPageIndex { get; set; }
         public int PageCount { get; set; }
+        public int Id { get; set; }
 
 
     }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeManagement.Migrations
 {
     [DbContext(typeof(EmployeeManagementDbContext))]
-    [Migration("20211214065438_LeavedateAdded")]
-    partial class LeavedateAdded
+    [Migration("20211217091626_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -179,9 +179,6 @@ namespace EmployeeManagement.Migrations
                     b.Property<int?>("Gender_Id")
                         .HasColumnType("int");
 
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
@@ -196,6 +193,9 @@ namespace EmployeeManagement.Migrations
 
                     b.Property<DateTime>("Turn_out")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");

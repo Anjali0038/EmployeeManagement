@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@*@model EmployeeManagement.Areas.Identity.Data.ApplicationUserViewModel*@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,8 +16,13 @@
     @using EmployeeManagement.Areas.Identity.Data
     @inject SignInManager<ApplicationUser> SignInManager
     @inject UserManager<ApplicationUser> UserManager
+    @using Microsoft.AspNetCore.Http
+    @inject IHttpContextAccessor HttpContextAccessor
 </head>
 <body>
+    @{
+        string role = HttpContextAccessor.HttpContext.Session.GetString("Role");
+    }
     <!-- employeelist-wrapper -->
     <div class="wrapper">
         <!-- employeelist-slidebar -->
@@ -28,41 +34,36 @@
             </div>
             <!-- employeelist-sidebar-company-logo-section -->
             <div class="sidenav-container">
-                <div class="sidenav-header">
-                    <i class="fas fa-users"></i>
-                    User
-                    <i class="fa fa-caret-down"></i>
-                </div>
-                <div class="sidenav-subheader">
-                    <a asp-controller="ApplicationUser" asp-action="Index" >UserList</a>
-                    <!-- <a href="#">User Profile</a>
-            <a href="#">User Account</a>
-            <a href="#">User Status</a>
-            <a href="#">User Request</a>
-            <a href="#">User Detail</a> -->
-                </div>
-                <div class="sidenav-header">
-                    <i class="fas fa-users"></i>
-                    Employee
-                    <i class="fa fa-caret-down"></i>
-                </div>
-                <div class="sidenav-subheader">
-                    <a asp-controller="Employee" asp-action="Index" >Employeelist</a>
-                    <!-- <a href="#">Employee Profile</a>
-            <a href="#">Employee Account</a>
-            <a href="#">Employee Status</a>
-            <a href="#">Employee Request</a>
-            <a href="#">Employee Detail</a>
-            <a href="#">Employee Statement</a> -->
+                @if (role == "Admin")
+                {
+                    <div class="sidenav-header">
+                        <i class="fas fa-users"></i>
+                        User
+                        <i class="fa fa-caret-down"></i>
+                    </div>
+                    <div class="sidenav-subheader">
+                        <a asp-controller="ApplicationUser" asp-action="Index">UserList</a>
+                    </div>
+                    <div class="sidenav-header">
+                        <i class="fas fa-users"></i>
+                        Employee
+                        <i class="fa fa-caret-down"></i>
+                    </div>
+                    <div class="sidenav-subheader">
+                        <a asp-controller="Employee" asp-action="Index">Employeelist</a>
 
-                </div>
+                    </div>
+                }
                 <div class="sidenav-header-tag">
                     <a asp-controller="Leave" asp-action="Index"> Leave Request</a>
 
                 </div>
-                <div class="sidenav-header-tag">
-                    <a asp-controller="Holiday" asp-action="Index">Holiday</a>
-                </div>
+                @if (role == "Admin")
+                {
+                    <div class="sidenav-header-tag">
+                        <a asp-controller="Holiday" asp-action="Index">Holiday</a>
+                    </div>
+                }
             </div>
 
         </div>
@@ -71,6 +72,7 @@
         <div class="main-container ">
             @if (SignInManager.IsSignedIn(User))
             {
+                @*@Model.UserName*@
                 <div class="main-container-header-section">
                     <div class="main-container-sidebar-section">
                         <button class="main-container-sidebar-btn sidebarOpen"><i class="fas fa-bars"></i></button>
@@ -100,8 +102,9 @@
                     </div>
                     <!-- employeelist-logout-footer-section -->
                 </div>
-                <!-- logout section end -->
             }
+
+            <!-- logout section end -->
             @RenderBody()
         </div>
     </div>

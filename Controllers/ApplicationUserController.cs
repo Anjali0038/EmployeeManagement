@@ -2,6 +2,7 @@
 using EmployeeManagement.Data;
 using EmployeeManagement.Service;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -12,7 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 namespace EmployeeManagement.Controllers
 {
-    [AllowAnonymous]
+    [Authorize(Roles ="Admin")]
     public class ApplicationUserController : Controller
     {
         private readonly IApplicationUserProvider _iApplicationUserProvider;
@@ -26,9 +27,10 @@ namespace EmployeeManagement.Controllers
             _context = context;
             _userManager = userManager;
         }
-        [Authorize]
         public IActionResult Index(string searchText="")
         {
+            //var userName= HttpContext.Session.GetString("UserName");
+            //HttpContext.Session.GetString("UserName");
             ApplicationUserViewModel user = new ApplicationUserViewModel();
             if (searchText!= ""&& searchText!=null)
             {
@@ -47,7 +49,6 @@ namespace EmployeeManagement.Controllers
             user.UsersList = _iApplicationUserProvider.GetList();
             return View(user);
         }
-        [Authorize]
         [HttpGet]
         public async Task<IActionResult> CreateOrEdit(string id)
         {
@@ -68,7 +69,6 @@ namespace EmployeeManagement.Controllers
             }
             return PartialView(user);
         }
-        [Authorize]
         [HttpPost]
         public async  Task<IActionResult> CreateOrEdit(ApplicationUserViewModel model)
         {
@@ -92,7 +92,6 @@ namespace EmployeeManagement.Controllers
             ////ModelState.AddModelError(nameof(model.ConfirmPassword), "Password doesn't matched");
             //return RedirectToAction("Index");
         }
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(string id)
         {
             await _iApplicationUserProvider.DeleteUser(id);

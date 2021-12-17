@@ -177,9 +177,6 @@ namespace EmployeeManagement.Migrations
                     b.Property<int?>("Gender_Id")
                         .HasColumnType("int");
 
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
@@ -194,6 +191,9 @@ namespace EmployeeManagement.Migrations
 
                     b.Property<DateTime>("Turn_out")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");

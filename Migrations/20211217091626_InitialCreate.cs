@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EmployeeManagement.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -165,7 +165,7 @@ namespace EmployeeManagement.Migrations
                     Designation_Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Salary = table.Column<double>(type: "float", nullable: false),
                     Contact_No = table.Column<double>(type: "float", nullable: false),
-                    Id = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -241,6 +241,29 @@ namespace EmployeeManagement.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Leave",
+                columns: table => new
+                {
+                    Leave_Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    LeaveDays = table.Column<int>(type: "int", nullable: false),
+                    LeaveDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EmployeeName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Designation_Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Employee_Id = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Leave", x => x.Leave_Id);
+                    table.ForeignKey(
+                        name: "FK_Leave_Employees_Employee_Id",
+                        column: x => x.Employee_Id,
+                        principalTable: "Employees",
+                        principalColumn: "Employee_Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -304,6 +327,11 @@ namespace EmployeeManagement.Migrations
                 name: "IX_Employees_Gender_Id",
                 table: "Employees",
                 column: "Gender_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Leave_Employee_Id",
+                table: "Leave",
+                column: "Employee_Id");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_AspNetUserRoles_AspNetUsers_UserId",
@@ -369,6 +397,9 @@ namespace EmployeeManagement.Migrations
 
             migrationBuilder.DropTable(
                 name: "Holidays");
+
+            migrationBuilder.DropTable(
+                name: "Leave");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
