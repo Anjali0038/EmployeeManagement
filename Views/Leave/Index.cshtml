@@ -1,5 +1,25 @@
 @model EmployeeManagement.Models.Leave
 @{
+    var data1 = ViewBag.Emp;
+
+}
+<style>
+    .text-danger {
+        color: red;
+        font-size: 10px;
+    }
+</style>
+<head>
+    @using Microsoft.AspNetCore.Identity
+    @using EmployeeManagement.Areas.Identity.Data
+    @inject SignInManager<ApplicationUser> SignInManager
+    @inject UserManager<ApplicationUser> UserManager
+    @using Microsoft.AspNetCore.Http
+    @inject IHttpContextAccessor HttpContextAccessor
+</head>
+
+@{
+    string role = HttpContextAccessor.HttpContext.Session.GetString("Role");
 }
 <!-- leaverequest-section -->
 <div class="leaverequest-section">
@@ -11,15 +31,37 @@
     <div class="leaverequest-main-conatiner">
         <!-- leaverequest-form-section -->
         <div class="leaverequest-form-section">
-            <form asp-controller="Leave" asp-action="Index"  method="post">
-                <div class="employee-name">
-                    <label >Employee Name:</label>
-                    <input asp-for="EmployeeName" type="text">
-                </div>
-                <div class="employee-designation">
-                    <label for="">Designation:</label>
-                    <input asp-for="Designation_Name" type="text">
-                </div>
+            <form asp-controller="Leave" asp-action="Index" method="post">
+                @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                {
+                    <div class="employee-name">
+                        <label>Employee Name:&nbsp;&nbsp;</label>
+                        @*<input asp-for="EmployeeName" type="text">*@
+                        <select asp-items="ViewBag.Emp" asp-for="UserId" style="width: 360px; height:33px;">
+                            <option value="">--Select Employees--</option>
+                        </select>
+                        <input type="hidden" asp-for="UserId" />
+                    </div>
+                }
+                else
+                {
+            <div class="employee-name">
+                <label>Employee Name:&nbsp;&nbsp;</label>
+                <input asp-for="EmployeeName" value="@UserManager.GetUserAsync(User).Result.FullName" type="text">
+                <input type="hidden" asp-for="UserId" value="@UserManager.GetUserAsync(User).Result.Id" />
+                <span asp-validation-for="EmployeeName" class="text-danger"></span>
+            </div>
+                    <div class="employee-designation">
+                        <label for="">Designation:</label>
+                        <input asp-for="Designation_Name" value="@UserManager.GetUserAsync(User).Result.Designation" type="text">
+                        <input type="hidden" asp-for="UserId" />
+                    </div>
+                }
+
+                @*<div class="employee-designation">
+            <label for="">Designation:</label>
+            <input asp-for="Designation_Name" type="text">
+        </div>*@
                 <div class="leave-number">
                     <label for="">Total Number of days requested:</label>
                     <input asp-for="LeaveDays" type="number" class="leaveday">
@@ -45,9 +87,9 @@
                             <input asp-for="LeaveDate" type="date" class="leavestartdatefrom">
                         </div>
                         <!-- <div class="leave-end-date">
-                            <label for="">To:</label>
-                            <input type="date" class="leaveenddatefrom">
-                        </div> -->
+                <label for="">To:</label>
+                <input type="date" class="leaveenddatefrom">
+            </div> -->
 
                     </div>
                 </div>

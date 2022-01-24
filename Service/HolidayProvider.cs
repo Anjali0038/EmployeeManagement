@@ -2,6 +2,8 @@
 using AutoMapper;
 using EmployeeManagement.Models;
 using EmployeeManagement.Repository;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace EmployeeManagement.Service
 {
@@ -31,6 +33,15 @@ namespace EmployeeManagement.Service
             var item = _iHolidayRepository.GetSingle(x => x.Holiday_Id == id);
             HolidayViewModel data = _mapper.Map<HolidayViewModel>(item);
             return data;
+        }
+        public HolidayViewModel GetList()
+        {
+            HolidayViewModel model = new HolidayViewModel();
+            var list = new List<HolidayViewModel>();
+            List<Holiday> data = _iHolidayRepository.GetAll().ToList();
+            list = _mapper.Map<List<Holiday>, List<HolidayViewModel>>(data);
+            model.HolidayList = list;
+            return model;
         }
     }
 

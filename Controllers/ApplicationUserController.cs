@@ -18,14 +18,15 @@ namespace EmployeeManagement.Controllers
     {
         private readonly IApplicationUserProvider _iApplicationUserProvider;
         private EmployeeManagementDbContext _context;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signManager;
         public ApplicationUserController(
             IApplicationUserProvider iApplicationUserProvider,
-            EmployeeManagementDbContext context, UserManager<ApplicationUser> userManager)
+            EmployeeManagementDbContext context, SignInManager<ApplicationUser> signManager,
+            UserManager<ApplicationUser> userManager)
         {
+            _signManager = signManager;
             _iApplicationUserProvider = iApplicationUserProvider;
             _context = context;
-            _userManager = userManager;
         }
         public IActionResult Index(string searchText="")
         {
@@ -79,7 +80,7 @@ namespace EmployeeManagement.Controllers
                     var user = _context.Employees.Where(x => x.Employee_Id == Convert.ToInt32(model.Employee_Id)).FirstOrDefault();
                     model.Email = user.Email;
                     model.Designation = user.Designation_Name;
-                    model.FullName = user.FirstName;
+                    model.FullName = user.FirstName +" "+ user.MiddleName +" "+ user.LastName;
                     var res = await _iApplicationUserProvider.SaveUser(model);
                     TempData["Success"] = "Success";
                     return RedirectToAction("Index");
@@ -98,6 +99,11 @@ namespace EmployeeManagement.Controllers
             return RedirectToAction("Index");
         }
         [HttpPost]
+        public async Task Logout()
+        {
+            await _signManager.SignOutAsync();
+        }
+        [HttpPost]
         public JsonResult AutoComplete(string prefix)
         {
             var users = (from user in this._context.Users
@@ -107,7 +113,6 @@ namespace EmployeeManagement.Controllers
                                  label = user.UserName,
                                  val = user.EId
                              }).ToList();
-
             return Json(users);
         }
     }

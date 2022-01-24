@@ -107,7 +107,6 @@ namespace EmployeeManagement.Service
         public List<Employee> GetEmployeesWithNoUsers()
         {
             var EmpList = new List<Employee>();
-
             var Emp = _context.Employees.ToList();
             List<ApplicationUser> usersList = _userManager.Users.ToList();
 
@@ -135,4 +134,3 @@ namespace EmployeeManagement.Service
 
     }
 }
-

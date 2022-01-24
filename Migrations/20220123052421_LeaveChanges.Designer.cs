@@ -4,14 +4,16 @@ using EmployeeManagement.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EmployeeManagement.Migrations
 {
     [DbContext(typeof(EmployeeManagementDbContext))]
-    partial class EmployeeManagementDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220123052421_LeaveChanges")]
+    partial class LeaveChanges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,9 +52,6 @@ namespace EmployeeManagement.Migrations
                     b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Leave_Id")
-                        .HasColumnType("int");
-
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
@@ -89,8 +88,6 @@ namespace EmployeeManagement.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("Employee_Id");
-
-                    b.HasIndex("Leave_Id");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -277,9 +274,6 @@ namespace EmployeeManagement.Migrations
                     b.Property<int>("LeaveDays")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Leave_Id");
 
                     b.HasIndex("Employee_Id");
@@ -428,10 +422,6 @@ namespace EmployeeManagement.Migrations
                         .WithMany("ApplicationUser")
                         .HasForeignKey("Employee_Id");
 
-                    b.HasOne("EmployeeManagement.Models.Leave", null)
-                        .WithMany("ApplicationUser")
-                        .HasForeignKey("Leave_Id");
-
                     b.Navigation("Employee");
                 });
 
@@ -526,11 +516,6 @@ namespace EmployeeManagement.Migrations
                 });
 
             modelBuilder.Entity("EmployeeManagement.Models.Employee", b =>
-                {
-                    b.Navigation("ApplicationUser");
-                });
-
-            modelBuilder.Entity("EmployeeManagement.Models.Leave", b =>
                 {
                     b.Navigation("ApplicationUser");
                 });

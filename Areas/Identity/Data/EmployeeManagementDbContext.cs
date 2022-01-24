@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +15,6 @@ namespace EmployeeManagement.Data
         public EmployeeManagementDbContext(DbContextOptions<EmployeeManagementDbContext> options)
             : base(options)
         {
-
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -32,6 +30,5 @@ namespace EmployeeManagement.Data
         public DbSet<Gender> Genders { get; set; }
         public DbSet<Holiday> Holidays { get; set; }
         public DbSet<Leave> Leave { get; set; }
-
     }
 }

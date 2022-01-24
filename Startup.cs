@@ -44,14 +44,12 @@ namespace EmployeeManagement
             ApplicationUser user = await UserManager.FindByEmailAsync("admin@gmail.com");
             var User = new ApplicationUser();
             await UserManager.AddToRoleAsync(user, "Admin");
-
             var roleCheckEmp = await RoleManager.RoleExistsAsync("Employee");
             if (!roleCheckEmp)
             {
                 //create the roles and seed them to the database  
                 roleResult1 = await RoleManager.CreateAsync(new IdentityRole("Employee"));
             }
-
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.

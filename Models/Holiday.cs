@@ -11,5 +11,6 @@ namespace EmployeeManagement.Models
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime HolidayDate { get; set; }
+        public int HolidayDays { get; set; }
     }
 }
