@@ -11,6 +11,7 @@ namespace EmployeeManagement.Service
     {
         int SaveHoliday(HolidayViewModel model);
         HolidayViewModel GetById(int id);
+        HolidayViewModel GetList();
     }
     public class HolidayProvider : IHolidayProvider
     {

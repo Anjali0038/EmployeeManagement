@@ -45,12 +45,12 @@
                 }
                 else
                 {
-            <div class="employee-name">
-                <label>Employee Name:&nbsp;&nbsp;</label>
-                <input asp-for="EmployeeName" value="@UserManager.GetUserAsync(User).Result.FullName" type="text">
-                <input type="hidden" asp-for="UserId" value="@UserManager.GetUserAsync(User).Result.Id" />
-                <span asp-validation-for="EmployeeName" class="text-danger"></span>
-            </div>
+                    <div class="employee-name">
+                        <label>Employee Name:&nbsp;&nbsp;</label>
+                        <input asp-for="EmployeeName" value="@UserManager.GetUserAsync(User).Result.FullName" type="text">
+                        <input type="hidden" asp-for="UserId" value="@UserManager.GetUserAsync(User).Result.Id" />
+                        <span asp-validation-for="EmployeeName" class="text-danger"></span>
+                    </div>
                     <div class="employee-designation">
                         <label for="">Designation:</label>
                         <input asp-for="Designation_Name" value="@UserManager.GetUserAsync(User).Result.Designation" type="text">
@@ -59,9 +59,9 @@
                 }
 
                 @*<div class="employee-designation">
-            <label for="">Designation:</label>
-            <input asp-for="Designation_Name" type="text">
-        </div>*@
+                        <label for="">Designation:</label>
+                        <input asp-for="Designation_Name" type="text">
+                    </div>*@
                 <div class="leave-number">
                     <label for="">Total Number of days requested:</label>
                     <input asp-for="LeaveDays" type="number" class="leaveday">
@@ -72,7 +72,7 @@
                     <div class="one-day-leave-section ">
                         <div class="leave-weekday-section">
                             <label for="">Day:</label>
-                            <input asp-for="LeaveDays" type="date" class="onedayleave">
+                            <input asp-for="LeaveDays" type="date" class="onedayleave" id='datepickerr'>
                         </div>
                         <div class="half-day-leave-section ">
                             <input type="checkbox">
@@ -84,12 +84,12 @@
                     <div class="multiple-day-leave-section">
                         <div class="leave-start-date">
                             <label for="">Leave Start Date:</label>
-                            <input asp-for="LeaveDate" type="date" class="leavestartdatefrom">
+                            <input asp-for="LeaveDate" type="date" class="leavestartdatefrom" id='datepickerr'>
                         </div>
                         <!-- <div class="leave-end-date">
-                <label for="">To:</label>
-                <input type="date" class="leaveenddatefrom">
-            </div> -->
+                            <label for="">To:</label>
+                            <input type="date" class="leaveenddatefrom">
+                        </div> -->
 
                     </div>
                 </div>
@@ -149,3 +149,19 @@
 <link rel="stylesheet" href="~/css/leaverequest.css">
 <script src="~/wwwroot/js/toast.js"></script>
 <script src="~/js/leaverequest.js"></script>
+
+@*<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>*@
+
+<script type="text/javascript">
+    $(function () {
+        //$('#datepickerr').datetimepicker({
+        //    minDate =0
+        //});
+        $("#datepickerr").datepicker({
+            //startDate: "+0d"
+            startDate: new Date()
+        });
+
+    });
+</script>

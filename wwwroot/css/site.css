@@ -1577,6 +1577,7 @@ input.empty {
         margin-bottom: 2em;
         display: flex;
         flex-direction: row;
+        margin-top: 1em;
     }
 
     .holiday-name {
@@ -2428,6 +2429,7 @@ input.empty {
         margin-bottom: 2em;
         display: flex;
         flex-direction: row;
+        margin-top: 1em;
     }
 
     .holiday-name {

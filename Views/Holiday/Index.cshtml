@@ -29,8 +29,12 @@
                     <input asp-for="HolidayName" type="text">
                     <span asp-validation-for="HolidayName" class="text-danger"></span>
                 </div>
+                <div class="holiday-day">
+                    <label for="">Holiday Days:&nbsp;&nbsp;</label>
+                    <input asp-for="HolidayDays" type="text">
+                </div>
                 <div class="holiday-date">
-                    <label for="">Date:</label>
+                    <label for=""> Date:</label>
                     <input asp-for="HolidayDate" type="date">
                     <span asp-validation-for="HolidayDate" class="text-danger"></span>
                 </div>
@@ -39,3 +43,15 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(function () {
+        $(document).ready(function () {
+            $(window).click(function (event) {
+                const modal = document.getElementById("myModal");
+                if (event.target == modal) {
+                    $('#myModal').hide();
+                }
+            });
+        });
+    });
+</script>

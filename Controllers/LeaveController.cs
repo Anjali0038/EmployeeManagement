@@ -69,5 +69,11 @@ namespace EmployeeManagement.Controllers
                 throw ex;
             }
         }
+        [HttpGet]
+        public IActionResult List()
+        {
+            var data = _iLeaveProvider.GetList();
+            return View(data);
+        }
     }
 }

@@ -1,0 +1,171 @@
+﻿@model EmployeeManagement.Models.HolidayViewModel
+@{
+}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css link -->
+    <!-- <link rel="stylesheet" href="./employee.css"> -->
+    <link rel="stylesheet" href="./css/site.css">
+    <link rel="stylesheet" href="./css/layout.css">
+    <!-- font-awesome link -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" rel="stylesheet" />
+    <title>Holidaylist</title>
+</head>
+<!-- employeelist-title-section -->
+<div class="main-container-title-section">
+    <h1>Holiday List</h1>
+</div>
+<!-- employeelist-title-section -->
+<!--<div class="main-container-search-create-section">-->
+    <!-- employeelist-create-section -->
+    <!--<div class="main-container-create-section">
+        <button class="main-container-create-section-btn" id="btnAdd">+ Create Holiday</button>
+    </div>-->
+    <!-- employeelist-create-section -->
+    <!-- employeelist-search-section -->
+    <!--<div class="main-container-search-section">
+        <form method="get" asp-controller="Holiday" asp-action="List" class="main-container-search-section-form">
+            <input id="txtVal" type="text" placeholder="Holiday" name="searchText" class="main-container-search-box">
+            <input id="txt" type="hidden" asp-for="Holiday_Id" />
+            <button id="btnSearch" type="submit" class="main-container-search-btn"><i class="fa fa-search"></i></button>
+        </form>
+    </div>-->
+    <!-- employeelist-search-section -->
+<!--</div>-->
+<div id="HolidayList"></div>
+
+<!-- employeelist-list-section -->
+<div class="employeelist-list-section">
+    <!-- employeelist-list-header-section -->
+    <div class="employeelist-list-header-section">
+        <div class="sn">S.N.</div>
+        <div class="employeelist-name">Holiday Name</div>
+        <div class="employeelist-username">Holiday Date</div>
+        <div class="employeelist-email">Holiday Days</div>
+        @*<div class="employeelist-designation">Designation</div>
+        <div class="employeelist-edit-delete">Edit/Delete</div>*@
+    </div>
+    <!-- employeelist-list-header-section -->
+    <!-- employeelist-firstrowlist-section -->
+    @{int i = 1; }
+    @foreach (var holiday in Model.HolidayList)
+    {
+        if (holiday.Holiday_Id != 1)
+        {
+            <div class="employeelist-rowlist-section">
+                <div class="employeelist-sn-value">@(i++)</div>
+                <div class="employeelist-name-value">@holiday.HolidayName</div>
+                <div class="employeelist-username-value">@holiday.HolidayDate</div>
+                <div class="employeelist-email-value">@holiday.HolidayDays</div>
+                @*<div class="employeelist-designation-value">@employee.Designation_Name</div>
+                <div class="employeelist-edit-delete-value" style="padding: 0 0;">
+                    <button class="edit-btn btnUpdate" id=@employee.Employee_Id><i class="far fa-edit"></i> </button>
+                    <button class="delete-btn btnDelete" id=@employee.Employee_Id><i class="fas fa-trash"></i></button>
+                </div>*@
+            </div>
+        }
+    }
+
+    <!-- employeelist-firstrowlist-section -->
+    <!-- employeelist-secondrowlist-section -->
+</div>
+<!-- employeelist-list-section -->
+<!-- employeelist-page-change-section -->
+<div class="employeelist-page-change-section">
+    <!-- employeelist-previous-page-section -->
+    <div class="employeelist-previous-page-section">
+        <button class="employeelist-previous-btn">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+    </div>
+    <!-- employeelist-previous-page-section -->
+    <!-- employeelist-current-page-section -->
+    <div class="employeelist-current-page-section">
+        1
+    </div>
+    <!-- employeelist-current-page-section -->
+    <!-- employeelist-next-page-section -->
+    <div class="employeelist-next-page-section">
+        <button class="employeelist-next-btn"><i class="fas fa-chevron-right"></i></button>
+    </div>
+    <!-- employeelist-next-page-section -->
+</div>
+<!-- employeelist-page-change-section -->
+<!-- employeelist-main-container -->
+<!-- employeelist-wrapper -->
+<!-- The Modal -->
+<!-- The Modal -->
+<div id="myModal" class="employeelist-modal">
+
+</div>
+
+<!-- userlist-toast -->
+<div class="employeelist-toast">
+    <div class="employeelist-conform-icon">
+        <i class="fas fa-check-circle"></i>
+    </div>
+    <div class="employeelist-toast-success-mssg">
+        <p>Employee</p>
+        <p>Create Successfully</p>
+    </div>
+    <button class="employeelist-toast-close-btn ">
+        &times;
+    </button>
+</div>
+<!-- userlist-toast -->
+<!-- javascript link -->
+<link rel="stylesheet" href="~/css/site.css">
+<!--link for autocomplete-->
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.min.js" type="text/javascript"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
+<link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css"
+      rel="Stylesheet" type="text/css" />
+<script type="text/javascript">
+    $(function () {
+        $("#btnAdd").click(function () {
+            $.ajax({
+                type: "get",
+                url: "/Holiday/List",
+                success: function (response) {
+                    if ($('#myModal').children.length) {
+                        $('#myModal').empty();
+                        $('#myModal').html(response);
+                        $('#myModal').css({ display: "block" });
+                    } else {
+                        //$('#myModal').empty();
+                        $('#myModal').html(response);
+                        $('#myModal').css({ display: "block" });
+                    }
+                }
+            });
+        });
+
+        $("#txtVal").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '/Holiday/AutoComplete/',
+                    data: { "prefix": request.term },
+                    type: "POST",
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return item;
+                        }))
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            select: function (e, i) {
+                $("#txt").val(i.item.val);
+            },
+            minLength: 1
+        });
+
+    });
+</script>

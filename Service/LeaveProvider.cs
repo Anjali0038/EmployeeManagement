@@ -17,6 +17,7 @@ namespace EmployeeManagement.Service
         LeaveViewModel GetById(int id);
         List<Employee> GetEmployees();
         List<ApplicationUser> GetUsers();
+        LeaveViewModel GetList();
 
     }
     public class LeaveProvider : ILeaveProvider
@@ -80,6 +81,15 @@ namespace EmployeeManagement.Service
                 UserList.Add(item);
             }
             return UserList;
+        }
+        public LeaveViewModel GetList()
+        {
+            LeaveViewModel model = new LeaveViewModel();
+            var list = new List<LeaveViewModel>();
+            List<Leave> data = _iLeaveRepository.GetAll().ToList();
+            list = _mapper.Map<List<Leave>, List<LeaveViewModel>>(data);
+            model.LeaveList = list;
+            return model;
         }
     }
 }
