@@ -24,8 +24,8 @@ namespace EmployeeManagement.Service
         }
         public int SaveHoliday(HolidayViewModel model)
         {
-            Holiday holiday = new Holiday();
-            holiday = _mapper.Map<Holiday>(model);
+            //Holiday holiday = new Holiday();
+            Holiday holiday = _mapper.Map<HolidayViewModel ,Holiday>(model);
             _iHolidayRepository.Add(holiday);
             return 200;
         }

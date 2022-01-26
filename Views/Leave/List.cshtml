@@ -1,0 +1,66 @@
+﻿@model EmployeeManagement.Models.LeaveViewModel
+@{
+}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/site.css">
+    <link rel="stylesheet" href="./css/layout.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" rel="stylesheet" />
+    <title>Leaveist</title>
+</head>
+<div class="main-container-title-section">
+    <h1>Leave List</h1>
+</div>
+<div id="LeaveList"></div>
+<div class="employeelist-list-section">
+    <div class="employeelist-list-header-section">
+        <div class="sn">S.N.</div>
+        <div class="employeelist-name">Employee Name</div>
+        <div class="employeelist-designation">Designation</div>
+        <div class="employeelist-username">Leave Date</div>
+        <div class="employeelist-email">Leave Days</div>
+    </div>
+    @{int i = 1; }
+    @foreach (var leave in Model.LeaveList)
+    {
+        if (leave.Leave_Id != 1)
+        {
+            <div class="employeelist-rowlist-section">
+                <div class="employeelist-sn-value">@(i++)</div>
+                <div class="employeelist-name-value">@leave.EmployeeName</div>
+                <div class="employeelist-designation-value">@leave.Designation_Name</div>
+                <div class="employeelist-username-value" >@leave.LeaveDate</div>
+                <div class="employeelist-email-value">@leave.LeaveDays</div>
+            </div>
+        }
+    }
+</div>
+<div class="employeelist-page-change-section">
+    <div class="employeelist-previous-page-section">
+        <button class="employeelist-previous-btn">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+    </div>
+    <div class="employeelist-current-page-section">
+        1
+    </div>
+    <div class="employeelist-next-page-section">
+        <button class="employeelist-next-btn"><i class="fas fa-chevron-right"></i></button>
+    </div>
+</div>
+<div class="employeelist-toast">
+    <div class="employeelist-conform-icon">
+        <i class="fas fa-check-circle"></i>
+    </div>
+    <div class="employeelist-toast-success-mssg">
+        <p>Employee</p>
+        <p>Create Successfully</p>
+    </div>
+    <button class="employeelist-toast-close-btn ">
+        &times;
+    </button>
+</div>
+<link rel="stylesheet" href="~/css/site.css">
+

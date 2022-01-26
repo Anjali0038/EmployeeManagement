@@ -74,11 +74,13 @@ namespace EmployeeManagement
             services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
             services.AddScoped<IHolidayRepository, HolidayRepository>();
             services.AddScoped<ILeaveRepository, LeaveRepository>();
+            services.AddScoped<IAttendanceRepository, AttendanceRepository>();
 
             services.AddScoped<IEmployeeProvider, EmployeeProvider>();
             services.AddScoped<IApplicationUserProvider, ApplicationUserProvider>();
             services.AddScoped<IHolidayProvider, HolidayProvider>();
             services.AddScoped<ILeaveProvider, LeaveProvider>();
+            services.AddScoped<IAttendanceProvider, AttendanceProvider>();
 
             //services.RegisterServiceDependencies();
 

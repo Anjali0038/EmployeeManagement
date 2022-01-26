@@ -4,9 +4,10 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+
 namespace EmployeeManagement.Models
 {
-    public class Attendance
+    public class AttendanceViewModel
     {
         [Key]
         public int Attendance_Id { get; set; }
@@ -16,9 +17,11 @@ namespace EmployeeManagement.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime Date { get; set; }
         public int? Employee_Id { get; set; }
-        [ForeignKey(nameof(Employee_Id))]
-        public virtual Employee Employee { get; set; }
         public string EmployeeName { get; set; }
-
+        public List<AttendanceViewModel> AttendanceList { get; set; }
+        public AttendanceViewModel()
+        {
+            AttendanceList = new List<AttendanceViewModel>();
+        }
     }
 }

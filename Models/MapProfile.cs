@@ -18,6 +18,8 @@ namespace EmployeeManagement.Models
             CreateMap<HolidayViewModel, Holiday>();
             CreateMap<Leave, LeaveViewModel>();
             CreateMap<LeaveViewModel, Leave>();
+            CreateMap<Attendance, AttendanceViewModel>();
+            CreateMap<AttendanceViewModel, Attendance>();
 
 
             //.ForMember(dest => dest.FirstName, o => o.MapFrom(src => src.FirstName))

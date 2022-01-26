@@ -84,7 +84,7 @@
                     <div class="multiple-day-leave-section">
                         <div class="leave-start-date">
                             <label for="">Leave Start Date:</label>
-                            <input asp-for="LeaveDate" type="date" class="leavestartdatefrom" id='datepickerr'>
+                            <input asp-for="LeaveDate" type="date" asp-format="{0:dd/MM/yyyy}" class="leavestartdatefrom" id='datepickerr'>
                         </div>
                         <!-- <div class="leave-end-date">
                             <label for="">To:</label>
