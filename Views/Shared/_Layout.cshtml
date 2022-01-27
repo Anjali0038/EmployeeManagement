@@ -54,7 +54,6 @@
 
                     </div>
                     <div class="sidenav-header">
-                        <i class="fas fa-users"></i>
                         Holiday
                         <i class="fa fa-caret-down"></i>
                     </div>
@@ -63,7 +62,6 @@
                         <a asp-controller="Holiday" asp-action="List">HolidayList</a>
                     </div>
                     <div class="sidenav-header">
-                        <i class="fas fa-users"></i>
                         Leave
                         <i class="fa fa-caret-down"></i>
                     </div>
@@ -78,7 +76,6 @@
                 else
                 {
                     <div class="sidenav-header">
-                        <i class="fas fa-users"></i>
                         Holiday
                         <i class="fa fa-caret-down"></i>
                     </div>
@@ -86,7 +83,6 @@
                         <a asp-controller="Holiday" asp-action="List">HolidayList</a>
                     </div>
                     <div class="sidenav-header">
-                        <i class="fas fa-users"></i>
                         Leave
                         <i class="fa fa-caret-down"></i>
                     </div>
@@ -95,12 +91,12 @@
                     </div>
                 }
                 <div class="sidenav-header">
-                    <i class="fas fa-users"></i>
                     Attendance
                     <i class="fa fa-caret-down"></i>
                 </div>
                 <div class="sidenav-subheader">
-                    <a asp-controller="Attendance" asp-action="Index">Attendance</a>
+                    <a asp-controller="Attendance" asp-action="Turn_in">Turn_in</a>
+                    <a asp-controller="Attendance" asp-action="Turn_out">Turn_out</a>
                     <a asp-controller="Attendance" asp-action="List">Attendance List</a>
                 </div>
             </div>

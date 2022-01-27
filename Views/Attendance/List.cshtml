@@ -9,7 +9,16 @@
     <link rel="stylesheet" href="./css/layout.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" rel="stylesheet" />
     <title>Leaveist</title>
+    @using Microsoft.AspNetCore.Identity
+    @using EmployeeManagement.Areas.Identity.Data
+    @inject SignInManager<ApplicationUser> SignInManager
+    @inject UserManager<ApplicationUser> UserManager
+    @using Microsoft.AspNetCore.Http
+    @inject IHttpContextAccessor HttpContextAccessor
 </head>
+@{
+    string role = HttpContextAccessor.HttpContext.Session.GetString("Role");
+}
 <div class="main-container-title-section">
     <h1>Attendance List</h1>
 </div>
