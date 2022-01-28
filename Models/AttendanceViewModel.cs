@@ -13,6 +13,9 @@ namespace EmployeeManagement.Models
         public int Attendance_Id { get; set; }
         public DateTime Turn_in { get; set; }
         public DateTime Turn_out { get; set; }
+        public bool IsTurnIn { get; set; }
+        public string Type { get; set; }
+
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime Date { get; set; }

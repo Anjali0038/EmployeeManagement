@@ -14,6 +14,7 @@ namespace EmployeeManagement.Service
         int SaveAttendance(AttendanceViewModel model);
         List<Employee> GetEmployees();
         AttendanceViewModel GetList();
+        AttendanceViewModel GetById(int id);
     }
     public class AttendanceProvider: IAttendanceProvider
     {
@@ -28,11 +29,37 @@ namespace EmployeeManagement.Service
         }
         public int SaveAttendance(AttendanceViewModel model)
         {
-            //Attendance attendance = new Attendance();
-            Attendance attendance = _mapper.Map<AttendanceViewModel, Attendance>(model);
-            _iAttendanceRepository.Add(attendance);
+            var today2 = DateTime.Today;
+            if (model.Type == "TurnIn")
+            {
+                var attendance1 = _iAttendanceRepository.GetSingle(x => x.Turn_in >today2 && x.Employee_Id==model.Employee_Id);
+                if(attendance1==null)
+                {
+                    attendance1.Turn_in = DateTime.Now;
+                    _iAttendanceRepository.Add(attendance1);
+                }
+            }
+            else
+            {
+                var attendance1 = _iAttendanceRepository.GetSingle(x => x.Turn_in > today2 && x.Employee_Id == model.Employee_Id);
+                if(attendance1==null)
+                { }
+                else
+                {
+                    attendance1.Turn_out = DateTime.Now;
+                    _iAttendanceRepository.Update(attendance1);
+                }
+
+            }
             return 200;
         }
+        //public int Save (Attendance attendance)
+        //{
+        //    var att = _context.Attendances.Where(x => x.Attendance_Id == attendance.Attendance_Id).FirstOrDefault();
+        //    att.Turn_out = attendance.Turn_out;
+        //    _context.SaveChanges();
+        //    return 200;
+        //}
         public List<Employee> GetEmployees()
         {
             var EmpList = new List<Employee>();
@@ -51,6 +78,12 @@ namespace EmployeeManagement.Service
             list = _mapper.Map<List<Attendance>, List<AttendanceViewModel>>(data);
             model.AttendanceList = list;
             return model;
+        }
+        public AttendanceViewModel GetById(int id)
+        {
+            var item = _iAttendanceRepository.GetSingle(x => x.Attendance_Id == id);
+            AttendanceViewModel data = _mapper.Map<AttendanceViewModel>(item);
+            return data;
         }
     }
 }

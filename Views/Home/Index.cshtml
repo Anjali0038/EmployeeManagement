@@ -1,3 +1,34 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿<div class="leaverequest-section">
+      <div class="leaverequest-main-conatiner">
+        <div class="leaverequest-form-section">
+                <div class="leave-number">
+                    <input  type="number" class="leaveday">
+                </div>
+        </div>
+        <div class="leaverequest-calendar-section">
+            <div class="calendar-head-section">
+                <button class="btn prebtn">
+                    <i class="fas fa-angle-left"></i>
+                </button>
+                <h3></h3>
+                <button class="btn nextbtn">
+                    <i class="fas fa-angle-right"></i>
+                </button>
+            </div>
+
+            <div class="calendar-section">
+                <div class="calendar_month_section">
+                    <div class="current_weekend_day">
+                        <div class="weekdays">
+                        </div>
+                        <div class="days"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="~/css/site.css">
+<link rel="stylesheet" href="~/css/leaverequest.css">
+<script src="~/js/leaverequest.js"></script>

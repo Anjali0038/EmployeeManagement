@@ -35,16 +35,4 @@
     <input value="@currentDate" asp-for="Date" type="text" class="text-from" style="width:231px"><br /></br>
     <button name="button" @*value="@date"*@ value="@TempData["ButtonValue"]" asp-controller="Attendance" asp-action="Check" class="edit-btn " style="margin: 6px 6px; font-size: 10px; width: 500%; ">TurnIn</button>
 </form>
-<!--<form asp-controller="Attendance" asp-action="Turn_in" method="post">
-    <div class="employee-name">
-        <label>Employee Name:&nbsp;&nbsp;</label>
-        <input class="text-from" style="width:231px" asp-for="EmployeeName" value="@UserManager.GetUserAsync(User).Result.FullName" type="text">
-        <input type="hidden" asp-for="Employee_Id" value="@UserManager.GetUserAsync(User).Result.EId" />
-        <span asp-validation-for="EmployeeName" class="text-danger"></span>
-    </div>
-    <label>Today's Date:&nbsp;&nbsp;</label>
-    <input value="@currentDate" asp-for="Date" type="text" class="text-from" style="width:231px"><br /></br>
-    <button name="button"--> @*value="@date"*@ <!--value="@TempData["ButtonValue"]" asp-controller="Attendance" asp-action="Check" class="edit-btn " style="margin: 6px 6px; font-size: 10px; width: 500%; ">TurnIn</button>
-    <input--> @*value="@date"*@ <!--value="@TempData["ButtonValue"]" asp-for="Turn_in" type="text" class="text-from" style="width:231px"></br></br>
-    <input type="submit" style="margin: 6px 6px; font-size: 1em !important; padding: 0.3em 1.5em !important; height: unset !important; width: unset !important; background-color: #103f6a !important; color: white !important; border: unset !important; ">
-</form>-->
+
