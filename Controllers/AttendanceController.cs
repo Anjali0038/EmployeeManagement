@@ -52,12 +52,8 @@ namespace EmployeeManagement.Controllers
                 att.IsTurnIn = true;
                 att.Attendance_Id = attendence.Attendance_Id;
                 att.Turn_in = attendence.Turn_in;
-                //att.Turn_out = DateTime.Now;
             }
-            //if (id.HasValue)
-            //{
-            //    att = _iAttendanceProvider.GetById(id.Value);
-            //}
+         
             return View(att);
         }
         [HttpPost]
@@ -65,7 +61,6 @@ namespace EmployeeManagement.Controllers
         {
             try
             {
-                //model.Turn_out = DateTime.Now;
                 _iAttendanceProvider.SaveAttendance(model);
                 return RedirectToAction("Index");
             }
