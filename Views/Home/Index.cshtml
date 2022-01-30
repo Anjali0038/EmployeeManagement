@@ -1,34 +1,218 @@
-﻿<div class="leaverequest-section">
-      <div class="leaverequest-main-conatiner">
-        <div class="leaverequest-form-section">
-                <div class="leave-number">
-                    <input  type="number" class="leaveday">
-                </div>
-        </div>
-        <div class="leaverequest-calendar-section">
-            <div class="calendar-head-section">
-                <button class="btn prebtn">
-                    <i class="fas fa-angle-left"></i>
-                </button>
-                <h3></h3>
-                <button class="btn nextbtn">
-                    <i class="fas fa-angle-right"></i>
-                </button>
-            </div>
+﻿
+<!DOCTYPE html>
+<html lang="en">
 
-            <div class="calendar-section">
-                <div class="calendar_month_section">
-                    <div class="current_weekend_day">
-                        <div class="weekdays">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Podkova&family=Roboto:wght@400;700&display=swap"
+          rel="stylesheet" />
+    <link rel="stylesheet" href="../fontawesome-free-5.15.4-web/css/all.min.css" />
+    <link rel="icon" type="image/x-icon" href="./images/profile.jpg" />
+    <link rel="stylesheet" href="./css/dashboard.css" />
+    <title>Employee-List</title>
+</head>
+<body>
+        <article>
+            <div class="side-body">
+                <div class="employee-full-container">
+                    <div class="calender-event-container">
+                        <div style="
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-evenly;
+                    margin-top: 16px;
+                  ">
+                            <div class="date-events">
+                                <div class="date">
+                                    <h3 class="two"></h3>
+                                </div>
+                                <div class="events"></div>
+                            </div>
+                            <div></div>
+                            <div class="lebal-container">
+                                <ul class="lebal">
+                                    <li> <span><i class="fas fa-circle overtime"></i></span>overtime</li>
+                                    <li><span><i class="fas fa-circle today"></i></span>Today</li>
+                                    <li><span><i class="fas fa-circle late"></i></span>late</li>
+                                </ul>
+                                <ul class="lebal">
+                                    <li><span><i class="fas fa-circle pday"></i></span>public holiday</li>
+                                    <li><span><i class="fas fa-circle hday"></i></span>Weekends</li>
+                                    <li><span><i class="fas fa-circle sick"></i></span>Sick</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="days"></div>
+                        <!-- calendar -->
+                        <div class="calender">
+                            <section class="new">
+                                <section>
+                                    <!-- (B) THE HTML
+                                    (B1) INLINE DATE PICKER -->
+                                    <input type="hidden" id="input-inline" placeholder="Inline" />
+                                    <div id="pick-inline"></div>
+
+                                    <!-- (B2) POPUP DATE PICKER -->
+                                    <input type="hidden" id="input-pop" placeholder="Popup" ` />
+                                </section>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="button-content-container">
+                        <div class="employee-approve-leave-button">
+                            <div class="requestedbtn">
+                                <button>Requested Leave</button>
+                            </div>
+
+                            <div class="btnsectiono">
+                                <button>Approved Leave</button>
+                            </div>
+                        </div>
+                        <div class="date-events">
+                            <div id="leaveList" class="leave-list">
+                                <div>
+                                    <p>Requested Leave</p>
+                                </div>
+                                <div class="date-reason">
+                                    <div class="date-requested">
+                                        <div>
+                                            <p>03</p>
+                                            <span>Dec</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="reason-details">Trip To Hometown</div>
+                                </div>
+                                <div class="date-reason">
+                                    <div class="date-requested">
+                                        <div>
+                                            <p>03</p>
+                                            <span>Dec</span>
+                                        </div>
+                                    </div>
+                                    <div class="reason-details">Trip To Home</div>
+                                </div>
+                                <div class="date-reason">
+                                    <div class="date-requested">
+                                        <div>
+                                            <p>03</p>
+                                            <span>Dec</span>
+                                        </div>
+                                    </div>
+                                    <div class="reason-details">Trip To Hometownometown</div>
+                                </div>
+                            </div>
+                            <div id="approveList" class="approved-list">
+                                <div>
+                                    <p>Approved Leave</p>
+                                </div>
+                                <div class="date-reason">
+                                    <div class="date-requested">
+                                        <div>
+                                            <p>03</p>
+                                            <span>Dec</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="reason-details">Sick Leave</div>
+                                </div>
+                                <div class="date-reason">
+                                    <div class="date-requested">
+                                        <div>
+                                            <p>25</p>
+                                            <span>Dec</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="reason-details">Trip To Hometown</div>
+                                </div>
+                                <div class="date-reason">
+                                    <div class="date-requested">
+                                        <div>
+                                            <p>30</p>
+                                            <span>Dec</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="reason-details">Trip To Mustang</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </article>
+
+    <script src="../employee.js"></script>
+    <script src="./Calendar/index.js"></script>
+    <script>
+
+        let leavestn = document.querySelector("#leaveList");
+        console.log(leavestn);
+
+        let approvestn = document.querySelector("#approveList");
+        console.log(approvestn);
+        let btnsectionfordiv = document.querySelector(".btnsectiono");
+        console.log(btnsectionfordiv);
+        let requestbtn = document.querySelector(".requestedbtn");
+        console.log(requestbtn);
+
+        btnsectionfordiv.addEventListener("click", () => {
+            leavestn.style.display = "none";
+            approvestn.style.display = "block";
+        });
+        requestbtn.addEventListener("click", () => {
+            leavestn.style.display = "block";
+            approvestn.style.display = "none";
+        });
+    </script>
+</body>
+
+
+
+
+</html>
+
+
+
+
+
+@*<div class="leaverequest-section">
+          <div class="leaverequest-main-conatiner">
+            <div class="leaverequest-form-section">
+                    <div class="leave-number">
+                        <input  type="number" class="leaveday">
+                    </div>
+            </div>
+            <div class="leaverequest-calendar-section">
+                <div class="calendar-head-section">
+                    <button class="btn prebtn">
+                        <i class="fas fa-angle-left"></i>
+                    </button>
+                    <h3></h3>
+                    <button class="btn nextbtn">
+                        <i class="fas fa-angle-right"></i>
+                    </button>
+                </div>
+
+                <div class="calendar-section">
+                    <div class="calendar_month_section">
+                        <div class="current_weekend_day">
+                            <div class="weekdays">
+                            </div>
+                            <div class="days"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<link rel="stylesheet" href="~/css/site.css">
-<link rel="stylesheet" href="~/css/leaverequest.css">
-<script src="~/js/leaverequest.js"></script>
+    <link rel="stylesheet" href="~/css/site.css">
+    <link rel="stylesheet" href="~/css/leaverequest.css">
+    <script src="~/js/leaverequest.js"></script>*@

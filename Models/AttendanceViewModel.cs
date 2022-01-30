@@ -14,6 +14,7 @@ namespace EmployeeManagement.Models
         public DateTime Turn_in { get; set; }
         public DateTime Turn_out { get; set; }
         public bool IsTurnIn { get; set; }
+        public bool IsTurnOut { get; set; }
         public string Type { get; set; }
 
         [DataType(DataType.Date)]

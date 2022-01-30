@@ -1,10 +1,13 @@
-﻿using EmployeeManagement.Data;
+﻿using EmployeeManagement.Areas.Identity.Data;
+using EmployeeManagement.Data;
 using EmployeeManagement.Models;
 using EmployeeManagement.Service;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace EmployeeManagement.Controllers
@@ -13,11 +16,12 @@ namespace EmployeeManagement.Controllers
     {
         private readonly IAttendanceProvider _iAttendanceProvider;
         private EmployeeManagementDbContext _context;
-
-        public AttendanceController(IAttendanceProvider iAttendanceProvider, EmployeeManagementDbContext context)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public AttendanceController(UserManager<ApplicationUser> userManager, IAttendanceProvider iAttendanceProvider, EmployeeManagementDbContext context)
         {
             _iAttendanceProvider = iAttendanceProvider;
             _context = context;
+            _userManager = userManager;
 
         }
         [HttpGet]
@@ -28,32 +32,40 @@ namespace EmployeeManagement.Controllers
         }
         
         [HttpGet]
-        public IActionResult Save()
+        public async Task<IActionResult> Save()
         {
             AttendanceViewModel att = new AttendanceViewModel();
+            string emp = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var employee = await _userManager.FindByIdAsync(emp);
+            int eid = employee.EId;
+
             string currentDate = DateTime.UtcNow.ToString("yyyy-MM-dd");
             var attendenceList = _iAttendanceProvider.GetList();
-            var attendence = attendenceList.AttendanceList.Where(x => x.Date == DateTime.Parse(currentDate)).FirstOrDefault();
-            var emp = attendenceList.AttendanceList.Where(x => x.Employee_Id == att.Employee_Id).FirstOrDefault();
-            var attid = _context.Attendances.Where(x => x.Attendance_Id == att.Attendance_Id).FirstOrDefault();
-            //if (attendence == null && attendence.Attendance_Id!=att.Attendance_Id)
+            var attendence = attendenceList.AttendanceList.Where(x => x.Date == DateTime.Parse(currentDate) && x.Employee_Id == eid).FirstOrDefault();
             if (attendence == null)
             {
                 att.IsTurnIn = false;
+                att.IsTurnOut = false;
             }
             else
             {
                 att.IsTurnIn = true;
                 att.Attendance_Id = attendence.Attendance_Id;
                 att.Turn_in = attendence.Turn_in;
+                //att.Turn_out = DateTime.Now;
             }
-                return View(att);
+            //if (id.HasValue)
+            //{
+            //    att = _iAttendanceProvider.GetById(id.Value);
+            //}
+            return View(att);
         }
         [HttpPost]
         public IActionResult Save(AttendanceViewModel model)
         {
             try
             {
+                //model.Turn_out = DateTime.Now;
                 _iAttendanceProvider.SaveAttendance(model);
                 return RedirectToAction("Index");
             }
@@ -62,64 +74,6 @@ namespace EmployeeManagement.Controllers
                 throw ex;
             }
         }
-        //[HttpGet]
-        //public IActionResult Turn_in()
-        //{
-        //    return View();
-        //}
-        //[HttpPost]
-        //public IActionResult Turn_in(AttendanceViewModel model)
-        //{
-        //    model.Turn_in = DateTime.Now;
-        //    model.Turn_out = DateTime.MinValue;
-        //    try
-        //    {
-        //        var user = _context.Employees.Where(x => x.Employee_Id == model.Employee_Id).FirstOrDefault();
-        //        model.EmployeeName = user.FirstName + " " + user.MiddleName + " " + user.LastName;
-        //        model.Employee_Id = user.Employee_Id;
-        //        _iAttendanceProvider.SaveAttendance(model);
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
-        //[HttpGet]
-        //public IActionResult Turn_out()
-        //{
-        //    return View();
-        //}
-        //[HttpPost]
-        //public IActionResult Turn_out(AttendanceViewModel model)
-        //{
-        //    model.Turn_in = DateTime.MinValue;
-        //    model.Turn_out = DateTime.Now;
-        //    try
-        //    {
-        //        var user = _context.Employees.Where(x => x.Employee_Id == model.Employee_Id).FirstOrDefault();
-        //        model.EmployeeName = user.FirstName + " " + user.MiddleName + " " + user.LastName;
-        //        model.Employee_Id = user.Employee_Id;
-        //        _iAttendanceProvider.SaveAttendance(model);
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
-        //public IActionResult Check(DateTime button)
-        //{
-        //    if (button == DateTime.MinValue)
-        //    {
-        //        TempData["ButtonValue"] = DateTime.Now;
-        //    }
-        //    else
-        //    {
-        //        TempData["ButtonValue"] = DateTime.Now;
-        //        //TempData["ButtonValue"] = "No button click!";
-        //    }
-        //    return RedirectToAction("Index");
-        //}
+       
     }
 }

@@ -29,34 +29,46 @@ namespace EmployeeManagement.Service
         }
         public int SaveAttendance(AttendanceViewModel model)
         {
-            var today2 = DateTime.Today;
+            //var today2 = DateTime.Today;
+            //if (model.Type == "TurnIn")
+            //{
+            //    var attendance1 = _iAttendanceRepository.GetSingle(x => x.Turn_in > today2 && x.Employee_Id == model.Employee_Id);
+            //    if (attendance1 == null)
+            //    {
+            //        attendance1.Turn_in = DateTime.Now;
+            //        _iAttendanceRepository.Add(attendance1);
+            //    }
+            //}
+            //else
+            //{
+            //    var attendance1 = _iAttendanceRepository.GetSingle(x => x.Turn_in > today2 && x.Employee_Id == model.Employee_Id);
+            //    if (attendance1 == null)
+            //    { }
+            //    else
+            //    {
+            //        attendance1.Turn_out = DateTime.Now;
+            //        _iAttendanceRepository.Update(attendance1);
+            //    }
+            //}
+            //return 200;
+            Attendance attendance = new Attendance();
+            attendance = _mapper.Map<Attendance>(model);
             if (model.Type == "TurnIn")
             {
-                var attendance1 = _iAttendanceRepository.GetSingle(x => x.Turn_in >today2 && x.Employee_Id==model.Employee_Id);
-                if(attendance1==null)
-                {
-                    attendance1.Turn_in = DateTime.Now;
-                    _iAttendanceRepository.Add(attendance1);
-                }
+
+                _iAttendanceRepository.Add(attendance);
             }
             else
             {
-                var attendance1 = _iAttendanceRepository.GetSingle(x => x.Turn_in > today2 && x.Employee_Id == model.Employee_Id);
-                if(attendance1==null)
-                { }
-                else
-                {
-                    attendance1.Turn_out = DateTime.Now;
-                    _iAttendanceRepository.Update(attendance1);
-                }
-
+                attendance.Turn_out = DateTime.Now;
+                _iAttendanceRepository.Update(attendance);
             }
             return 200;
         }
         //public int Save (Attendance attendance)
         //{
         //    var att = _context.Attendances.Where(x => x.Attendance_Id == attendance.Attendance_Id).FirstOrDefault();
-        //    att.Turn_out = attendance.Turn_out;
+        //    att.Turn_out = DateTime.Now;
         //    _context.SaveChanges();
         //    return 200;
         //}

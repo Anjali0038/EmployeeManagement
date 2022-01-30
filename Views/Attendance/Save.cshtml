@@ -37,27 +37,26 @@
     <input type="hidden" asp-for="Employee_Id" value="@UserManager.GetUserAsync(User).Result.EId" />
     <span asp-validation-for="EmployeeName" class="text-danger"></span>
 </div>
+
 <label>Today's Date:&nbsp;&nbsp;</label>
 <input value="@currentDate" asp-for="Date" type="text" class="text-from" style="width:231px">
 <br /></br>
-
-    <form asp-controller="Attendance" asp-action="Save" method="post">
-        <button disabled="@Model.IsTurnIn" name="button" value="@date" type="submit" class="edit-btn " style="margin: 6px 6px; font-size: 10px; width: 500%; ">TurnIn</button>
-        <input value="@date" asp-for="Turn_in" type="text" class="text-from" style="width:231px" />
-        @TempData["ButtonValue"]
-        <input type="hidden" value="@currentDate" asp-for="Date">
-        <input type="hidden" value="TurnIn" asp-for="Type">
-        <input type="hidden" asp-for="EmployeeName" value="@UserManager.GetUserAsync(User).Result.UserName">
-        <input type="hidden" asp-for="Employee_Id" value="@UserManager.GetUserAsync(User).Result.EId" />
-    </form>
-    <form asp-controller="Attendance" asp-action="Save" method="post">
-        <button disabled="@IsTurnOut" name="button" value="@date" type="submit" class="edit-btn " style="margin: 6px 6px; font-size: 10px; width: 500%; ">TurnOut</button>
-        <input value="@date" asp-for="Turn_out" type="text" class="text-from" style="width:231px" />
-        @TempData["ButtonValue"]
-        <input type="hidden" asp-for="Turn_in">
-        <input type="hidden" value="@currentDate" asp-for="Date">
-        <input type="hidden" asp-for="Attendance_Id" />
-        <input type="hidden" asp-for="EmployeeName" value="@UserManager.GetUserAsync(User).Result.UserName">
-        <input type="hidden" asp-for="Employee_Id" value="@UserManager.GetUserAsync(User).Result.EId" />
-    </form>
+<form asp-controller="Attendance" asp-action="Save" method="post">
+    <button disabled="@Model.IsTurnIn" value="@date" class="edit-btn " style="margin: 6px 6px; font-size: 10px; width: 500%; ">TurnIn</button>
+    @*<input value="@date" asp-for="Turn_in" type="text" class="text-from" style="width:231px" />*@
+    <input type="hidden" value="@date" asp-for="Turn_in">
+    <input type="hidden" value="@currentDate" asp-for="Date">
+    <input type="hidden" value="TurnIn" asp-for="Type">
+    <input type="hidden" asp-for="EmployeeName" value="@UserManager.GetUserAsync(User).Result.FullName">
+    <input type="hidden" asp-for="Employee_Id" value="@UserManager.GetUserAsync(User).Result.EId" />
+</form>
+<form asp-controller="Attendance" asp-action="Save" method="post">
+    <button disabled="@IsTurnOut" value="@date" type="submit" class="edit-btn " style="margin: 6px 6px; font-size: 10px; width: 500%; ">TurnOut</button>
+    @*<input value="@date" asp-for="Turn_out" type="text" class="text-from" style="width:231px" />*@
+    <input type="hidden" asp-for="Turn_in">
+    <input type="hidden" value="@currentDate" asp-for="Date">
+    <input type="hidden" asp-for="Attendance_Id" />
+    <input type="hidden" asp-for="EmployeeName" value="@UserManager.GetUserAsync(User).Result.FullName">
+    <input type="hidden" asp-for="Employee_Id" value="@UserManager.GetUserAsync(User).Result.EId" />
+</form>
 
