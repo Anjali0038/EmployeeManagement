@@ -30,29 +30,31 @@
 @{
     DateTime date = DateTime.Now;
     string currentDate = DateTime.UtcNow.ToString("yyyy-MM-dd");
+    DateTime TurnInTime = Model.Turn_in == DateTime.MinValue ? date : Model.Turn_in;
+    DateTime TurnOutTime = Model.Turn_out == DateTime.MinValue ? date : Model.Turn_out;
 }
 <div class="employee-name">
-    <label>Employee Name:&nbsp;&nbsp;</label>
+    <label>Employee Name:&emsp;</label>
     <input class="text-from" style="width:231px" asp-for="EmployeeName" value="@UserManager.GetUserAsync(User).Result.FullName" type="text">
     <input type="hidden" asp-for="Employee_Id" value="@UserManager.GetUserAsync(User).Result.EId" />
     <span asp-validation-for="EmployeeName" class="text-danger"></span>
 </div>
 
-<label>Today's Date:&nbsp;&nbsp;</label>
+<label>Today's Date:&emsp;&emsp;&emsp;</label>
 <input value="@currentDate" asp-for="Date" type="text" class="text-from" style="width:231px">
 <br /></br>
-<form asp-controller="Attendance" asp-action="Save" method="post">
+<form asp-controller="Attendance" asp-action="Save" method="post" class="form1">
     <button disabled="@Model.IsTurnIn" value="@date" class="edit-btn " style="margin: 6px 6px; font-size: 10px; width: 500%; ">TurnIn</button>
-    @*<input value="@date" asp-for="Turn_in" type="text" class="text-from" style="width:231px" />*@
+    <input type="hidden" value="@TurnInTime" asp-for="Turn_in" class="text-from" style="width:231px" />
     <input type="hidden" value="@date" asp-for="Turn_in">
     <input type="hidden" value="@currentDate" asp-for="Date">
     <input type="hidden" value="TurnIn" asp-for="Type">
     <input type="hidden" asp-for="EmployeeName" value="@UserManager.GetUserAsync(User).Result.FullName">
     <input type="hidden" asp-for="Employee_Id" value="@UserManager.GetUserAsync(User).Result.EId" />
 </form>
-<form asp-controller="Attendance" asp-action="Save" method="post">
-    <button disabled="@IsTurnOut" value="@date" type="submit" class="edit-btn " style="margin: 6px 6px; font-size: 10px; width: 500%; ">TurnOut</button>
-    @*<input value="@date" asp-for="Turn_out" type="text" class="text-from" style="width:231px" />*@
+<form asp-controller="Attendance" asp-action="Save" method="post" class="form1">
+    <button disabled="@Model.IsTurnOut" value="@date" type="submit" class="edit-btn " style="margin: 6px 6px; font-size: 10px; width: 500%; ">TurnOut</button>
+    <input type="hidden" value="@TurnOutTime" asp-for="Turn_out" class="text-from" style="width:231px" />
     <input type="hidden" asp-for="Turn_in">
     <input type="hidden" value="@currentDate" asp-for="Date">
     <input type="hidden" asp-for="Attendance_Id" />
@@ -60,3 +62,8 @@
     <input type="hidden" asp-for="Employee_Id" value="@UserManager.GetUserAsync(User).Result.EId" />
 </form>
 
+<style>
+    .form1 {
+        display: inline-block;
+    }
+</style>

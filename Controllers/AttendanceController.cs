@@ -36,7 +36,7 @@ namespace EmployeeManagement.Controllers
         public async Task<IActionResult> Save()
         {
             AttendanceViewModel att = new AttendanceViewModel();
-            string emp = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var emp = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var employee = await _userManager.FindByIdAsync(emp);
             int eid = employee.EId;
 
@@ -51,8 +51,15 @@ namespace EmployeeManagement.Controllers
             else
             {
                 att.IsTurnIn = true;
+                att.IsTurnOut = true;
                 att.Attendance_Id = attendence.Attendance_Id;
                 att.Turn_in = attendence.Turn_in;
+                att.Turn_out = attendence.Turn_out;
+                if (attendence.Turn_out == DateTime.MinValue)
+                {
+                    att.IsTurnOut = false;
+
+                }
             }
             return View(att);
         }
