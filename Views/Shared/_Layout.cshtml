@@ -69,6 +69,13 @@
                         <a asp-controller="Leave" asp-action="Index">Leave Request</a>
                         <a asp-controller="Leave" asp-action="List">Leave List</a>
                     </div>
+                    <div class="sidenav-header">
+                        Attendance
+                        <i class="fa fa-caret-down"></i>
+                    </div>
+                    <div class="sidenav-subheader">
+                        <a asp-controller="Attendance" asp-action="Index">Attendance List</a>
+                    </div>
                     @*<div class="sidenav-header-tag">
             <a asp-controller="Holiday" asp-action="Index">Holiday</a>
             </div>*@
@@ -89,15 +96,16 @@
                     <div class="sidenav-header-tag">
                         <a asp-controller="Leave" asp-action="Index"> Leave Request</a>
                     </div>
+                    <div class="sidenav-header">
+                        Attendance
+                        <i class="fa fa-caret-down"></i>
+                    </div>
+                    <div class="sidenav-subheader">
+                        <a asp-controller="Attendance" asp-action="Save">Save Attendance</a>
+                        <a asp-controller="Attendance" asp-action="Index">Attendance List</a>
+                    </div>
                 }
-                <div class="sidenav-header">
-                    Attendance
-                    <i class="fa fa-caret-down"></i>
-                </div>
-                <div class="sidenav-subheader">
-                    <a asp-controller="Attendance" asp-action="Save">Save Attendance</a>
-                    <a asp-controller="Attendance" asp-action="Index">Attendance List</a>
-                </div>
+
             </div>
 
         </div>

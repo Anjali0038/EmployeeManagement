@@ -4,6 +4,7 @@ using EmployeeManagement.Models;
 using EmployeeManagement.Service;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,7 +54,6 @@ namespace EmployeeManagement.Controllers
                 att.Attendance_Id = attendence.Attendance_Id;
                 att.Turn_in = attendence.Turn_in;
             }
-         
             return View(att);
         }
         [HttpPost]

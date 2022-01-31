@@ -65,13 +65,6 @@ namespace EmployeeManagement.Service
             }
             return 200;
         }
-        //public int Save (Attendance attendance)
-        //{
-        //    var att = _context.Attendances.Where(x => x.Attendance_Id == attendance.Attendance_Id).FirstOrDefault();
-        //    att.Turn_out = DateTime.Now;
-        //    _context.SaveChanges();
-        //    return 200;
-        //}
         public List<Employee> GetEmployees()
         {
             var EmpList = new List<Employee>();

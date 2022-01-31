@@ -977,10 +977,10 @@ td span {
     .leave-calendar {
         margin-left: 100px;
     }
-    /* .wrapper {
-    margin: 0 25px;
-    max-width: 1100px;
-  } */
+     .wrapper {
+/*    margin: 0 px;
+*/    max-width: 1141px;
+  } 
     /* .container-calendar {
     background: #ffffff;
     padding: 15px;
@@ -2865,10 +2865,10 @@ td span {
         margin-left: 100px;
     }
 
-    .wrapper {
+/*    .wrapper {
         margin: 0 25px;
         max-width: 1100px;
-    }
+    }*/
 
     .container-calendar {
         background: #ffffff;
