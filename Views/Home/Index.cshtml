@@ -1,21 +1,18 @@
 ﻿@model EmployeeManagement.Models.LeaveViewModel
 @{
 }
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Podkova&family=Roboto:wght@400;700&display=swap"
           rel="stylesheet" />
-    <link rel="stylesheet" href="../fontawesome-free-5.15.4-web/css/all.min.css" />
+    <link rel="stylesheet" href="./fontawesome-free-5.15.4-web/css/all.min.css" />
     <link rel="icon" type="image/x-icon" href="./images/profile.jpg" />
-    <link rel="stylesheet" href="./css/dashboard.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+    <link rel="stylesheet" href="~/css/dashboard.css" />
     <title>Employee-List</title>
 </head>
 <body>
@@ -47,8 +44,12 @@
                     <div class="calender">
                         <section class="new">
                             <section>
+                                <!-- (B) THE HTML
+                                (B1) INLINE DATE PICKER -->
                                 <input type="hidden" id="input-inline" placeholder="Inline" />
                                 <div id="pick-inline"></div>
+
+                                <!-- (B2) POPUP DATE PICKER -->
                                 <input type="hidden" id="input-pop" placeholder="Popup" ` />
                             </section>
                         </section>
@@ -135,31 +136,32 @@
             </div>
         </div>
     </article>
-    <script src="./js/dashboard.js"></script>
-    <script>
-
-        let leavestn = document.querySelector("#leaveList");
-        console.log(leavestn);
-
-        let approvestn = document.querySelector("#approveList");
-        console.log(approvestn);
-        let btnsectionfordiv = document.querySelector(".btnsectiono");
-        console.log(btnsectionfordiv);
-        let requestbtn = document.querySelector(".requestedbtn");
-        console.log(requestbtn);
-
-        btnsectionfordiv.addEventListener("click", () => {
-            leavestn.style.display = "none";
-            approvestn.style.display = "block";
-        });
-        requestbtn.addEventListener("click", () => {
-            leavestn.style.display = "block";
-            approvestn.style.display = "none";
-        });
-    </script>
 </body>
-</html>
 
+<script>
+
+    let leavestn = document.querySelector("#leaveList");
+    console.log(leavestn);
+
+    let approvestn = document.querySelector("#approveList");
+    console.log(approvestn);
+    let btnsectionfordiv = document.querySelector(".btnsectiono");
+    console.log(btnsectionfordiv);
+    let requestbtn = document.querySelector(".requestedbtn");
+    console.log(requestbtn);
+
+    btnsectionfordiv.addEventListener("click", () => {
+        leavestn.style.display = "none";
+        approvestn.style.display = "block";
+    });
+    requestbtn.addEventListener("click", () => {
+        leavestn.style.display = "block";
+        approvestn.style.display = "none";
+    });
+</script>
+
+<script src="~/js/dashboard.js"></script>
+<script src="~/js/calender.js"></script>
 
 
 
