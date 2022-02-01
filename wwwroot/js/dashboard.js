@@ -70,17 +70,14 @@ function closeForm() {
 //     return false;
 //   }
 // }
-let y = document.querySelector(".iconImage span");
-let x = document.querySelector(".closebtn");
-// let z=document.querySelector(".open-button"); // console.log('open-button')
-y.addEventListener("click", () => {
-    // z.classList.add("showbar");
-    document.querySelector(".mysidenav").classList.add("showbar");
-});
-x.addEventListener("click", () => {
-    // z.classList.add("showbar");
-    document.querySelector(".mysidenav").classList.remove("showbar");
-});
+//let y = document.querySelector(".iconImage span");
+//let x = document.querySelector(".closebtn");
+//y.addEventListener("click", () => {
+//    document.querySelector(".mysidenav").classList.add("showbar");
+//});
+//x.addEventListener("click", () => {
+//    document.querySelector(".mysidenav").classList.remove("showbar");
+//});
 window.addEventListener("click", function (e) {
 
     var element = document.getElementById("myForm");
@@ -261,6 +258,7 @@ for (let i = 0; i < menuLength; i++) {
 }
 
 window.addEventListener("load", function () {
+    debugger
     // (C1) INLINE DATE PICKER
     picker.attach({
         target: "input-inline",

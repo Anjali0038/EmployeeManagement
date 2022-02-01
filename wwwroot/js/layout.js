@@ -1,4 +1,4 @@
-// user profile and sigout popup section
+//// user profile and sigout popup section
 const userlistprofile = document.querySelector(
     ".main-container-image-section img"
 );
