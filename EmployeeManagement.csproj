@@ -1721,6 +1721,23 @@
     <None Include="wwwroot\lib\jquery\dist\jquery.js" />
     <None Include="wwwroot\lib\jquery\dist\jquery.min.js" />
     <None Include="wwwroot\lib\jquery\dist\jquery.min.map" />
+    <None Include="wwwroot\wwwroot\js\calender.js" />
+    <None Include="wwwroot\wwwroot\js\dashboard.js" />
+    <None Include="wwwroot\wwwroot\js\employee.js" />
+    <None Include="wwwroot\wwwroot\js\layout.js" />
+    <None Include="wwwroot\wwwroot\js\leaverequest.js" />
+    <None Include="wwwroot\wwwroot\js\toast.js" />
+    <None Include="wwwroot\wwwroot\js\user.js" />
+    <None Include="wwwroot\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
+    <None Include="wwwroot\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
+    <None Include="wwwroot\wwwroot\lib\jquery-validation\dist\additional-methods.js" />
+    <None Include="wwwroot\wwwroot\lib\jquery-validation\dist\additional-methods.min.js" />
+    <None Include="wwwroot\wwwroot\lib\jquery-validation\dist\jquery.validate.js" />
+    <None Include="wwwroot\wwwroot\lib\jquery-validation\dist\jquery.validate.min.js" />
+    <None Include="wwwroot\wwwroot\lib\jquery-validation\LICENSE.md" />
+    <None Include="wwwroot\wwwroot\lib\jquery\dist\jquery.js" />
+    <None Include="wwwroot\wwwroot\lib\jquery\dist\jquery.min.js" />
+    <None Include="wwwroot\wwwroot\lib\jquery\dist\jquery.min.map" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="https://json.schemastore.org/appsscript.json" /></VisualStudio></ProjectExtensions>

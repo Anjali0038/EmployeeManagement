@@ -1,0 +1,487 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Roboto");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+/* ---------------------------------overall website color define =--------------------- */
+:root {
+    --bg-color: #103f6a;
+    /* --bg-color: #004c6d; */
+    --border-color: #d3d3d3;
+    --sidebar-color: #0e3961;
+}
+/* --------------------------------css for mobile device---------------------------- */
+.wrapper {
+    height: 100vh;
+    width: 100vw;
+}
+
+/* new */
+/* Fixed sidenav, full height */
+/* .sidenav {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 18.5%;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+} */
+
+/* Style the sidenav links and the dropdown button */
+.sidenav-subheader a,
+.sidenav-header,
+.sidenav-header-tag a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 22px;
+    /* color: #818181; */
+    color: white;
+    /* background-color: white; */
+    display: block;
+    border: none;
+    border-bottom: 1px solid black;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+}
+
+    .sidenav-subheader a:hover,
+    .sidenav-header:hover,
+    .sidenav-container a:hover {
+        background-color: #0c4f8f;
+    }
+
+/* Add an active class to the active dropdown button */
+
+.active,
+a.active {
+    background-color: #0c4f8f;
+    /* background-color: red; */
+}
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.sidenav-subheader {
+    display: none;
+    /* background-color: var(--bg-color); */
+    padding-left: 8px;
+}
+
+    .sidenav-subheader a {
+        font-size: 20px;
+    }
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+    float: right;
+    padding-right: 8px;
+}
+
+/* new end */
+.sidebar {
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    background-color: var(--sidebar-color);
+    height: 100vh;
+    width: 205px;
+    transition: all 0.5s ease;
+    color: white;
+    transform: translateX(-100%);
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.sidebar-company-logo-section {
+    display: grid;
+    place-items: center;
+    padding: 1em;
+    margin-bottom: 3em;
+    position: relative;
+}
+
+    .sidebar-company-logo-section img {
+        width: 50px;
+        height: 60px;
+        object-fit: contain;
+    }
+
+.sidebar-close-btn {
+    position: absolute;
+    top: 20%;
+    right: 5%;
+    background: unset;
+    border: unset;
+    font-weight: bold;
+    font-size: 1.3em;
+    cursor: pointer;
+}
+
+.sidebar.showsidebar {
+    transform: translateX(0%);
+}
+/* .sidebar ul li {
+  height: 50px;
+  padding: 0.7em 0.5em;
+  margin-bottom: 0.1em;
+}
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.sidebarbtn.actives {
+  background-color: #467cad;
+} */
+.main-container {
+    height: 100vh;
+    width: 100%;
+    background-color: var(--border-color);
+}
+
+.main-container-header-section {
+    width: 100%;
+    height: 80px;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    place-items: center;
+}
+
+.main-container-sidebar-btn {
+    height: 30px;
+    width: 30px;
+    background-color: unset;
+    color: white;
+    border: unset;
+    cursor: pointer;
+    font-size: 2em;
+}
+
+.main-container-image-section h1 {
+    display: none;
+}
+
+.main-container-image-section img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.main-container-logout-section {
+    position: absolute;
+    top: 10%;
+    right: 4%;
+    height: 312px;
+    width: 260px;
+    background-color: white;
+    border-radius: 3%;
+    text-align: center;
+    display: none;
+    border: 1px solid var(--border-color);
+}
+
+    .main-container-logout-section.show {
+        display: block;
+    }
+
+    .main-container-logout-section h3 {
+        font-size: 1em;
+        margin-bottom: 0.5em;
+        font-weight: bold;
+    }
+
+.main-container-user-profile-img {
+    display: grid;
+    place-items: center;
+    margin: 2em 0 1.2em 0;
+}
+
+    .main-container-user-profile-img img {
+        width: 85px;
+        height: 85px;
+        border-radius: 50%;
+        object-fit: contain;
+    }
+
+.main-container-logout-section-close-btn {
+    position: absolute;
+    top: 10%;
+    left: 7%;
+    background: unset;
+    border: unset;
+    font-weight: bold;
+    font-size: 1.3em;
+    cursor: pointer;
+}
+
+.main-container-user-email {
+    color: #949393;
+}
+
+.main-container-logout-btn {
+    width: 105px;
+    height: 2em;
+    display: block;
+    margin: 0 auto;
+    font-weight: bold;
+    font-size: 1em;
+    background-color: unset;
+    padding: unset;
+    cursor: pointer;
+    border-radius: 11px;
+    border: 1px solid var(--border-color);
+    margin: 1.5em auto;
+}
+
+.main-container-logout-footer-section {
+    border-top: 1px solid var(--border-color);
+    height: 46px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .main-container-logout-footer-section h3 {
+        margin: 0 0 0 0;
+        color: #949393;
+        font-weight: bold;
+        font-size: 1em;
+    }
+
+.main-container-title-section {
+    width: 100vw;
+    height: 60px;
+    background-color: white;
+    padding: 1em;
+    font-size: 0.8em;
+    margin-bottom: 1em;
+}
+
+.main-container-create-section {
+    padding: 0 1em;
+    border-radius: 7px;
+}
+
+.main-container-create-section-btn {
+    background-color: var(--bg-color);
+    color: white;
+    cursor: pointer;
+    font-size: 1em;
+    padding: 0.5em;
+    border: unset;
+    margin-bottom: 1em;
+}
+
+.main-container-search-section {
+    padding: 0 1em;
+}
+
+.main-container-search-section-form {
+    display: grid;
+    grid-template-columns: 85% 15%;
+}
+
+.main-container-search-box {
+    font-size: 1em;
+    padding: 0.5em;
+    border: unset;
+    margin-right: 0.5em;
+}
+
+.main-container-search-btn {
+    font-size: 1em;
+    border: unset;
+    cursor: pointer;
+    background-color: var(--bg-color);
+    color: white;
+}
+
+@media screen and (min-width: 768px) {
+    .main-container-image-section {
+        display: flex;
+        height: auto;
+    }
+
+        .main-container-image-section h1 {
+            display: inline-block;
+            color: white;
+            font-size: 0.8em;
+            margin: auto 1em auto auto;
+        }
+
+        .main-container-image-section img {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            object-fit: contain;
+        }
+
+    .main-container-logout-section {
+        position: absolute;
+        top: 10.5%;
+        right: 2%;
+        height: 260px;
+        width: 270px;
+        background-color: white;
+        border-radius: 3%;
+        text-align: center;
+        display: none;
+    }
+
+        .main-container-logout-section h3 {
+            font-size: 1em;
+            margin-bottom: 0.5em;
+            font-weight: bold;
+        }
+
+    .main-container-user-profile-img {
+        display: grid;
+        place-items: center;
+        margin: 1em 0 0.6em 0;
+    }
+
+        .main-container-user-profile-img img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: contain;
+        }
+
+    .main-container-logout-btn {
+        width: 105px;
+        height: 2em;
+        display: block;
+        font-weight: bold;
+        font-size: 1em;
+        background-color: unset;
+        padding: unset;
+        cursor: pointer;
+        border-radius: 11px;
+        border: 1px solid var(--border-color);
+        margin: 1.2em auto;
+    }
+
+    .main-container-logout-footer-section {
+        border-top: 1px solid var(--border-color);
+        height: 40px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .main-container-logout-footer-section h3 {
+            margin: 0 0 0 0;
+            color: #949393;
+            font-weight: bold;
+            font-size: 1em;
+        }
+
+    .main-container-search-create-section {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    /*------------------------------------------------ userlist 992px css start here --------------------------*/
+    .wrapper {
+        height: 100vh;
+        width: 100vw;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 225px;
+        background: var(--sidebar-color);
+        transform: translateX(0%);
+        transition: unset;
+        z-index: 1;
+        transition: all 0.5s ease;
+    }
+
+    .sidebar-close-btn {
+        display: none;
+    }
+
+    .sidebar.hide {
+        transform: translateX(-100%);
+    }
+
+    .main-container {
+        width: calc(100% - 225px);
+        margin-left: 225px;
+        transition: all 0.5s ease;
+    }
+
+        .main-container.active {
+            margin-left: 0;
+            width: 100%;
+        }
+
+    .main-container-logout-section {
+        position: absolute;
+        top: 10.5%;
+        right: 1%;
+        height: 260px;
+        width: 270px;
+        background-color: white;
+        border-radius: 3%;
+        text-align: center;
+        display: none;
+    }
+
+    .main-container-title-section {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        /* width: 225px; */
+        width: 250px;
+        background: var(--sidebar-color);
+        transform: translateX(0%);
+        transition: unset;
+        z-index: 1;
+        transition: all 0.5s ease;
+    }
+
+    .main-container {
+        width: calc(100% - 250px);
+        margin-left: 250px;
+        transition: all 0.5s ease;
+    }
+
+    .main-container-logout-section {
+        position: absolute;
+        top: 9%;
+        right: 1%;
+        height: 260px;
+        width: 270px;
+        background-color: white;
+        border-radius: 3%;
+        text-align: center;
+        display: none;
+    }
+}

@@ -1,0 +1,634 @@
+.leaverequest-section {
+  margin: 0.5em auto;
+  padding: 0 1em;
+  width: 100%;
+  height: auto;
+  /* background-color: blanchedalmond; */
+}
+.leaverequest-title-section {
+  text-align: center;
+  font-size: 1em;
+  font-weight: bold;
+  color: #103f6a;
+  margin-bottom: 0.2em;
+}
+/* .leaverequest-underline-section {
+  width: 12%;
+  height: 2px;
+  background-color: #103f6a;
+  display: block;
+  margin: 0 auto;
+} */
+.leaverequest-main-conatiner {
+  /* display: grid;
+  grid-template-columns: 50% auto; */
+  color: #103f6a;
+  font-weight: bold;
+  font-size: 0.8em;
+}
+.leaverequest-form-section {
+  /* background-color: rgb(255, 255, 255); */
+  height: auto;
+  width: 100%;
+  margin-bottom: 1em;
+}
+.employee-name {
+  margin-bottom: 1em;
+}
+.employee-name input[type="text"] {
+  /* width: 70%; */
+  /* width: 65%; */
+  width: 55%;
+  font-size: 1em;
+  padding: 0.2em;
+  /* border-radius: 7px; */
+  margin-left: 0.5em;
+}
+.employee-designation {
+  margin-bottom: 1em;
+}
+.employee-designation input[type="text"] {
+  /* width: 70%; */
+  /* width: 65%; */
+  width: 55%;
+  font-size: 1em;
+  padding: 0.2em;
+  margin-left: 2.5em;
+}
+.leave-number {
+  margin-bottom: 1em;
+}
+.leave-number input[type="number"] {
+  width: 10%;
+  font-size: 1em;
+  padding: 0.2em;
+  margin-left: 0.5em;
+}
+.leaveday::-webkit-outer-spin-button,
+.leaveday::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.message {
+  margin-bottom: 1em;
+  display: none;
+  font-size: 0.9em;
+}
+
+.one-day-leave-section {
+  display: flex;
+  /* justify-content: space-between; */
+  /* width: 70%; */
+  /* width: 80%; */
+  width: 100%;
+  margin-bottom: 1em;
+}
+.one-day-section {
+  display: none;
+}
+
+.leave-weekday-section input[type="date"] {
+  /* margin-left: 0.5em; */
+  margin-left: 0em;
+  font-size: 1em;
+  padding: 0.2em;
+  width: 85%;
+  /* change */
+}
+.half-day-leave-section {
+  display: flex;
+  /* background-color: turquoise; */
+}
+.half-day-leave-section label {
+  margin-top: 0.4em;
+}
+
+.half-day-leave-section input[type="checkbox"] {
+  margin-right: 0.2em;
+  margin-top: 0.9em;
+  /* margin-left: -1em; */
+}
+.multiple-day-leave-section {
+  margin-bottom: 1em;
+}
+.multiple-day-section {
+  display: none;
+}
+.leave-start-date {
+  display: flex;
+  align-items: center;
+}
+.multiple-day-leave-section input[type="date"] {
+  /* width: 69%; */
+  margin-left: 0.5em;
+  font-size: 1em;
+  padding: 0.2em;
+}
+.leaverequestsubmitbtn {
+  font-size: 1em !important ;
+  padding: 0.3em 1.5em !important ;
+  height: unset !important;
+  width: unset !important;
+  background-color: #103f6a !important;
+  color: white !important;
+  border: unset !important;
+}
+
+/* leaverequest-calendar-section start*/
+
+.leaverequest-calendar-section {
+  background-color: rgb(255, 255, 255);
+  /* height: 370px; */
+  height: auto;
+  width: 100%;
+}
+.calendar-head-section {
+  /* margin-bottom: 0.5em; */
+  background-color: #103f6a;
+  color: white;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
+  padding: 0em 1em;
+  align-items: center;
+}
+.calendar-section {
+  padding: 0em 1em;
+}
+
+.leavedaynumber {
+  display: none;
+}
+.btn {
+  padding: 4px 0.5em;
+  background-color: unset;
+  border: unset;
+  font-size: 1.5em;
+  color: white;
+}
+
+.week-0 {
+  display: grid;
+  grid-template-columns: 14.3% 14.3% 14.3% 14.3% 14.3% 14.3% 14.3%;
+}
+
+.colweek {
+  color: #103f6a;
+  /* color: black; */
+  padding: 0.6em 0.5em;
+  /* border: 1px solid rgb(73, 73, 73); */
+  display: grid;
+  place-items: center;
+}
+
+.days .row {
+  display: grid;
+  grid-template-columns: 14.3% 14.3% 14.3% 14.3% 14.3% 14.3% 14.3%;
+}
+
+.days .col {
+  padding: 0.6em 0.5em;
+  display: grid;
+  place-items: center;
+  /* border: 1px solid rgb(73, 73, 73); */
+}
+.days .previousmonth {
+  padding: 0.6em 0.5em;
+  display: grid;
+  place-items: center;
+}
+
+@media screen and (min-width: 360px) {
+  .leaverequest-section {
+    margin: 1em auto;
+    padding: 0 1em;
+    width: 100%;
+    height: auto;
+    /* background-color: blanchedalmond; */
+  }
+  .leaverequest-title-section {
+    text-align: center;
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #103f6a;
+    margin-bottom: 0.5em;
+  }
+  /* .leaverequest-underline-section {
+    width: 12%;
+    height: 2px;
+    background-color: #103f6a;
+    display: block;
+    margin: 0 auto;
+  } */
+  .leaverequest-main-conatiner {
+    /* display: grid;
+    grid-template-columns: 50% auto; */
+    color: #103f6a;
+    font-weight: bold;
+    font-size: 0.8em;
+  }
+  .leaverequest-form-section {
+    /* background-color: rgb(255, 255, 255); */
+    height: auto;
+    width: 100%;
+    margin-bottom: 1em;
+  }
+  .employee-name {
+    margin-bottom: 1em;
+  }
+  .employee-name input[type="text"] {
+    /* width: 70%; */
+    /* width: 65%; */
+    width: 65%;
+    font-size: 1em;
+    padding: 0.2em;
+    /* border-radius: 7px; */
+    margin-left: 0.5em;
+  }
+  .employee-designation {
+    margin-bottom: 1em;
+  }
+  .employee-designation input[type="text"] {
+    /* width: 70%; */
+    /* width: 65%; */
+    width: 65%;
+    font-size: 1em;
+    padding: 0.2em;
+    margin-left: 2.5em;
+  }
+  .leave-number {
+    margin-bottom: 1em;
+  }
+  .leave-number input[type="number"] {
+    width: 10%;
+    font-size: 1em;
+    padding: 0.2em;
+    margin-left: 0.5em;
+  }
+  .leaveday::-webkit-outer-spin-button,
+  .leaveday::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+
+  .message {
+    margin-bottom: 1em;
+    display: none;
+    font-size: 1.1em;
+  }
+  .one-day-leave-section {
+    display: flex;
+    /* justify-content: space-between; */
+    /* width: 70%; */
+    /* width: 80%; */
+    width: 100%;
+    margin-bottom: 1em;
+  }
+  .one-day-section {
+    display: none;
+  }
+
+  .leave-weekday-section input[type="date"] {
+    /* margin-left: 0.5em; */
+    margin-left: 0em;
+    font-size: 1em;
+    padding: 0.2em;
+    width: 80%;
+    /* change */
+  }
+  .half-day-leave-section {
+    display: flex;
+    /* background-color: turquoise; */
+  }
+  .half-day-leave-section label {
+    margin-top: 0.8em;
+    /* font-size: 1.3em; */
+  }
+
+  .half-day-leave-section input[type="checkbox"] {
+    margin-right: 0.2em;
+    margin-top: 0.9em;
+    /* margin-left: -1em; */
+  }
+  .multiple-day-leave-section {
+    margin-bottom: 1em;
+  }
+  .multiple-day-section {
+    display: none;
+  }
+  .leave-start-date {
+    display: flex;
+    align-items: center;
+  }
+  .multiple-day-leave-section input[type="date"] {
+    /* width: 69%; */
+    margin-left: 0.5em;
+    font-size: 1em;
+    padding: 0.2em;
+  }
+  .leaverequestsubmitbtn {
+    font-size: 1em !important ;
+    padding: 0.3em 1.5em !important ;
+    height: unset !important;
+    width: unset !important;
+    background-color: #103f6a !important;
+    color: white !important;
+    border: unset !important;
+  }
+
+  /* leaverequest-calendar-section start*/
+
+  .leaverequest-calendar-section {
+    background-color: rgb(255, 255, 255);
+    /* height: 370px; */
+    height: auto;
+    width: 100%;
+  }
+  .calendar-head-section {
+    /* margin-bottom: 0.5em; */
+    background-color: #103f6a;
+    color: white;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+    padding: 0em 1em;
+    align-items: center;
+  }
+  .calendar-section {
+    padding: 0em 1em;
+  }
+
+  .leavedaynumber {
+    display: none;
+  }
+  .btn {
+    padding: 4px 0.5em;
+    background-color: unset;
+    border: unset;
+    font-size: 1.5em;
+    color: white;
+  }
+
+  .week-0 {
+    display: grid;
+    grid-template-columns: 14.3% 14.3% 14.3% 14.3% 14.3% 14.3% 14.3%;
+  }
+
+  .colweek {
+    color: #103f6a;
+    /* color: black; */
+    padding: 0.6em 0.5em;
+    /* border: 1px solid rgb(73, 73, 73); */
+    display: grid;
+    place-items: center;
+  }
+
+  .days .row {
+    display: grid;
+    grid-template-columns: 14.3% 14.3% 14.3% 14.3% 14.3% 14.3% 14.3%;
+  }
+
+  .days .col {
+    padding: 0.6em 0.5em;
+    display: grid;
+    place-items: center;
+    /* border: 1px solid rgb(73, 73, 73); */
+  }
+  .days .previousmonth {
+    padding: 0.6em 0.5em;
+    display: grid;
+    place-items: center;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .leaverequest-section {
+    margin: 1.5em auto;
+    padding: 0 1em;
+    width: 100%;
+    height: auto;
+    /* background-color: blanchedalmond; */
+  }
+  .leaverequest-title-section {
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #103f6a;
+    margin-bottom: 2em;
+  }
+  .leaverequest-underline-section {
+    width: 12%;
+    height: 2px;
+    background-color: #103f6a;
+    display: block;
+    margin: 0 auto;
+  }
+  .leaverequest-main-conatiner {
+    display: grid;
+    grid-template-columns: 50% auto;
+    color: #103f6a;
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+  .leaverequest-form-section {
+    /* background-color: rgb(255, 255, 255); */
+    height: 350px;
+    width: 100%;
+  }
+  .employee-name {
+    margin-bottom: 1em;
+  }
+  .employee-name input[type="text"] {
+    /* width: 70%; */
+    /* width: 65%; */
+    width: 55%;
+    font-size: 1em;
+    padding: 0.2em;
+    /* border-radius: 7px; */
+    margin-left: 0.5em;
+  }
+  .employee-designation {
+    margin-bottom: 1em;
+  }
+  .employee-designation input[type="text"] {
+    /* width: 70%; */
+    /* width: 65%; */
+    width: 55%;
+    font-size: 1em;
+    padding: 0.2em;
+    margin-left: 2.5em;
+  }
+
+  .leave-number {
+    margin-bottom: 1em;
+  }
+  .leave-number input[type="number"] {
+    width: 10%;
+    font-size: 1em;
+    padding: 0.2em;
+    margin-left: 0.5em;
+  }
+  .leaveday::-webkit-outer-spin-button,
+  .leaveday::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+
+  .message {
+    margin-bottom: 1em;
+    display: none;
+    font-size: 0.9em;
+  }
+  .one-day-leave-section {
+    display: flex;
+    /* justify-content: space-between; */
+    /* width: 70%; */
+    /* width: 80%; */
+    width: 100%;
+    margin-bottom: 1em;
+  }
+  .one-day-section {
+    display: none;
+  }
+
+  .leave-weekday-section input[type="date"] {
+    /* margin-left: 0.5em; */
+    margin-left: 0em;
+    font-size: 1em;
+    padding: 0.2em;
+    width: 73%;
+    /* change */
+  }
+  .half-day-leave-section {
+    display: flex;
+  }
+  .half-day-leave-section label {
+    margin-top: 0.4em;
+  }
+
+  .half-day-leave-section input[type="checkbox"] {
+    margin-right: 0.2em;
+    margin-top: 0.9em;
+    margin-left: -1em;
+  }
+  .multiple-day-leave-section {
+    margin-bottom: 1em;
+  }
+  .multiple-day-section {
+    display: none;
+  }
+  .leave-start-date {
+    display: flex;
+    align-items: center;
+  }
+  .multiple-day-leave-section input[type="date"] {
+    /* width: 69%; */
+    margin-left: 0.5em;
+    font-size: 1em;
+    padding: 0.2em;
+  }
+  .leaverequest-calendar-section {
+    background-color: rgb(255, 255, 255);
+    /* height: 370px; */
+    height: auto;
+    width: 100%;
+  }
+  .calendar-head-section {
+    /* margin-bottom: 0.5em; */
+    background-color: #103f6a;
+    color: white;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+    padding: 0em 1em;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .employee-name input[type="text"] {
+    /* width: 70%; */
+    width: 65%;
+    font-size: 1em;
+    padding: 0.2em;
+    /* border-radius: 7px; */
+    margin-left: 0.5em;
+  }
+  .message {
+    margin-bottom: 1em;
+    display: none;
+    font-size: unset;
+  }
+
+  .employee-designation input[type="text"] {
+    /* width: 70%; */
+    width: 65%;
+    font-size: 1em;
+    padding: 0.2em;
+    margin-left: 2.5em;
+  }
+
+  .one-day-leave-section {
+    display: flex;
+    justify-content: space-between;
+    /* width: 70%; */
+    width: 80%;
+    margin-bottom: 1em;
+  }
+  .one-day-section {
+    display: none;
+  }
+
+  .leave-weekday-section input[type="date"] {
+    margin-left: 0.5em;
+    font-size: 1em;
+    padding: 0.2em;
+  }
+
+  .half-day-leave-section input[type="checkbox"] {
+    margin-right: 0.5em;
+    margin-top: 0.9em;
+  }
+  .multiple-day-leave-section {
+    margin-bottom: 1em;
+  }
+  .multiple-day-section {
+    display: none;
+  }
+  .leave-start-date {
+    display: flex;
+    align-items: center;
+  }
+  .multiple-day-leave-section input[type="date"] {
+    /* width: 69%; */
+    margin-left: 0.5em;
+    font-size: 1em;
+    padding: 0.2em;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .employee-name input[type="text"] {
+    width: 70%;
+    /* width: 65%; */
+    font-size: 1em;
+    padding: 0.2em;
+    /* border-radius: 7px; */
+    margin-left: 0.5em;
+  }
+  .employee-designation input[type="text"] {
+    width: 70%;
+    /* width: 65%; */
+    font-size: 1em;
+    padding: 0.2em;
+    margin-left: 2.5em;
+  }
+  .one-day-leave-section {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    /* width: 80%; */
+    margin-bottom: 1em;
+  }
+}
