@@ -42,10 +42,10 @@
     <div class="employeelist-list-header-section">
         <div class="sn">S.N.</div>
         <div class="employeelist-name">Holiday Name</div>
-        <div class="employeelist-username">Holiday Date</div>
-        <div class="employeelist-email">Holiday Days</div>
-        @*<div class="employeelist-designation">Designation</div>
-        <div class="employeelist-edit-delete">Edit/Delete</div>*@
+        <div class="employeelist-username">Holiday Start</div>
+        <div class="employeelist-email">Holiday End</div>
+        <div class="employeelist-designation">Holiday Days</div>
+        @*<div class="employeelist-edit-delete">Edit/Delete</div>*@
     </div>
     <!-- employeelist-list-header-section -->
     <!-- employeelist-firstrowlist-section -->
@@ -54,17 +54,17 @@
     {
         if (holiday.Holiday_Id != 1)
         {
-            <div class="employeelist-rowlist-section">
-                <div class="employeelist-sn-value">@(i++)</div>
-                <div class="employeelist-name-value">@holiday.HolidayName</div>
-                <div class="employeelist-username-value">@holiday.HolidayDate</div>
-                <div class="employeelist-email-value">@holiday.HolidayDays</div>
-                @*<div class="employeelist-designation-value">@employee.Designation_Name</div>
-                <div class="employeelist-edit-delete-value" style="padding: 0 0;">
-                    <button class="edit-btn btnUpdate" id=@employee.Employee_Id><i class="far fa-edit"></i> </button>
-                    <button class="delete-btn btnDelete" id=@employee.Employee_Id><i class="fas fa-trash"></i></button>
-                </div>*@
-            </div>
+<div class="employeelist-rowlist-section">
+    <div class="employeelist-sn-value">@(i++)</div>
+    <div class="employeelist-name-value">@holiday.HolidayName</div>
+    <div class="employeelist-username-value">@holiday.HolidayDate.ToShortDateString()</div>
+    <div class="employeelist-email-value">@holiday.HolidayDate.AddDays(holiday.HolidayDays).ToShortDateString()</div>
+    <div class="employeelist-designation-value">@holiday.HolidayDays</div>
+    @*<div class="employeelist-edit-delete-value" style="padding: 0 0;">
+            <button class="edit-btn btnUpdate" id=@employee.Employee_Id><i class="far fa-edit"></i> </button>
+            <button class="delete-btn btnDelete" id=@employee.Employee_Id><i class="fas fa-trash"></i></button>
+        </div>*@
+</div>
         }
     }
 
