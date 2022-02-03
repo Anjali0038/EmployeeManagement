@@ -77,8 +77,8 @@
                         <a asp-controller="Attendance" asp-action="Index">Attendance List</a>
                     </div>
                     @*<div class="sidenav-header-tag">
-            <a asp-controller="Holiday" asp-action="Index">Holiday</a>
-            </div>*@
+                        <a asp-controller="Holiday" asp-action="Index">Holiday</a>
+                        </div>*@
                 }
                 else
                 {
@@ -126,24 +126,24 @@
                 </div>
 
                 <!-- logout section start -->
-        <div class="main-container-logout-section">
-            <!-- employeelist-user-profile-img -->
-            <div class="main-container-user-profile-img">
-                <img src="~/images/profile.jpg" alt="userimage">
-                <button class="main-container-logout-section-close-btn"><i class="fas fa-times"></i></button>
-            </div>
-            <!-- employeelist-user-profile-img -->
-            <h3>@UserManager.GetUserAsync(User).Result.UserName </h3>
-            <h3 class="main-container-user-email">@UserManager.GetUserAsync(User).Result.Email</h3>
-            <a style="text-decoration: none;" asp-area="Identity" asp-page="/Account/Login">
-                <button class="main-container-logout-btn"> Sign Out</button>
-            </a>
-            <!-- employeelist-logout-footer-section -->
-            <div class="main-container-logout-footer-section">
-                <h3>Privacy Policy</h3>
-            </div>
-            <!-- employeelist-logout-footer-section -->
-        </div>
+                <div class="main-container-logout-section">
+                    <!-- employeelist-user-profile-img -->
+                    <div class="main-container-user-profile-img">
+                        <img src="~/images/profile.jpg" alt="userimage">
+                        <button class="main-container-logout-section-close-btn"><i class="fas fa-times"></i></button>
+                    </div>
+                    <!-- employeelist-user-profile-img -->
+                    <h3>@UserManager.GetUserAsync(User).Result.UserName </h3>
+                    <h3 class="main-container-user-email">@UserManager.GetUserAsync(User).Result.Email</h3>
+                    <a style="text-decoration: none;" asp-area="Identity" asp-page="/Account/Login">
+                        <button class="main-container-logout-btn"> Sign Out</button>
+                    </a>
+                    <!-- employeelist-logout-footer-section -->
+                    <div class="main-container-logout-footer-section">
+                        <h3>Privacy Policy</h3>
+                    </div>
+                    <!-- employeelist-logout-footer-section -->
+                </div>
             }
 
             <!-- logout section end -->
@@ -155,14 +155,14 @@
 </body>
 </html>
 @*<script type="text/javascript">
-    $(function () {
-        $(document).ready(function () {
-            $(".sidebar-close-btn").click(function () {
-                /*$('#sbar').hide();*/
-            //        $('#sbar').css({ display: "none" });
-                $('#sbar').classlist.toggle(".hide");
-                $('#sbar').classlist.toggle(".showsidebar");
+        $(function () {
+            $(document).ready(function () {
+                $(".sidebar-close-btn").click(function () {
+                    /*$('#sbar').hide();*/
+                //        $('#sbar').css({ display: "none" });
+                    $('#sbar').classlist.toggle(".hide");
+                    $('#sbar').classlist.toggle(".showsidebar");
+                });
             });
         });
-    });
-</script>*@
+    </script>*@

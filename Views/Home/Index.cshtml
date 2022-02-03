@@ -12,131 +12,132 @@
     @*<link rel="stylesheet" href="./fontawesome-free-5.15.4-web/css/all.min.css" />*@
     <link rel="stylesheet" href="~/css/style.css" />
     <link rel="stylesheet" href="~/css/dashboard.css" />
+    <style>
+        .dashboard-section {
+            margin: 0.5em auto;
+            padding: 0 1em;
+            width: 100%;
+            height: auto;
+            position: relative;
+        }
+    </style>
     <title>Employee-List</title>
+
+    @using Microsoft.AspNetCore.Identity
+    @using EmployeeManagement.Areas.Identity.Data
+    @inject SignInManager<ApplicationUser> SignInManager
+    @inject UserManager<ApplicationUser> UserManager
+    @using Microsoft.AspNetCore.Http
+    @inject IHttpContextAccessor HttpContextAccessor
+    @using System.Globalization
 </head>
-<body>
-    <article>
-        <div class="side-body">
-            <div class="employee-full-container">
-                <div class="calender-event-container">
-                    <div style="display: flex; flex-direction: column;justify-content: space-evenly; margin-top: 16px; ">
-                        <div class="date-events">
-                            <div class="date">
-                                <h3 class="two"></h3>
-                            </div>
-                            <div class="events"></div>
-                        </div>
-                        <div></div>
-                        <div class="lebal-container">
-                            <ul class="lebal">
-                                <li> <span><i class="fas fa-circle overtime"></i></span>overtime</li>
-                                <li><span><i class="fas fa-circle today"></i></span>Today</li>
-                                <li><span><i class="fas fa-circle late"></i></span>late</li>
-                            </ul>
-                            <ul class="lebal">
-                                <li><span><i class="fas fa-circle pday"></i></span>public holiday</li>
-                                <li><span><i class="fas fa-circle hday"></i></span>Weekends</li>
-                                <li><span><i class="fas fa-circle sick"></i></span>Sick</li>
-                            </ul>
-                        </div>
+@{
+    string role = HttpContextAccessor.HttpContext.Session.GetString("Role");
+}
+<div class="dashboard-section">
+    <div class="employee-full-container">
+        <div class="calender-event-container">
+            <div style="display: flex; flex-direction: column;justify-content: space-evenly; margin-top: 16px; ">
+                <div class="date-events">
+                    <div class="date">
+                        <h3 class="two"></h3>
                     </div>
-                    <div class="calender">
-                        <section class="new">
-                            <section>
-                                <!-- (B) THE HTML
-                                (B1) INLINE DATE PICKER -->
-                                <input type="hidden" id="input-inline" placeholder="Inline" />
-                                <div id="pick-inline"></div>
-
-                                <!-- (B2) POPUP DATE PICKER -->
-                                <input type="hidden" id="input-pop" placeholder="Popup" ` />
-                            </section>
-                        </section>
-                    </div>
+                    <div class="events"></div>
                 </div>
-                <div class="button-content-container">
-                    <div class="employee-approve-leave-button">
-                        <div class="requestedbtn">
-                            <button asp-controller="Home" asp-action="Index">Requested Leave</button>
-                        </div>
-                        <div class="btnsectiono">
-                            <button>Approved Leave</button>
-                        </div>
+                <div></div>
+                <div class="lebal-container">
+                    <ul class="lebal">
+                        <li> <span><i class="fas fa-circle overtime"></i></span>overtime</li>
+                        <li><span><i class="fas fa-circle today"></i></span>Today</li>
+                        <li><span><i class="fas fa-circle late"></i></span>late</li>
+                    </ul>
+                    <ul class="lebal">
+                        <li><span><i class="fas fa-circle pday"></i></span>public holiday</li>
+                        <li><span><i class="fas fa-circle hday"></i></span>Weekends</li>
+                        <li><span><i class="fas fa-circle sick"></i></span>Sick</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="calender">
+                <section class="new">
+                    <section>
+                        <!-- (B) THE HTML
+                        (B1) INLINE DATE PICKER -->
+                        <input type="hidden" id="input-inline" placeholder="Inline" />
+                        <div id="pick-inline"></div>
+
+                        <!-- (B2) POPUP DATE PICKER -->
+                        <input type="hidden" id="input-pop" placeholder="Popup" ` />
+                    </section>
+                </section>
+            </div>
+        </div>
+        <div class="button-content-container">
+            <div class="employee-approve-leave-button">
+                <div class="requestedbtn">
+                    <button asp-controller="Home" asp-action="Index">Requested Leave</button>
+                </div>
+                <div class="btnsectiono">
+                    <button>Approved Leave</button>
+                </div>
+            </div>
+            <div class="date-events">
+                <div id="leaveList" class="leave-list">
+                    <div>
+                        <p>Requested Leave</p>
                     </div>
-                    <div class="date-events">
-                        <div id="leaveList" class="leave-list">
+
+                    @foreach (var leave in Model.LeaveList)
+                    {
+                        <div class="date-reason">
+                            <div class="date-requested">
+                                <div>
+                                    <p>@leave.LeaveDate.Day</p>
+                                    <span>@leave.LeaveDate.Month.ToString("MMM", CultureInfo.InvariantCulture)</span>
+                                </div>
+                            </div>
+                            <div class="reason-details">@leave.LeaveReason</div>
+                        </div>
+                    }
+                </div>
+                <div id="approveList" class="approved-list">
+                    <div>
+                        <p>Approved Leave</p>
+                    </div>
+                    <div class="date-reason">
+                        <div class="date-requested">
                             <div>
-                                <p>Requested Leave</p>
-                            </div>
-                            <div class="date-reason">
-                                <div class="date-requested">
-                                    <div>
-                                        <p>03</p>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-                                <div class="reason-details">Trip To Hometown</div>
-                            </div>
-                            <div class="date-reason">
-                                <div class="date-requested">
-                                    <div>
-                                        <p>03</p>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-                                <div class="reason-details">Trip To Home</div>
-                            </div>
-                            <div class="date-reason">
-                                <div class="date-requested">
-                                    <div>
-                                        <p>03</p>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-                                <div class="reason-details">Trip To Hometownometown</div>
+                                <p>03</p>
+                                <span>Dec</span>
                             </div>
                         </div>
-                        <div id="approveList" class="approved-list">
+
+                        <div class="reason-details">Sick Leave</div>
+                    </div>
+                    <div class="date-reason">
+                        <div class="date-requested">
                             <div>
-                                <p>Approved Leave</p>
-                            </div>
-                            <div class="date-reason">
-                                <div class="date-requested">
-                                    <div>
-                                        <p>03</p>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-
-                                <div class="reason-details">Sick Leave</div>
-                            </div>
-                            <div class="date-reason">
-                                <div class="date-requested">
-                                    <div>
-                                        <p>25</p>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-
-                                <div class="reason-details">Trip To Hometown</div>
-                            </div>
-                            <div class="date-reason">
-                                <div class="date-requested">
-                                    <div>
-                                        <p>30</p>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-                                <div class="reason-details">Trip To Mustang</div>
+                                <p>25</p>
+                                <span>Dec</span>
                             </div>
                         </div>
+
+                        <div class="reason-details">Trip To Hometown</div>
+                    </div>
+                    <div class="date-reason">
+                        <div class="date-requested">
+                            <div>
+                                <p>30</p>
+                                <span>Dec</span>
+                            </div>
+                        </div>
+                        <div class="reason-details">Trip To Mustang</div>
                     </div>
                 </div>
             </div>
         </div>
-    </article>
-</body>
-
+    </div>
+</div>
 <script src="~/js/dashboard.js"></script>
 <script src="~/js/calender.js"></script>
 <script>
@@ -160,42 +161,3 @@
         approvestn.style.display = "none";
     });
 </script>
-
-
-
-
-
-@*<div class="leaverequest-section">
-          <div class="leaverequest-main-conatiner">
-            <div class="leaverequest-form-section">
-                    <div class="leave-number">
-                        <input  type="number" class="leaveday">
-                    </div>
-            </div>
-            <div class="leaverequest-calendar-section">
-                <div class="calendar-head-section">
-                    <button class="btn prebtn">
-                        <i class="fas fa-angle-left"></i>
-                    </button>
-                    <h3></h3>
-                    <button class="btn nextbtn">
-                        <i class="fas fa-angle-right"></i>
-                    </button>
-                </div>
-
-                <div class="calendar-section">
-                    <div class="calendar_month_section">
-                        <div class="current_weekend_day">
-                            <div class="weekdays">
-                            </div>
-                            <div class="days"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <link rel="stylesheet" href="~/css/site.css">
-    <link rel="stylesheet" href="~/css/leaverequest.css">
-    <script src="~/js/leaverequest.js"></script>*@

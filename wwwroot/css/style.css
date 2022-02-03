@@ -13,12 +13,12 @@ body {
 }
 
 ::-webkit-scrollbar {
-    width: 5px;
-}
+/*    width: 5px;
+*/}
 
 ::-webkit-scrollbar-thumb {
-    background: #1f1212;
-    border-radius: 10px;
+/*    background: #1f1212;
+*/    border-radius: 10px;
 }
 /* leave request html page */
 
@@ -703,62 +703,6 @@ a.active {
         color: white;
     }
 
-.side-body-logout-section {
-    margin: 5px;
-    color: #000;
-}
-
-    .side-body-logout-section a {
-        color: black;
-    }
-
-    .side-body-logout-section button {
-        border: none;
-        background: none;
-        width: 138px;
-        text-align: left;
-    }
-
-    .side-body-logout-section span h1 {
-        font-size: 19px !important;
-    }
-    /* .side-body-logout-section p{
-  padding-top: 9px!important;
-} */
-    .side-body-logout-section span {
-        /* padding: 5px; */
-        font-size: 12px;
-        height: 30px;
-    }
-
-    .side-body-logout-section span {
-        display: flex;
-        align-items: center;
-        padding: 5px;
-    }
-
-        .side-body-logout-section span:hover {
-            color: #fff;
-            box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(156 39 176 / 40%);
-            background-color: #1f1212ba;
-            cursor: pointer;
-        }
-
-    .side-body-logout-section button:hover {
-        cursor: pointer;
-        color: white;
-    }
-
-    .side-body-logout-section span i {
-        font-size: 15px;
-        vertical-align: baseline;
-        padding: 5px;
-    }
-
-    .side-body-logout-section span:last-child {
-        border-top: 2px solid gray;
-        margin-top: 2px;
-    }
 /* Set a style for the submit/login button */
 
 .form-container .btn {

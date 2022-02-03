@@ -190,6 +190,7 @@ a.active {
     text-align: center;
     display: none;
     border: 1px solid var(--border-color);
+    z-index: 1;
 }
 
     .main-container-logout-section.show {
@@ -339,6 +340,7 @@ a.active {
         border-radius: 3%;
         text-align: center;
         display: none;
+        z-index : 1;
     }
 
         .main-container-logout-section h3 {
@@ -445,6 +447,7 @@ a.active {
         border-radius: 3%;
         text-align: center;
         display: none;
+        z-index: 1;
     }
 
     .main-container-title-section {
@@ -483,5 +486,6 @@ a.active {
         border-radius: 3%;
         text-align: center;
         display: none;
+        z-index: 1;
     }
 }
