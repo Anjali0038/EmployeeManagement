@@ -16,6 +16,7 @@ namespace EmployeeManagement.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime LeaveDate { get; set; }
         public string EmployeeName { get; set; }
+        public string LeaveReason { get; set; }
         public string Designation_Name { get; set; }
         public int EId { get; set; }
         public Employee Employee { get; set; }

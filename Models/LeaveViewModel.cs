@@ -14,6 +14,7 @@ namespace EmployeeManagement.Models
         public DateTime LeaveDate { get; set; }
         [Required]
         public string EmployeeName { get; set; }
+        public string LeaveReason { get; set; }
         public string FirstName { get; set; }
         public string Designation_Name { get; set; }
         public int EId { get; set; }

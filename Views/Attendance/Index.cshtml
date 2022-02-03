@@ -39,7 +39,7 @@
             <div class="employeelist-rowlist-section">
                 <div class="employeelist-sn-value">@(i++)</div>
                 <div class="employeelist-name-value">@attendance.EmployeeName</div>
-                <div class="employeelist-designation-value">@attendance.Date</div>
+                <div class="employeelist-designation-value">@attendance.Date.ToShortDateString()</div>
                 <div class="employeelist-username-value">@attendance.Turn_in</div>
                 <div class="employeelist-email-value">@attendance.Turn_out</div>
             </div>

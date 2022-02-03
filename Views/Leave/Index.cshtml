@@ -56,18 +56,22 @@
                         <input asp-for="Designation_Name" value="@UserManager.GetUserAsync(User).Result.Designation" type="text">
                         <input type="hidden" asp-for="UserId" />
                     </div>
+
                 }
 
                 @*<div class="employee-designation">
-                        <label for="">Designation:</label>
-                        <input asp-for="Designation_Name" type="text">
-                    </div>*@
+            <label for="">Designation:</label>
+            <input asp-for="Designation_Name" type="text">
+        </div>*@
+                <div class="employee-designation">
+                    <label for="">LeaveReason:</label>
+                    <input asp-for="LeaveReason" type="text">
+                </div>
                 <div class="leave-number">
                     <label for="">Total Number of days requested:</label>
                     <input asp-for="LeaveDays" type="number" class="leaveday">
                 </div>
                 <h3 class="message">Opps!! &#128517; Number of Days cannot be negative(-)</h3>
-
                 <div class="one-day-section">
                     <div class="one-day-leave-section ">
                         <div class="leave-weekday-section">
@@ -87,9 +91,9 @@
                             <input asp-for="LeaveDate" type="date" asp-format="{0:dd/MM/yyyy}" class="leavestartdatefrom" id='datepickerr'>
                         </div>
                         <!-- <div class="leave-end-date">
-                            <label for="">To:</label>
-                            <input type="date" class="leaveenddatefrom">
-                        </div> -->
+                <label for="">To:</label>
+                <input type="date" class="leaveenddatefrom">
+            </div> -->
 
                     </div>
                 </div>
