@@ -84,9 +84,10 @@
             </div>
             <div class="date-events">
                 <div id="leaveList" class="leave-list">
-                    <div>
-                        <p>Requested Leave</p>
-                    </div>
+                    @if (User.IsInRole("Admin"))
+                    {<div>
+                            <p>Requested Leave</p>
+                        </div>
                         @foreach (var leave in Model.LeaveList)
                         {
                             <div class="date-reason">
@@ -99,6 +100,28 @@
                                 <div class="reason-details">@leave.LeaveReason</div>
                             </div>
                         }
+                    }
+                    else
+                    {
+                        <div>
+                            <p>Requested Leave</p>
+                        </div>
+                        @foreach (var leave in Model.LeaveList)
+                        {
+                            if (leave.EId == UserManager.GetUserAsync(User).Result.EId)
+                            {
+                                <div class="date-reason">
+                                    <div class="date-requested">
+                                        <div>
+                                            <p>@leave.LeaveDate.Day</p>
+                                            <span>@leave.LeaveDate.Month.ToString("MMM", CultureInfo.InvariantCulture)</span>
+                                        </div>
+                                    </div>
+                                    <div class="reason-details">@leave.LeaveReason</div>
+                                </div>
+                            }
+                        }
+                    }
                 </div>
                 <div id="approveList" class="approved-list">
                     <div>
