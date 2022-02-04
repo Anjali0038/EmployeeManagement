@@ -33,6 +33,7 @@
 </head>
 @{
     string role = HttpContextAccessor.HttpContext.Session.GetString("Role");
+    int eid = Model.EId;
 }
 <div class="dashboard-section">
     <div class="employee-full-container">
@@ -86,19 +87,18 @@
                     <div>
                         <p>Requested Leave</p>
                     </div>
-
-                    @foreach (var leave in Model.LeaveList)
-                    {
-                        <div class="date-reason">
-                            <div class="date-requested">
-                                <div>
-                                    <p>@leave.LeaveDate.Day</p>
-                                    <span>@leave.LeaveDate.Month.ToString("MMM", CultureInfo.InvariantCulture)</span>
+                        @foreach (var leave in Model.LeaveList)
+                        {
+                            <div class="date-reason">
+                                <div class="date-requested">
+                                    <div>
+                                        <p>@leave.LeaveDate.Day</p>
+                                        <span>@leave.LeaveDate.Month.ToString("MMM", CultureInfo.InvariantCulture)</span>
+                                    </div>
                                 </div>
+                                <div class="reason-details">@leave.LeaveReason</div>
                             </div>
-                            <div class="reason-details">@leave.LeaveReason</div>
-                        </div>
-                    }
+                        }
                 </div>
                 <div id="approveList" class="approved-list">
                     <div>

@@ -16,16 +16,23 @@ namespace EmployeeManagement.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ILeaveProvider _iLeaveProvider;
+        private readonly IHolidayProvider _iHolidayProvider;
 
-        public HomeController(ILogger<HomeController> logger, ILeaveProvider iLeaveProvider)
+        public HomeController(ILogger<HomeController> logger, ILeaveProvider iLeaveProvider, IHolidayProvider iHolidayProvider)
         {
             _logger = logger;
             _iLeaveProvider = iLeaveProvider;
+            _iHolidayProvider = iHolidayProvider;
         }
 
         public IActionResult Index()
         {
             var data = _iLeaveProvider.GetList();
+            return View(data);
+        }
+        public IActionResult HolidayList()
+        {
+            var data = _iHolidayProvider.GetList();
             return View(data);
         }
 
