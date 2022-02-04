@@ -18,6 +18,7 @@ namespace EmployeeManagement.Models
         public string EmployeeName { get; set; }
         public string LeaveReason { get; set; }
         public string Designation_Name { get; set; }
+        public bool LeaveStatus { get; set; }
         public int EId { get; set; }
         public Employee Employee { get; set; }
         public ICollection<ApplicationUser> ApplicationUser { get; set; }
