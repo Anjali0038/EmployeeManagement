@@ -125,35 +125,42 @@
                     <div>
                         <p>Approved Leave</p>
                     </div>
-                    <div class="date-reason">
-                        <div class="date-requested">
-                            <div>
-                                <p>03</p>
-                                <span>Dec</span>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @foreach (var leave in Model.LeaveList)
+                        {
+                            <div class="date-reason">
+                                <div class="date-requested">
+                                    <div>
+                                        <p>@leave.LeaveDate.Day</p>
+                                        <span>@leave.LeaveDate.Month</span>
+                                    </div>
+                                </div>
+                                <div class="reason-details">@leave.LeaveReason</div>
                             </div>
-                        </div>
+                        }
 
-                        <div class="reason-details">Sick Leave</div>
-                    </div>
-                    <div class="date-reason">
-                        <div class="date-requested">
-                            <div>
-                                <p>25</p>
-                                <span>Dec</span>
-                            </div>
-                        </div>
 
-                        <div class="reason-details">Trip To Hometown</div>
-                    </div>
-                    <div class="date-reason">
-                        <div class="date-requested">
-                            <div>
-                                <p>30</p>
-                                <span>Dec</span>
+
+                    }
+                    else
+                    {
+                        @foreach (var leave in Model.LeaveList)
+                        {
+                            if (leave.EId == UserManager.GetUserAsync(User).Result.EId)
+                            {
+                            <div class="date-reason">
+                                <div class="date-requested">
+                                    <div>
+                                        <p>@leave.LeaveDate.Day</p>
+                                        <span>@leave.LeaveDate.Month</span>
+                                    </div>
+                                </div>
+                                <div class="reason-details">@leave.LeaveReason</div>
                             </div>
-                        </div>
-                        <div class="reason-details">Trip To Mustang</div>
-                    </div>
+                            }
+                            }
+                        }
                 </div>
             </div>
         </div>

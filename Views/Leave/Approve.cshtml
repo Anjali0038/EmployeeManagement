@@ -1,0 +1,48 @@
+﻿@model EmployeeManagement.Models.LeaveViewModel
+@{
+}
+
+<div class="leaverequest-section">
+    <div class="leaverequest-main-conatiner">
+        <div class="leaverequest-form-section">
+            <form asp-controller="Leave" asp-action="Approve" method="post">
+                <input type="hidden" asp-for="Leave_Id" />
+                <div class="employee-name">
+                    <label>Employee Name:&nbsp;&nbsp;</label>
+                    <input asp-for="EmployeeName" type="text">
+                </div>
+                <div class="employee-designation">
+                    <label for="">Designation:&nbsp;&nbsp;</label>
+                    <input asp-for="Designation_Name" type="text">
+                </div>
+                <div class="employee-designation">
+                    <label for="">LeaveReason:</label>
+                    <input asp-for="LeaveReason" type="text">
+                </div>
+                <div class="leave-number">
+                    <label for="">Total Number of days requested:</label>
+                    <input asp-for="LeaveDays" type="number" class="leaveday">
+                </div>
+                <div class="multiple-day-section">
+                    <div class="multiple-day-leave-section">
+                        <div class="leave-start-date">
+                            <label for="">Leave Start Date:</label>
+                            <input asp-for="LeaveDate" type="date" asp-format="{0:dd/MM/yyyy}">
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" asp-for="UserId" />
+                <input type="hidden" asp-for="EId" />
+                <input type="hidden" asp-for="Employee" />
+                <input type="hidden" value="true" asp-for="LeaveStatus" />
+                <input value="Approve" type="submit" class="leaverequestsubmitbtn">
+            </form>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="~/css/site.css">
+<link rel="stylesheet" href="~/css/leaverequest.css">
+<script src="~/wwwroot/js/toast.js"></script>
+<script src="~/js/leaverequest.js"></script>
+

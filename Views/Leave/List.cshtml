@@ -1,6 +1,9 @@
 ﻿@model EmployeeManagement.Models.LeaveViewModel
 @{
 }
+@{ 
+    bool status = true;
+}
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,6 +24,8 @@
         <div class="employeelist-designation">Designation</div>
         <div class="employeelist-username">Leave Date</div>
         <div class="employeelist-email">Leave Days</div>
+        <div class="employeelist-edit-delete">Approve Leave</div>
+
     </div>
     @{int i = 1; }
     @foreach (var leave in Model.LeaveList)
@@ -31,8 +36,15 @@
                 <div class="employeelist-sn-value">@(i++)</div>
                 <div class="employeelist-name-value">@leave.EmployeeName</div>
                 <div class="employeelist-designation-value">@leave.Designation_Name</div>
-                <div class="employeelist-username-value" >@leave.LeaveDate</div>
+                <div class="employeelist-username-value">@leave.LeaveDate</div>
                 <div class="employeelist-email-value">@leave.LeaveDays</div>
+                <div class="employeelist-edit-delete-value" style="padding: 0 0;">
+                    @*<button class="edit-btn btnSubmit" id="@leave.Leave_Id">yes </button>*@
+                    @using (Html.BeginForm("Approve", "Leave", new { Id = leave.Leave_Id }, FormMethod.Get))
+                    {
+                        <button>Approve</button>
+                    }
+                </div>
             </div>
         }
     }
@@ -64,3 +76,20 @@
 </div>
 <link rel="stylesheet" href="~/css/site.css">
 
+<script type="text/javascript">
+    $(function () {
+        $(".btnSubmit").click(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Leave/Approve",
+                data: { id: this.id },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        });
+    });
+</script>

@@ -18,6 +18,8 @@ namespace EmployeeManagement.Service
         List<Employee> GetEmployees();
         List<ApplicationUser> GetUsers();
         LeaveViewModel GetList();
+        LeaveViewModel GetApprovedLeave();
+        int EditLeave(LeaveViewModel model);
 
     }
     public class LeaveProvider : ILeaveProvider
@@ -27,7 +29,7 @@ namespace EmployeeManagement.Service
         private EmployeeManagementDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public LeaveProvider(UserManager<ApplicationUser> userManager, ILeaveRepository iLeaveRepository, IMapper mapper,EmployeeManagementDbContext context)
+        public LeaveProvider(UserManager<ApplicationUser> userManager, ILeaveRepository iLeaveRepository, IMapper mapper, EmployeeManagementDbContext context)
         {
             _userManager = userManager;
             _iLeaveRepository = iLeaveRepository;
@@ -90,6 +92,39 @@ namespace EmployeeManagement.Service
             list = _mapper.Map<List<Leave>, List<LeaveViewModel>>(data);
             model.LeaveList = list;
             return model;
+        }
+        public LeaveViewModel GetApprovedLeave()
+        {
+            LeaveViewModel model = new LeaveViewModel();
+            var list = new List<LeaveViewModel>();
+            List<Leave> data = _iLeaveRepository.GetAll().ToList();
+            foreach( var item in data)
+            {
+                if(item.LeaveStatus==true)
+                {
+                    list = _mapper.Map<List<Leave>, List<LeaveViewModel>>(data);
+                    model.LeaveList = list;
+                }
+            }
+            return model;
+
+            //var leaveList = new List<Leave>();
+            //var leave = _context.Leave.ToList();
+            //foreach (var item in leave)
+            //{
+            //    if (item.LeaveStatus == true)
+            //    {
+            //        leaveList.Add(item);
+            //    }
+            //}
+            //return leaveList;
+        }
+        public int EditLeave(LeaveViewModel model)
+        {
+            Leave leave = new Leave();
+            leave = _mapper.Map<Leave>(model);
+            _iLeaveRepository.Update(leave);
+            return 200;
         }
     }
 }

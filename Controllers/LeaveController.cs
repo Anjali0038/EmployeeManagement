@@ -75,5 +75,34 @@ namespace EmployeeManagement.Controllers
             var data = _iLeaveProvider.GetList();
             return View(data);
         }
+        [HttpGet]
+        public IActionResult ApproveLeave()
+        {
+            var data = _iLeaveProvider.GetApprovedLeave();
+            return View(data);
+        }
+        [HttpGet]
+        public IActionResult Approve(int? id)
+        {
+            LeaveViewModel model = new LeaveViewModel();
+            if (id.HasValue)
+            {
+                model = _iLeaveProvider.GetById(id.Value);
+            }
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult Approve(LeaveViewModel model)
+        {
+            try
+            {
+                _iLeaveProvider.EditLeave(model);
+                return RedirectToAction("List");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
