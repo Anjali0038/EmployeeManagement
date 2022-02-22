@@ -42,7 +42,7 @@
                         </select>
                         <input type="hidden" asp-for="UserId" />
                     </div>
-                }
+                } 
                 else
                 {
                     <div class="employee-name">
@@ -52,7 +52,7 @@
                         <span asp-validation-for="EmployeeName" class="text-danger"></span>
                     </div>
                     <div class="employee-designation">
-                        <label for="">Designation:</label>
+                        <label for="">Designation:&nbsp;&nbsp;</label>
                         <input asp-for="Designation_Name" value="@UserManager.GetUserAsync(User).Result.Designation" type="text">
                         <input type="hidden" asp-for="UserId" />
                     </div>
