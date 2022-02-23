@@ -1,3 +1,4 @@
+
 var picker = {
     // (A) ATTACH DATEPICKER TO TARGET
     // target : datepicker will populate this field
@@ -107,6 +108,7 @@ var picker = {
 
             // (A6-P-4) ATTACH POPUP DATEPICKER TO BODY
             document.body.appendChild(wrapper);
+            
         }
     },
 
@@ -194,7 +196,6 @@ var picker = {
             todayDate = today.getUTCDate();
         }
 
-
         for (var i = 0; i < total; i++) {
             if (i != total && i % 7 == 0) { row = table.insertRow(); }
             cell = row.insertCell();
@@ -235,6 +236,7 @@ var picker = {
         // (B7-3) ATTACH NEW CALENDAR TO DATEPICKER
         days.innerHTML = "";
         days.appendChild(table);
+
     },
 
     // (C) CHOOSE A DATE

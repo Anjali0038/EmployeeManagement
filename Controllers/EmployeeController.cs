@@ -101,7 +101,6 @@ namespace EmployeeManagemnt.Controllers
                              label = user.UserName,
                              val = user.Employee_Id
                          }).ToList();
-
             return Json(users);
         }
     }

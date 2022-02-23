@@ -3,10 +3,13 @@ using EmployeeManagement.Areas.Identity.Data;
 using EmployeeManagement.Data;
 using EmployeeManagement.Models;
 using EmployeeManagement.Repository;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Azure.Documents;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace EmployeeManagement.Service
@@ -20,19 +23,25 @@ namespace EmployeeManagement.Service
         LeaveViewModel GetList();
         LeaveViewModel GetApprovedLeave();
         int EditLeave(LeaveViewModel model);
+        List<CalenderViewModel> GetCalendarDataByYearAndMonth(string eid,string year, string month);
 
     }
     public class LeaveProvider : ILeaveProvider
     {
         private readonly ILeaveRepository _iLeaveRepository;
+        private readonly IHolidayRepository _iHolidayRepository;
+        private readonly IAttendanceRepository _iAttendanceRepository;
+
         private readonly IMapper _mapper;
         private EmployeeManagementDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public LeaveProvider(UserManager<ApplicationUser> userManager, ILeaveRepository iLeaveRepository, IMapper mapper, EmployeeManagementDbContext context)
+        public LeaveProvider(IAttendanceRepository iAttendanceRepository, IHolidayRepository iHolidayRepository,UserManager<ApplicationUser> userManager, ILeaveRepository iLeaveRepository, IMapper mapper, EmployeeManagementDbContext context)
         {
             _userManager = userManager;
             _iLeaveRepository = iLeaveRepository;
+            _iHolidayRepository = iHolidayRepository;
+            _iAttendanceRepository = iAttendanceRepository;
             _mapper = mapper;
             _context = context;
         }
@@ -125,6 +134,38 @@ namespace EmployeeManagement.Service
             leave = _mapper.Map<Leave>(model);
             _iLeaveRepository.Update(leave);
             return 200;
+        }
+        public List<CalenderViewModel> GetCalendarDataByYearAndMonth(string eid, string year, string month)
+        {
+
+            //var users = _context.Users.Find();
+            int EmpId = Convert.ToInt32(eid);
+            int monthInt = 0;
+            if(month == "0")            
+                monthInt = 1;            
+            else if(month=="1")            
+                monthInt = 2;            
+            //else 
+
+            DateTime firstDate = Convert.ToDateTime(monthInt+"/01/" + year);
+            DateTime lastDate = Convert.ToDateTime( monthInt +"/28/" + year);
+
+
+            List<CalenderViewModel> model = new();
+            List<Attendance> attendance = _iAttendanceRepository.GetAll(x=>x.Employee_Id == EmpId).Where(x=>x.Date <= lastDate && x.Date >= firstDate).ToList();
+            
+            //List<Leave> leave = _iLeaveRepository.GetAll(x=>x.EId ==users.EId ).ToList();
+
+            //foreach (var item in data)
+            //{
+            //    if (item.LeaveStatus == true)s
+            //    {
+            //        list = _mapper.Map<List<Leave>, List<LeaveViewModel>>(data);
+            //        model.LeaveList = list;
+            //    }
+            //}
+            //return model;s
+            return model;
         }
     }
 }

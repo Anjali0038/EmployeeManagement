@@ -30,6 +30,7 @@
     @using Microsoft.AspNetCore.Http
     @inject IHttpContextAccessor HttpContextAccessor
     @using System.Globalization
+    @using EmployeeManagement.Models
 </head>
 @{
     string role = HttpContextAccessor.HttpContext.Session.GetString("Role");
@@ -131,18 +132,18 @@
                         {
                             if (leave.LeaveStatus == true)
                             {
-                            <div class="date-reason">
-                                <div class="date-requested">
-                                    <div>
-                                        <p>@leave.LeaveDate.Day</p>
-                                        <span>@leave.LeaveDate.ToString("MMM")</span>
+                                <div class="date-reason">
+                                    <div class="date-requested">
+                                        <div>
+                                            <p>@leave.LeaveDate.Day</p>
+                                            <span>@leave.LeaveDate.ToString("MMM")</span>
+                                        </div>
                                     </div>
+                                    <div class="reason-details">@leave.LeaveReason</div>
                                 </div>
-                                <div class="reason-details">@leave.LeaveReason</div>
-                            </div>
-                            }
                             }
                         }
+                    }
                     else
                     {
                         @foreach (var leave in Model.LeaveList)
@@ -160,10 +161,10 @@
                                         </div>
                                         <div class="reason-details">@leave.LeaveReason</div>
                                     </div>
-                                    }
                                 }
                             }
                         }
+                    }
                 </div>
             </div>
         </div>
@@ -171,6 +172,8 @@
 </div>
 <script src="~/js/dashboard.js"></script>
 <script src="~/js/calender.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
 <script>
 
     let leavestn = document.querySelector("#leaveList");
@@ -191,4 +194,33 @@
         leavestn.style.display = "block";
         approvestn.style.display = "none";
     });
+
+
+    $(window).on('load', function () {
+        debugger
+        
+        var selectedMonth = document.getElementsByClassName('picker-m')[0].selectedIndex;
+        var yearSelect = document.getElementsByClassName('picker-y')[0];
+        var selectedYear = yearSelect.options[yearSelect.selectedIndex].value;
+        
+        $.ajax({
+            type: "Get",
+            url: "/Home/HolidayCalender",
+            data: { year: selectedYear, month: selectedMonth },
+            dataType: "json",
+            success: function (response) {
+                debugger
+                alert(response.responseText);
+            },
+            failure: function (response) {
+                alert(response.responseText);
+            },
+            error: function (response) {
+                alert(response.responseText);
+            }
+        });
+    });
+
+
+
 </script>
