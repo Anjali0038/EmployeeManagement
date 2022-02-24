@@ -137,34 +137,23 @@ namespace EmployeeManagement.Service
         }
         public List<CalenderViewModel> GetCalendarDataByYearAndMonth(string eid, string year, string month)
         {
-
-            //var users = _context.Users.Find();
             int EmpId = Convert.ToInt32(eid);
             int monthInt = 0;
             if(month == "0")            
                 monthInt = 1;            
             else if(month=="1")            
                 monthInt = 2;            
-            //else 
-
             DateTime firstDate = Convert.ToDateTime(monthInt+"/01/" + year);
             DateTime lastDate = Convert.ToDateTime( monthInt +"/28/" + year);
-
-
             List<CalenderViewModel> model = new();
+            CalenderViewModel calendermodel = new();
             List<Attendance> attendance = _iAttendanceRepository.GetAll(x=>x.Employee_Id == EmpId).Where(x=>x.Date <= lastDate && x.Date >= firstDate).ToList();
-            
-            //List<Leave> leave = _iLeaveRepository.GetAll(x=>x.EId ==users.EId ).ToList();
-
-            //foreach (var item in data)
-            //{
-            //    if (item.LeaveStatus == true)s
-            //    {
-            //        list = _mapper.Map<List<Leave>, List<LeaveViewModel>>(data);
-            //        model.LeaveList = list;
-            //    }
-            //}
-            //return model;s
+            List<Holiday> holiday = _iHolidayRepository.GetAll().Where(x => x.HolidayDate <= lastDate && x.HolidayDate >= firstDate).ToList();
+            List<Leave> leave = _iLeaveRepository.GetAll(x=>x.EId ==EmpId ).Where(x => x.LeaveDate <= lastDate && x.LeaveDate >= firstDate).ToList();
+            foreach (var item in holiday)
+            {
+                calendermodel.Day = item.HolidayDate.ToString();
+            }
             return model;
         }
     }

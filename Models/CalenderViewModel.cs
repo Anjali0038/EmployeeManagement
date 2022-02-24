@@ -6,7 +6,7 @@ namespace EmployeeManagement.Models
 {
     public class CalenderViewModel
     {
-        public DateTime Day { get; set; }
+        public string Day { get; set; }
         public string Status { get; set; }
     }
 }
