@@ -13,6 +13,7 @@ namespace EmployeeManagement.Areas.Identity.Data
         public string FullName { get; set; }
         [Required]
         public string UserName { get; set; }
+        public string Image { get; set; }
         [Required]
         [DataType(DataType.Password)]
         [Display(Name ="Password")]

@@ -2,6 +2,7 @@
 using EmployeeManagement.Models;
 using EmployeeManagement.Service;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -18,7 +19,6 @@ namespace EmployeeManagemnt.Controllers
         {
             _iEmployeeProvider = iEmployeeProvider;
             _context = context;
-
         }
         public IActionResult Index(string searchText = "")
         {

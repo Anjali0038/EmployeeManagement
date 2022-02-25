@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -15,6 +16,8 @@ namespace EmployeeManagement.Models
         public string MiddleName { get; set; }
         [Required]
         public string LastName { get; set; }
+        public string Image { get; set; }
+        public IFormFile File { get; set; }
         public string Address { get; set; }
         public DateTime Turn_in { get; set; }
         public DateTime Turn_out { get; set; }

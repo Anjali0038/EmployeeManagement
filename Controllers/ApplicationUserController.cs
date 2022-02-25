@@ -81,6 +81,7 @@ namespace EmployeeManagement.Controllers
                     model.Email = user.Email;
                     model.Designation = user.Designation_Name;
                     model.FullName = user.FirstName +" "+ user.MiddleName +" "+ user.LastName;
+                    model.Image = user.Image;
                     var res = await _iApplicationUserProvider.SaveUser(model);
                     TempData["Success"] = "Success";
                     return RedirectToAction("Index");

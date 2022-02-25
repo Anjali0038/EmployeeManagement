@@ -198,11 +198,11 @@
 
     $(window).on('load', function () {
         debugger
-        
+
         var selectedMonth = document.getElementsByClassName('picker-m')[0].selectedIndex;
         var yearSelect = document.getElementsByClassName('picker-y')[0];
         var selectedYear = yearSelect.options[yearSelect.selectedIndex].value;
-        
+
         $.ajax({
             type: "Get",
             url: "/Home/HolidayCalender",
@@ -210,6 +210,12 @@
             dataType: "json",
             success: function (response) {
                 debugger
+
+                var rows = document.getElementsByTagName("table")[0].rows;
+
+                row[].cells[]
+                //var value = cell.innerHTML;
+
                 alert(response.responseText);
             },
             failure: function (response) {

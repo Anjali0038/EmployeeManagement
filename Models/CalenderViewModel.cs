@@ -8,5 +8,7 @@ namespace EmployeeManagement.Models
     {
         public string Day { get; set; }
         public string Status { get; set; }
+        public string Type { get; set; }
+        public int NoOfDays { get; set; }
     }
 }
