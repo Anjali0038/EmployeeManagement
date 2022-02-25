@@ -180,6 +180,10 @@ var picker = {
         var table = document.createElement("table"),
             row = table.insertRow(),
             cell = null;
+
+        
+        //table.classList.add("calenderTable");
+
         row.classList.add("picker-d-h");
         for (let d of daynames) {
             cell = row.insertCell();

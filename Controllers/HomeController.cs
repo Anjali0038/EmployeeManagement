@@ -43,17 +43,16 @@ namespace EmployeeManagement.Controllers
         public JsonResult HolidayCalender(string year, string month)
         {
             string EId = HttpContext.Session.GetInt32("EId").ToString();
+            var data = _iLeaveProvider.GetCalendarDataByYearAndMonth(EId,year,month);
 
-            var leavedata = _iLeaveProvider.GetCalendarDataByYearAndMonth(EId,year,month);
             //var data2 = _iHolidayProvider.GetList();
             //CalenderViewModel model = new CalenderViewModel
             //{
             //    Status = leavedata.LeaveReason,
             //    Day = leavedata.LeaveDate
             //};
-            return Json(true);
+            return Json(data);
         }
-
         public IActionResult Privacy()
         {
             return View();
