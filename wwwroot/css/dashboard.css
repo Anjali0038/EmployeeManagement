@@ -301,7 +301,7 @@ option ::-webkit-scrollbar {
 
 .picker-d-td {
     font-weight: bold;
-    border: 2px solid blue !important;
+    /*border: 2px solid blue !important;*/
 }
 
 /* PICKABLE DATES */
@@ -335,7 +335,7 @@ option ::-webkit-scrollbar {
 }
 
     .picker-d-d:last-child {
-        border: 2px solid red;
+        /*border: 2px solid red;*/
     }
 /* .sick:nth-child(1) {
     background-color: blueviolet;
@@ -631,23 +631,23 @@ align-self: center;
 .col-40,
 .col-41,
 .col-42 {
-    border: 2px solid #1abc9c;
+    /*border: 2px solid #1abc9c;*/
 }
 
 .col-4,
 .col-12 {
-    border: 2px solid #610303;
-}
+/*    border: 2px solid #610303;
+*/}
 
 .col-8,
 .col-25 {
-    border: 2px solid rgba(255, 165, 0, 1);
-}
+/*    border: 2px solid rgba(255, 165, 0, 1);
+*/}
 
 .col-22,
 .col-10 {
-    border: 2px solid rgba(239, 35, 60, 1);
-}
+/*    border: 2px solid rgba(239, 35, 60, 1);
+*/}
 
 .col-14,
 .col-15,
@@ -655,8 +655,8 @@ align-self: center;
 .col-17,
 .col-18,
 .col-19 {
-    border: 2px solid #800080;
-}
+/*    border: 2px solid #800080;
+*/}
 
 /* .active {
   color: #1abc9c;

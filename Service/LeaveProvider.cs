@@ -137,9 +137,8 @@ namespace EmployeeManagement.Service
         }
         public List<CalenderViewModel> GetCalendarDataByYearAndMonth(string eid, string year, string month)
         {
-            int EmpId = 2;
-            //EmpId = Convert.ToInt32(eid);
-
+            //int EmpId = 2;
+            int EmpId = Convert.ToInt32(eid);
             int monthInt = 0;
             if (month == "0")
                 monthInt = 1;

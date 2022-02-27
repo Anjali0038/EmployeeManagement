@@ -19,6 +19,10 @@
             width: 100%;
             height: auto;
             position: relative;
+            
+        }
+        .leaveDayColor{
+            color:red;
         }
     </style>
     <title>Employee-List</title>
@@ -198,7 +202,6 @@
 
     $(window).on('load', function () {
         debugger
-
         var selectedMonth = document.getElementsByClassName('picker-m')[0].selectedIndex;
         var yearSelect = document.getElementsByClassName('picker-y')[0];
         var selectedYear = yearSelect.options[yearSelect.selectedIndex].value;
@@ -209,11 +212,63 @@
             data: { year: selectedYear, month: selectedMonth },
             dataType: "json",
             success: function (response) {
-                debugger
-
                 var rows = document.getElementsByTagName("table")[0].rows;
+                response.forEach(function (d) {
+                    day = d.day;
+                    status = d.status;
+                    type = d.type;
+                    noOfDays = d.noOfDays;
+                    var rows = document.getElementsByTagName("table")[0].rows;
+                    let flag = false;
 
-                row[].cells[]
+                    for (var i = 2; i < rows.length; i++) {
+                        if (flag) {
+                            break;
+                        }
+                        var cellLength = rows[i].cells.length;
+                        var lastCell = rows[i].cells[cellLength - 1];
+                        if (parseInt(lastCell.innerHTML) >= parseInt(day)) {
+                            for (var j = 0; j < cellLength; j++) {
+                                if (rows[i].cells[j].innerHTML == day) {
+                                    rows[i].cells[j].classList.add('leaveDayColor');
+                                    noOfDays--;
+                                    day++;
+                                    if (noOfDays == 0) {
+                                        flag = true;
+                                    }
+                                }
+                                if (flag) {
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                });
+
+                //for (let x in response)
+                //{
+                //    day = x.day;
+                //    status = x.status;
+                //    type = x.type;
+                //    for (let i=2 in rows, i++) {
+                //        let row = rows.rows[i];
+                //        for (var j = 0; i < rows.cells; i++)
+                //        for (let j in row.cells) {
+                //            let col = row.cells[j]
+                //            //let lastcell = cells.length - 1;
+                //            var lastcell = last.cells[6];
+                //            //if (col == day)
+                //            //{
+                //            //    return status;
+                //            //}
+                //            //elseif(day < col)
+                //            //{
+
+                //            //}
+                //        }
+                //    }
+                //}
+                //row[].cells[]
                 //var value = cell.innerHTML;
 
                 alert(response.responseText);
