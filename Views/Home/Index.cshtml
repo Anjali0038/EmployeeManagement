@@ -24,6 +24,24 @@
         .leaveDayColor{
             color:red;
         }
+        .HolidayDayColor {
+            color: blue;
+        }
+        .HalfDayColor{
+            color :green;
+        }
+        .LateColor{
+            color:deeppink;
+        }
+        .NotCheckedOutColor{
+            color:purple;
+        }
+        .OverTimeColor{
+            color:black
+        }
+        .ValidAttendanceColor {
+            color: deepskyblue;
+        }
     </style>
     <title>Employee-List</title>
 
@@ -177,9 +195,7 @@
 <script src="~/js/dashboard.js"></script>
 <script src="~/js/calender.js"></script>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
-
 <script>
-
     let leavestn = document.querySelector("#leaveList");
     console.log(leavestn);
 
@@ -199,79 +215,102 @@
         approvestn.style.display = "none";
     });
 
-
-    $(window).on('load', function () {
-        debugger
+                    $(window).on('load', function () {
+                        debugger
         var selectedMonth = document.getElementsByClassName('picker-m')[0].selectedIndex;
         var yearSelect = document.getElementsByClassName('picker-y')[0];
         var selectedYear = yearSelect.options[yearSelect.selectedIndex].value;
-
-        $.ajax({
+            $.ajax({
             type: "Get",
             url: "/Home/HolidayCalender",
             data: { year: selectedYear, month: selectedMonth },
             dataType: "json",
             success: function (response) {
-                var rows = document.getElementsByTagName("table")[0].rows;
-                response.forEach(function (d) {
-                    day = d.day;
-                    status = d.status;
-                    type = d.type;
-                    noOfDays = d.noOfDays;
+                debugger
+                response.forEach(function (item) {
+                    day = item.day;
+                    status = item.status;
+                    type = item.type;
+                    noOfDays = item.noOfDays;
+                    
                     var rows = document.getElementsByTagName("table")[0].rows;
-                    let flag = false;
-
-                    for (var i = 2; i < rows.length; i++) {
-                        if (flag) {
-                            break;
-                        }
-                        var cellLength = rows[i].cells.length;
-                        var lastCell = rows[i].cells[cellLength - 1];
-                        if (parseInt(lastCell.innerHTML) >= parseInt(day)) {
+                    let exitflag = false;
+                    if (type == "Holiday") {
+                        for (var i = 2; i < rows.length; i++) {
+                            var cellLength = rows[i].cells.length;
+                            var lastCell = rows[i].cells[cellLength - 1];
                             for (var j = 0; j < cellLength; j++) {
                                 if (rows[i].cells[j].innerHTML == day) {
-                                    rows[i].cells[j].classList.add('leaveDayColor');
-                                    noOfDays--;
-                                    day++;
-                                    if (noOfDays == 0) {
-                                        flag = true;
-                                    }
-                                }
-                                if (flag) {
-                                    break;
+                                    rows[i].cells[j].classList.add('HolidayDayColor');
                                 }
                             }
                         }
                     }
+                    if (type == "Leave") {
+
+                        for (var i = 2; i < rows.length; i++) {
+                            debugger
+                            if (exitflag) {
+                                break;
+                            }
+
+                            var cellLength = rows[i].cells.length;
+                            var lastCell = rows[i].cells[cellLength - 1];
+                            
+                            if (parseInt(lastCell.innerHTML) >= parseInt(day)) {
+                                for (var j = 0; j < cellLength; j++) {
+                                    debugger
+                                    if (rows[i].cells[j].innerHTML == day) {
+
+                                        rows[i].cells[j].classList.add('leaveDayColor');
+
+                                        noOfDays--;
+                                        day++;
+
+                                        if (noOfDays == 0) {
+                                            exitflag = true;
+                                        }
+                                        debugger
+                                    }
+                                    if (exitflag) {
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (type == "Attendence") {
+                            for (var i = 2; i < rows.length; i++) {
+                                var cellLength = rows[i].cells.length;
+                                var lastCell = rows[i].cells[cellLength - 1];
+                                for (var j = 0; j < cellLength; j++) {
+                                    if (rows[i].cells[j].innerHTML == day) {
+                                        if (status == "Valid Attendance") {
+                                            rows[i].cells[j].classList.add('ValidAttendanceColor');
+                                        }
+                                        else if (status == "Late") {
+                                            rows[i].cells[j].classList.add('LateColor');
+
+                                        }
+                                        else if (status == "Not Checked Out") {
+                                            rows[i].cells[j].classList.add('NotCheckedOutColor');
+
+                                        }
+                                        else if (status == "Over Time") {
+                                            rows[i].cells[j].classList.add('OverTimeColor');
+
+                                        }
+                                        else (status == "Half Day")
+                                        {
+                                            rows[i].cells[j].classList.add('HalfDayColor');
+
+                                        }
+                                    }
+                                }
+                            }
+                    }
                 });
-
-                //for (let x in response)
-                //{
-                //    day = x.day;
-                //    status = x.status;
-                //    type = x.type;
-                //    for (let i=2 in rows, i++) {
-                //        let row = rows.rows[i];
-                //        for (var j = 0; i < rows.cells; i++)
-                //        for (let j in row.cells) {
-                //            let col = row.cells[j]
-                //            //let lastcell = cells.length - 1;
-                //            var lastcell = last.cells[6];
-                //            //if (col == day)
-                //            //{
-                //            //    return status;
-                //            //}
-                //            //elseif(day < col)
-                //            //{
-
-                //            //}
-                //        }
-                //    }
-                //}
-                //row[].cells[]
-                //var value = cell.innerHTML;
-
-                //alert(response.responseText);
+                alert(response.responseText);
             },
             failure: function (response) {
                 alert(response.responseText);
@@ -281,7 +320,5 @@
             }
         });
     });
-
-
 
 </script>

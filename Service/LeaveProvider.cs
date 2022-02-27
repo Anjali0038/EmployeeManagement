@@ -137,8 +137,8 @@ namespace EmployeeManagement.Service
         }
         public List<CalenderViewModel> GetCalendarDataByYearAndMonth(string eid, string year, string month)
         {
-            //int EmpId = 2;
-            int EmpId = Convert.ToInt32(eid);
+            int EmpId = 2;
+            //int EmpId = Convert.ToInt32(eid);
             int monthInt = 0;
             if (month == "0")
                 monthInt = 1;
@@ -147,8 +147,6 @@ namespace EmployeeManagement.Service
             DateTime firstDate = Convert.ToDateTime(monthInt + "/01/" + year);
             DateTime lastDate = Convert.ToDateTime(monthInt + "/28/" + year);
             List<CalenderViewModel> calenderViewLists = new();
-
-
             //CalenderViewModel calendermodel = new();
             List<Attendance> attendance = _iAttendanceRepository.GetAll(x => x.Employee_Id == EmpId).Where(x => x.Date <= lastDate && x.Date >= firstDate).ToList();
             List<Holiday> holiday = _iHolidayRepository.GetAll().Where(x => x.HolidayDate <= lastDate && x.HolidayDate >= firstDate).ToList();
