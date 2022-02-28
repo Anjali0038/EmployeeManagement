@@ -190,11 +190,15 @@ body {
 }
 
 .late {
-    color: rgba(97, 3, 3, 1);
+/*    color: rgba(97, 3, 3, 1);
+*/
+color:deeppink;
 }
 
 .overtime {
-    color: rgba(128, 0, 128, 1);
+/*    color: rgba(128, 0, 128, 1);
+*/
+color:black;
 }
 
 
@@ -582,11 +586,15 @@ align-self: center;
 }
 
 .late {
-    color: rgba(97, 3, 3, 1);
+    /*    color: rgba(97, 3, 3, 1);
+*/
+    color: deeppink;
 }
 
 .overtime {
-    color: rgba(128, 0, 128, 1);
+    /*    color: rgba(128, 0, 128, 1);
+*/
+    color: black
 }
 
 .col-1,
@@ -671,13 +679,19 @@ align-self: center;
 }
 
 .sick {
-    color: rgba(255, 165, 0, 1)
+/*    color: rgba(255, 165, 0, 1)
+*/}
+.leave{
+    color:yellow;
 }
-
 .today {
-    color: rgba(0, 0, 255, 1);
+/*    color: rgba(0, 0, 255, 1);
+*/
+color:blue;
 }
-
+.holiday{
+    color:blue;
+}
 .lebal li span {
     margin-right: 10px;
 }
