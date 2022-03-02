@@ -19,26 +19,32 @@
             width: 100%;
             height: auto;
             position: relative;
-            
         }
-        .leaveDayColor{
-            color:yellow;
+
+        .leaveDayColor {
+            color: yellow;
         }
+
         .HolidayDayColor {
             color: red;
         }
-        .HalfDayColor{
-            color :green;
+
+        .HalfDayColor {
+            color: green;
         }
-        .LateColor{
-            color:deeppink;
+
+        .LateColor {
+            color: deeppink;
         }
-        .NotCheckedOutColor{
-            color:purple;
+
+        .NotCheckedOutColor {
+            color: purple;
         }
-        .OverTimeColor{
-            color:black
+
+        .OverTimeColor {
+            color: black
         }
+
         .ValidAttendanceColor {
             color: deepskyblue;
         }
@@ -71,15 +77,15 @@
                 <div></div>
                 <div class="lebal-container">
                     <ul class="lebal">
-                        <li> <span><i class="fas fa-circle overtime"></i></span>overtime</li>
+                        <li> <span><i class="fas fa-circle OverTimeColor"></i></span>overtime</li>
                         <li><span><i class="fas fa-circle NotCheckedOutColor"></i></span>Not CheckedOut</li>
-                        <li><span><i class="fas fa-circle late"></i></span>late</li>
+                        <li><span><i class="fas fa-circle LateColor"></i></span>late</li>
                         <li><span><i class="fas fa-circle ValidAttendanceColor"></i></span>Valid Attendance</li>
                     </ul>
                     <ul class="lebal">
                         <li><span><i class="fas fa-circle HalfDayColor"></i></span>HalfDay</li>
-                        <li><span><i class="fas fa-circle hday"></i></span>Weekends</li>
-                        <li><span><i class="fas fa-circle leave"></i></span>Leave</li>
+                        <li><span><i class="fas fa-circle HolidayDayColor"></i></span>Weekends</li>
+                        <li><span><i class="fas fa-circle leaveDayColor"></i></span>Leave</li>
                         <li><span><i class="fas fa-circle HolidayDayColor"></i></span>Holiday</li>
                     </ul>
                 </div>
@@ -217,65 +223,74 @@
         approvestn.style.display = "none";
     });
 
-        $(window).on('load', function () {
-        var selectedMonth = document.getElementsByClassName('picker-m')[0].selectedIndex;
-        var yearSelect = document.getElementsByClassName('picker-y')[0];
-        var selectedYear = yearSelect.options[yearSelect.selectedIndex].value;
-            $.ajax({
-            type: "Get",
-            url: "/Home/HolidayCalender",
-            data: { year: selectedYear, month: selectedMonth },
-            dataType: "json",
-            success: function (response) {
-                response.forEach(function (item) {
-                    day = item.day;
-                    status = item.status;
-                    type = item.type;
-                    noOfDays = item.noOfDays;
-                    
-                    var rows = document.getElementsByTagName("table")[0].rows;
-                    let exitflag = false;
-                    if (type == "Holiday") {
-                        for (var i = 2; i < rows.length; i++) {
-                            var cellLength = rows[i].cells.length;
-                            var lastCell = rows[i].cells[cellLength - 1];
-                            for (var j = 0; j < cellLength; j++) {
-                                if (rows[i].cells[j].innerHTML == day) {
-                                    rows[i].cells[j].classList.add('HolidayDayColor');
-                                }
-                            }
-                        }
-                    }
-                    if (type == "Leave") {
-                        for (var i = 2; i < rows.length; i++) {
-                            if (exitflag) {
-                                break;
-                            }
 
-                            var cellLength = rows[i].cells.length;
-                            var lastCell = rows[i].cells[cellLength - 1];
-                            
-                            if (parseInt(lastCell.innerHTML) >= parseInt(day)) {
+    $(window).on('load', function () {
+        //var selectedMonth = document.getElementsByClassName('picker-m')[0].selectedIndex;
+        //var yearSelect = document.getElementsByClassName('picker-y')[0];
+        //var selectedYear = yearSelect.options[yearSelect.selectedIndex].value;
+
+        Calenderload();
+
+        function Calenderload() {
+            debugger
+            var selectedMonth = document.getElementsByClassName('picker-m')[0].selectedIndex;
+            var yearSelect = document.getElementsByClassName('picker-y')[0];
+            var selectedYear = yearSelect.options[yearSelect.selectedIndex].value;
+            $.ajax({
+                type: "Get",
+                url: "/Home/HolidayCalender",
+                data: { year: selectedYear, month: selectedMonth },
+                dataType: "json",
+                success: function (response) {
+                    response.forEach(function (item) {
+                        day = item.day;
+                        status = item.status;
+                        type = item.type;
+                        noOfDays = item.noOfDays;
+
+                        var rows = document.getElementsByTagName("table")[0].rows;
+                        let exitflag = false;
+                        if (type == "Holiday") {
+                            for (var i = 2; i < rows.length; i++) {
+                                var cellLength = rows[i].cells.length;
+                                var lastCell = rows[i].cells[cellLength - 1];
                                 for (var j = 0; j < cellLength; j++) {
                                     if (rows[i].cells[j].innerHTML == day) {
-
-                                        rows[i].cells[j].classList.add('leaveDayColor');
-
-                                        noOfDays--;
-                                        day++;
-
-                                        if (noOfDays == 0) {
-                                            exitflag = true;
-                                        }
-                                    }
-                                    if (exitflag) {
-                                        break;
+                                        rows[i].cells[j].classList.add('HolidayDayColor');
                                     }
                                 }
                             }
                         }
-                    }
-                    if (type == "Attendence") {
+                        if (type == "Leave") {
+                            for (var i = 2; i < rows.length; i++) {
+                                if (exitflag) {
+                                    break;
+                                }
+
+                                var cellLength = rows[i].cells.length;
+                                var lastCell = rows[i].cells[cellLength - 1];
+
+                                if (parseInt(lastCell.innerHTML) >= parseInt(day)) {
+                                    for (var j = 0; j < cellLength; j++) {
+                                        if (rows[i].cells[j].innerHTML == day) {
+
+                                            rows[i].cells[j].classList.add('leaveDayColor');
+
+                                            noOfDays--;
+                                            day++;
+
+                                            if (noOfDays == 0) {
+                                                exitflag = true;
+                                            }
+                                        }
+                                        if (exitflag) {
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        if (type == "Attendence") {
                             for (var i = 2; i < rows.length; i++) {
                                 var cellLength = rows[i].cells.length;
                                 var lastCell = rows[i].cells[cellLength - 1];
@@ -290,31 +305,36 @@
                                         }
                                         else if (status == "Not Checked Out") {
                                             rows[i].cells[j].classList.add('NotCheckedOutColor');
-
                                         }
                                         else if (status == "Over Time") {
                                             rows[i].cells[j].classList.add('OverTimeColor');
 
                                         }
-                                        else /*(status == "Half Day")*/
-                                        {
+                                        else /*(status == "Half Day")*/ {
                                             rows[i].cells[j].classList.add('HalfDayColor');
 
                                         }
                                     }
                                 }
                             }
-                    }
-                });
-            //    alert(response.responseText);
-            },
-            failure: function (response) {
-                alert(response.responseText);
-            },
-            error: function (response) {
-                alert(response.responseText);
-            }
+                        }
+                    });
+                    //    alert(response.responseText);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        }
+
+        $('.picker-m').on('change', function () {
+            debugger
+            Calenderload();
         });
+
     });
 
 </script>

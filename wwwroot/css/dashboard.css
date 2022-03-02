@@ -305,7 +305,8 @@ option ::-webkit-scrollbar {
 
 .picker-d-td {
     font-weight: bold;
-    /*border: 2px solid blue !important;*/
+/*    color:darkblue;
+*/    border: 2px solid blue !important;
 }
 
 /* PICKABLE DATES */
@@ -340,6 +341,7 @@ option ::-webkit-scrollbar {
 
     .picker-d-d:last-child {
         /*border: 2px solid red;*/
+        color:red;
     }
 /* .sick:nth-child(1) {
     background-color: blueviolet;

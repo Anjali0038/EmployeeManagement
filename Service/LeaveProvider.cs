@@ -144,8 +144,14 @@ namespace EmployeeManagement.Service
                 monthInt = 1;
             else if (month == "1")
                 monthInt = 2;
+            else if (month == "2")
+                monthInt = 3;
+
+
+
             DateTime firstDate = Convert.ToDateTime(monthInt + "/01/" + year);
             DateTime lastDate = Convert.ToDateTime(monthInt + "/28/" + year);
+
             List<CalenderViewModel> calenderViewLists = new();
             //CalenderViewModel calendermodel = new();
             List<Attendance> attendance = _iAttendanceRepository.GetAll(x => x.Employee_Id == EmpId).Where(x => x.Date <= lastDate && x.Date >= firstDate).ToList();
@@ -187,29 +193,29 @@ namespace EmployeeManagement.Service
                     model.Day = item.Date.Day.ToString();
                     model.Type = "Attendence";
 
-                    if (item.Turn_in.Hour > 10)
-                    {
-                        model.Status = "Late";
-                    }
-
-                    if(item.Turn_out.ToString() == "0001-01-01 00:00:00.0000000")
-                    {
-                        model.Status = "Not Checked Out";
-                    }
-
-                    if (item.Turn_out.Hour < 5)
+                    if (item.Turn_out.Hour - item.Turn_in.Hour >= 4)
                     {
                         model.Status = "Half Day";
                     }
-
-                    if (item.Turn_out.Hour >= 7)
+                    if (item.Turn_in.Hour >= 10 && item.Turn_in.Minute > 01)
                     {
-                        model.Status = "Over Time";
+                            model.Status = "Late";
                     }
-
-                    if (item.Turn_in.Hour <= 10 && item.Turn_out.Hour > 5)
+                    else
                     {
-                        model.Status = "Valid Attendance";
+                        if (item.Turn_in.Hour <= 10 && item.Turn_out.Hour >=17)
+                        {
+                            model.Status = "Valid Attendance";
+                            if (item.Turn_out.Hour >= 19)
+                            {
+                                    model.Status = "Over Time";
+                            }
+                        }
+                    }
+                    if(item.Turn_in.Hour >= 10 )
+                    {
+                        if(item.Turn_out.Year == 1)
+                            model.Status = "Not Checked Out";
                     }
 
                     calenderViewLists.Add(model);

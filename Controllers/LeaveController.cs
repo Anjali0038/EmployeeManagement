@@ -61,7 +61,7 @@ namespace EmployeeManagement.Controllers
                 model.Designation_Name = user.Designation;
                 model.EId = user.EId;
                 _iLeaveProvider.SaveLeave(model);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
 
             }
             catch (Exception ex)
