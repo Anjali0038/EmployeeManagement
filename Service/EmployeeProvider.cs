@@ -39,17 +39,17 @@ namespace EmployeeManagement.Service
         }
         public int SaveEmployee(EmployeeViewModel model)
         {
-            string rootFolder = _webHostEnvironment.WebRootPath;
-            var guid = Guid.NewGuid().ToString();
-            string fileName = @"images/" + guid + model.File.FileName;
-            string filePath = Path.Combine(rootFolder, fileName);
-            using (var fileStream = new FileStream(filePath, FileMode.Create))
-            {
-                model.File.CopyToAsync(fileStream);
-            }
-            FileViewModel newfile = new FileViewModel();
-            newfile.FilePath = fileName;
-            newfile.FileName = model.File.FileName;
+            //string rootFolder = _webHostEnvironment.WebRootPath;
+            //var guid = Guid.NewGuid().ToString();
+            //string fileName = @"images/" + guid + model.File.FileName;
+            //string filePath = Path.Combine(rootFolder, fileName);
+            //using (var fileStream = new FileStream(filePath, FileMode.Create))
+            //{
+            //    model.File.CopyToAsync(fileStream);
+            //}
+            //FileViewModel newfile = new FileViewModel();
+            //newfile.FilePath = fileName;
+            //newfile.FileName = model.File.FileName;
 
             Employee employee = new Employee();
             employee = _mapper.Map<Employee>(model);
@@ -72,7 +72,7 @@ namespace EmployeeManagement.Service
         public EmployeeViewModel GetById(int id)
         {
             var item = _iEmployeeRepository.GetSingle(x => x.Employee_Id == id);
-            EmployeeViewModel data = _mapper.Map<EmployeeViewModel>(item);
+            EmployeeViewModel data = _mapper.Map<EmployeeViewModel>(item);`
             return data;
         }
         public EmployeeViewModel GetList()
