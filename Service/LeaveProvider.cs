@@ -146,6 +146,24 @@ namespace EmployeeManagement.Service
                 monthInt = 2;
             else if (month == "2")
                 monthInt = 3;
+            else if (month == "3")
+                monthInt = 4;
+            else if (month == "4")
+                monthInt = 5;
+            else if (month == "5")
+                monthInt = 6;
+            else if (month == "6")
+                monthInt = 7;
+            else if (month == "7")
+                monthInt = 8;
+            else if (month == "8")
+                monthInt = 9;
+            else if (month == "9")
+                monthInt = 10;
+            else if (month == "10")
+                monthInt = 11;
+            else if (month == "11")
+                monthInt = 12;
 
 
 
